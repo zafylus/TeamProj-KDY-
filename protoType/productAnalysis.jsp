@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/all.css">
 <link rel="stylesheet" type="text/css" href="css/erp.css">
 <link rel="stylesheet" type="text/css" href="css/saleAnalysis.css">
+<link rel="stylesheet" type="text/css" href="css/productAnalysis.css">
 </head>
 <body>
 	<c:import url="importPage/header.jsp" />
@@ -17,56 +18,27 @@
 		<c:import url="importPage/side.jsp" />
 		<section>
 			<div class="an_header">
-				<div class="an_title">매출</div>
+				<div class="an_title">top 3 상품</div>
 				<div class="an_date">2023.06.23 18:36 기준</div>
 			</div>
-			<div class="an_container">
-				<div class="an_box">
-					<div>
-						<p>실 매출</p>
-						<div>
-							<span class="an_value">0</span>원
-						</div>
-
-					</div>
-					<div>
-						<p>결제 건수</p>
-						<div>
-							<span class="an_value">0</span>건
-						</div>
-					</div>
-					<div>
-						<p>평균 결제 금액</p>
-						<div>
-							<span class="an_value">0</span>원
-						</div>
-					</div>
-				</div>
-
-
-
-
-				<div class="an_box">
-					<div>
-						<p>환불 금액</p>
-						<div>
-							<span class="an_value red">0</span>원
-						</div>
-					</div>
-					<div>
-						<p>환불 건수</p>
-						<div>
-							<span class="an_value red">0</span>건
-						</div>
-					</div>
-					<div>
-						<p>평균 환불 금액</p>
-						<div>
-							<span class="an_value red">0</span>원
-						</div>
-					</div>
-				</div>
+			<div class="product_showlist">해당 기간에 매출이 없습니다.</div>
+			
+			
+			
+			<div class="an_header">
+				<div class="an_title">카테고리 별 주문</div>
+				<div class="an_date"><button>모두 보기</button></div>
 			</div>
+			<div class="product_showlist">해당 기간에 매출이 없습니다.</div>
+			
+			
+			
+			
+
+
+
+
+
 		</section>
 	</div>
 
@@ -77,15 +49,17 @@
 
 		// nav css
 		for (var index = 0; index < navs.length; index++) {
-			
 			navs[index].addEventListener("focus", focus_nav);
 			navs[index].addEventListener("blur", blur_nav);
-		}
+
+		};
+
 		//nav -> sub 메뉴 css
 		navs[0].addEventListener("focus", sub_on);
 		navs[0].addEventListener("blur", function() {
-			setTimeout(sub_off, 90);
-		});
+			  setTimeout(sub_off, 90);
+			});
+		
 
 		//side css 
 		for (var index = 0; index < sides.length; index++) {

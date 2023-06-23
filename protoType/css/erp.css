@@ -19,6 +19,9 @@ header{
 
 /* 네비 */
 nav {
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
 	height:7%;
 	min-height:60px;
 	min-width: 620px;
@@ -27,16 +30,42 @@ nav {
 	text-align: center;
 	line-height: 60px;
 }
-nav button{
+.nav{
 	width:85px;
 	height:50px;
-	margin-left: 65px;
-	font-weight:600;
+}
+nav button{
 	text-decoration: none;
 	text-align: center;
-	background-color: white;
+	font-weight:500;
 	border: none;
 	color: #4e4e4e;
+	background-color: white;
+}
+.nav_box{
+	overflow: visible;
+	margin-left:50px;
+	margin-right: 0px;
+	
+}
+
+.sub_box{
+	display:flex;
+	flex-direction:column;
+	margin-top:1px;
+	border: 1px solid silver;
+	z-index: 3;
+	border-radius: 5px 20px 20px 20px ;
+  	padding: 10px;
+  	display:none;
+  	background-color: white;
+}
+.sub_btn{
+	width:100%;
+	margin-top: 10px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid silver;
+	
 }
 /* 컨테이너 */
 .container{
@@ -53,7 +82,6 @@ nav button{
 }
 .side_box button{
 	width:100%;
-	height:65px;
 	font-size:17px;
 	padding-left:35px;
 	line-height:65px;

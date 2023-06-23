@@ -27,21 +27,33 @@
 	<script type="text/javascript">
 		let navs = document.querySelectorAll(".nav");
 		let sides = document.querySelectorAll(".side_btn");
+		let sub = document.querySelector(".sub_box");
 		
 		for (var index = 0; index < navs.length; index++) {
 			  navs[index].addEventListener("focus", focus);
 			  navs[index].addEventListener("blur", blur);
+			  
 		};
+		  navs[0].addEventListener("focus", sub_on); 
+		  navs[0].addEventListener("blur", sub_off);
 		
 			function focus(e){
 				let target = e.target;
 				target.style.color = "#1c8dff";
 				target.style.borderBottom = "3px solid  #1c8dff";
+				target.removeEventListener("mouseout", blur);
 			}
+			
 			function blur(e){
 				let target = e.target;
 				target.style.color = "#4e4e4e";
 				target.style.borderBottom = "none";
+			}
+			function sub_on(){
+				sub.style.display = "flex";
+			}
+			function sub_off(){
+				sub.style.display = "none";
 			}
 			
 			

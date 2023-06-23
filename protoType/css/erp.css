@@ -21,6 +21,7 @@ header{
 nav {
 	height:7%;
 	min-height:60px;
+	min-width: 620px;
 	border-bottom: 1px solid silver;
 	border-top: 1px solid silver; 
 	text-align: center;

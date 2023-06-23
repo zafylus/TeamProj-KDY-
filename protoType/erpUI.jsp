@@ -13,6 +13,7 @@
 	<c:import url="importPage/nav.jsp" />
 	<div class="container">
 		<div class="side_box">
+			<button class="side_btn">등록</button>
 			<button class="side_btn">당일</button>
 			<button class="side_btn">전 일</button>
 			<button class="side_btn">전 달</button>

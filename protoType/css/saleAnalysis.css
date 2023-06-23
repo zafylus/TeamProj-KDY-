@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.an_header{
+	display:grid;
+	grid-template-columns: 1fr  1fr;
+	padding-top: 80px;
+	font-weight: 700;
+	font-size: 17px;
+	color:#686868;
+}
+
+.an_title{
+	text-align: left;
+	margin-left: 135px;
+}
+.an_date{
+	text-align: right;
+	margin-right:135px;
+}
+.an_container{
+	margin-top: 70px;
+	padding-right: 100px;
+}
+.an_box{
+	display: flex;
+	flex-direction: row;
+	font-size: 17px;
+	color:#3f3f3f;
+	margin-top: 50px;
+}
+.an_box p{
+	margin-bottom: 20px;
+}
+.an_value{
+	font-weight: 900;
+	font-size: 30px;
+}
+.red{
+	color:red;
+}

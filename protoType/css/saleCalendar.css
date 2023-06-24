@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+section{
+	height:900px;
+}
+#calendar{
+	height:700px;
+	padding: 50px;
+}
+
+#fc-dom-1{
+	text-align: center
+}
+.show_sale_box{
+	display:grid;
+	height:210px;
+	grid-template-columns: 1fr 1fr;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+
+.first_box {
+	border-right: 1px solid #e4e4e4;
+	text-align: center;
+}
+.sale_title_box{
+	margin-bottom: 10px;
+}
+.sale_value{
+	display: inline-block;
+	font-weight: 900;
+	font-size: 30px;
+}
+
+
+.second_box{
+	text-align: center;
+}
+.refund_title_box{
+	margin-bottom: 10px;
+}
+.refund_value{
+	display: inline-block;
+	font-weight: 900;
+	font-size: 30px;
+	color:red;
+}
+
+
+.fc-toolbar-title{
+	display: inline-block !important;
+}
+
+
+.fc-today-button{
+	width:80px !important;
+	background-color: white !important;
+	border: 2px solid #0093d9!important;
+	color: #0093d9 !important;
+	border-radius: 8px !important;
+}
+
+
+.fc-prev-button{
+	background-color: white !important;
+	border:none !important;
+	box-shadow: none !important;
+}
+.fc-next-button{
+	background-color: white !important;
+	border:none !important;
+	box-shadow: none !important;
+}
+
+.title_box{
+	display: inline-block
+}
+
+.fc-scroller::-webkit-scrollbar {
+  display: none;
+}

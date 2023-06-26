@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 *{
-	margin: 0 auto;
 	color:#686868;
 	font-weight: 500;
 }
@@ -45,7 +44,13 @@ nav a ,button{
 	border: none;
 	background-color: white;
 	line-height: inherit;
+	transition: none;
 }
+nav   button,
+    button:focus,
+    button:active{
+        padding: 0;
+    }
 
 
 
@@ -59,6 +64,7 @@ nav a ,button{
 
 .sub_box{
 	display:flex;
+	position:absolute;
 	flex-direction:column;
 	margin-top:1px;
 	border: 1px solid silver;

@@ -4,7 +4,7 @@ section{
 	height:900px;
 }
 #calendar{
-	height:700px;
+	height:900px;
 	padding: 50px;
 }
 
@@ -47,9 +47,14 @@ section{
 	color:red;
 }
 
+.fc-toolbar{
+	padding-left: 80px  !important;
+	line-height: 50px !important;
+}
 
 .fc-toolbar-title{
 	display: inline-block !important;
+	
 }
 
 
@@ -63,12 +68,18 @@ section{
 
 
 .fc-prev-button{
+	position:relative;
+	font-size:20px !important;
+	top:-6px; !important;
 	background-color: white !important;
 	border:none !important;
 	box-shadow: none !important;
 }
 .fc-next-button{
+	position:relative;
 	background-color: white !important;
+	font-size:20px !important;
+	top:-6px; !important;
 	border:none !important;
 	box-shadow: none !important;
 }

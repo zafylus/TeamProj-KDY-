@@ -1,4 +1,8 @@
 @charset "UTF-8";
+*{
+	
+	margin: 0 auto;
+}
 
 .product_showlist{
 	

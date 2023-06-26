@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>erp</title>
-<link rel="stylesheet" type="text/css" href="css/all.css">
 <link rel="stylesheet" type="text/css" href="css/erp.css">
 <link rel="stylesheet" type="text/css" href="css/saleAnalysis.css">
 <link rel="stylesheet" type="text/css" href="css/productAnalysis.css">
@@ -22,18 +21,20 @@
 				<div class="an_date">2023.06.23 18:36 기준</div>
 			</div>
 			<div class="product_showlist">해당 기간에 매출이 없습니다.</div>
-			
-			
-			
+
+
+
 			<div class="an_header">
 				<div class="an_title">카테고리 별 주문</div>
-				<div class="an_date"><button>모두 보기</button></div>
+				<div class="an_date">
+					<button>모두 보기</button>
+				</div>
 			</div>
 			<div class="product_showlist">해당 기간에 매출이 없습니다.</div>
-			
-			
-			
-			
+
+
+
+
 
 
 
@@ -45,21 +46,9 @@
 	<script type="text/javascript">
 		let navs = document.querySelectorAll(".nav");
 		let sides = document.querySelectorAll(".side_btn");
-		let sub = document.querySelector(".sub_box");
+		let sub = document.querySelectorAll(".sub_box");
 
 		// nav css
-		for (var index = 0; index < navs.length; index++) {
-			navs[index].addEventListener("focus", focus_nav);
-			navs[index].addEventListener("blur", blur_nav);
-
-		};
-
-		//nav -> sub 메뉴 css
-		navs[0].addEventListener("focus", sub_on);
-		navs[0].addEventListener("blur", function() {
-			  setTimeout(sub_off, 90);
-			});
-		
 
 		//side css 
 		for (var index = 0; index < sides.length; index++) {
@@ -82,11 +71,29 @@
 		}
 
 		// sub
-		function sub_on() {
-			sub.style.display = "flex";
+		navs.forEach(function(nav) {
+			nav.addEventListener("focus", focus_nav);
+			nav.addEventListener("blur", blur_nav);
+			nav.addEventListener("blur", function() {
+				setTimeout(sub_off, 120);
+			});
+			nav.addEventListener("focus", function(e) {
+				setTimeout(function() {
+					sub_on(e.target);
+				}, 130);
+			});
+		});
+
+		// sub
+		function sub_on(target) {
+			let index = Array.from(navs).indexOf(target);
+			sub[index].style.display = "flex";
 		}
+
 		function sub_off() {
-			sub.style.display = "none";
+			sub.forEach(function(subBox) {
+				subBox.style.display = "none";
+			});
 		}
 
 		// side

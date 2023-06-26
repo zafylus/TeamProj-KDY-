@@ -1,21 +1,25 @@
 @charset "UTF-8";
+*{
+	margin: 0 auto;
+}
 
 .an_header{
 	display:grid;
 	grid-template-columns: 1fr  1fr;
 	padding-top: 80px;
-	font-weight: 700;
 	font-size: 17px;
 	color:#686868;
 }
 
 .an_title{
-	text-align: left;
-	margin-left: 135px;
+	width:100%;
+	font-weight: 700;
+	text-align: center;
 }
 .an_date{
-	text-align: right;
-	margin-right:135px;
+	width:100%;
+	font-weight: 700;
+	text-align: center;
 }
 .an_container{
 	margin-top: 70px;

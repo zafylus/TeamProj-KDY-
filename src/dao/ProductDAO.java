@@ -5,12 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dto.Coffee;
 import dto.Product;
 
 //상품 관리 DAO
 public class ProductDAO implements SelectDAO{
-	
+//	Connection conn = (new DBcon()).getConnection();
 	//상품등록
 	public void regist(Product p) {
 		String sql = "INSERT INTO product VALUES (?, ?, ?, ?)";
@@ -31,7 +30,7 @@ public class ProductDAO implements SelectDAO{
 			stmt.executeUpdate();
 			System.out.println("ProductDAO Regist Success");
 		} catch (SQLException e1) {
-			System.out.println("ProducDAO insert method sql is wrong");
+			System.out.println("ProducDAO insert method sql 구문 잘못됌");
 			e1.printStackTrace();
 		}
 	}
@@ -51,7 +50,7 @@ public class ProductDAO implements SelectDAO{
 				String prodname = rs.getString(2);
 				int price = rs.getInt(3);
 				String category = rs.getString(4);
-				Product p = new Coffee(prodno, price, prodname, category);
+				Product p = new dto.Coffee(prodno, prodname, price, category);
 				plist.add(p);
 			}
 		} catch (SQLException e) {
@@ -64,7 +63,8 @@ public class ProductDAO implements SelectDAO{
 	
 	//Update
 	public void updateProduct(Product p) {
-		String sql = "UPDATE product SET pr_name = ?, pr_price = ?, pr_ctgry = ? WHERE pr_code = ?;";
+		String sql = "UPDATE product SET prodname = ?, price = ?, "
+				+ "category = ? WHERE prodno = ?";
 		PreparedStatement stmt = null;
 
 		try {
@@ -89,7 +89,7 @@ public class ProductDAO implements SelectDAO{
 	
 	//Delete
 	public void deleteProduct(String prodno) {
-		String sql = "DELETE from product WHERE pr_code = ?;";
+		String sql = "DELETE from product WHERE prodno = ?;";
 		PreparedStatement stmt = null;
 
 		try {
@@ -108,7 +108,7 @@ public class ProductDAO implements SelectDAO{
 		String maxNo = null;
 		
 		try {
-			String sql = "SELECT MAX(pr_code) FROM product WHERE pr_ctgry = ?;";
+			String sql = "SELECT MAX(prodno) FROM product WHERE category = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, category);
 			ResultSet rs = stmt.executeQuery();
@@ -132,21 +132,24 @@ public class ProductDAO implements SelectDAO{
 	private String plusProdno(String category) {
 		String prodno = null;
 		String maxNo = getMaxProdno(category);
-		int no = Integer.parseInt(maxNo.substring(2))+1;
+		int no = Integer.parseInt(maxNo.substring(4))+1;
 		String temp = ""+no;
 		
 		switch(temp.length()) {
 			case 1:
-				prodno = maxNo.substring(0, 2)+"00"+no;
+				prodno = maxNo.substring(0, 4)+"000"+no;
 				break;
 			case 2:
-				prodno = maxNo.substring(0, 2)+"0"+no;
+				prodno = maxNo.substring(0, 4)+"00"+no;
 				break;
 			case 3:
-				prodno = maxNo.substring(0, 2)+no;
+				prodno = maxNo.substring(0, 4)+"0"+no;
+				break;
+			case 4:
+				prodno = maxNo.substring(0, 4)+no;
 				break;
 			default:
-				System.out.println("상품번호가 1000 이상입니다");
+				System.out.println("상품번호가 10000 이상입니다");
 				break;
 		}
 		

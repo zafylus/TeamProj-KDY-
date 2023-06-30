@@ -4,26 +4,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class DBcon {
 
-	public static Connection getConnection() {
-		String url = "jdbc:mariadb://localhost:3306/erp";
-		String uid = "root";
-		String upw = "1234";
-		Connection conn = null;
+	public static Connection conn = null;
+	
+	public Connection getConnection() {
 		try {
+			System.out.println("DB컨 준비");
 			Class.forName("org.mariadb.jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
-			System.out.println("jdbc 라이브러리를 찾을 수 없습니다.");
-			e1.printStackTrace();
+			System.out.println("클래스 네임");
+			String url = "jdbc:mariadb://localhost:3306/erp";
+			String id = "root";
+			String pw = "1234";
+			conn = DriverManager.getConnection(url, id, pw);
+			System.out.println("DB Connecting Success(기본 생성자)");
+		}  catch (Exception e) {
+			System.out.println("커넥션 객체 못가져옴 : " + e.getMessage());
 		}
-		try {
-			conn = DriverManager.getConnection(url, uid, upw);
-		} catch (SQLException e1) {
-			System.out.println("SQL 구문 오류");
-			e1.printStackTrace();
-		}
-		System.out.println("DBcon 객체 생성됨");
+
 		return conn;
+	}
+	
+	public static void close() throws SQLException {
+		if(conn != null) conn.close();
 	}
 }

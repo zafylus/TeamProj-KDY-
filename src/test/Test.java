@@ -1,20 +1,23 @@
 package test;
-import java.util.ArrayList;
 
-import dto.Coffee;
-import dto.Product;
+import java.time.LocalDate;
 
 public class Test {
 	public static void main(String[] args) {
-		dao.ProductDAO p = new dao.ProductDAO();
-		Product c = new Coffee("PR004", 6500, "카라멜마키아또", "커피");
-//		p.regist(c);
-//		p.updateProduct(c);
-		p.deleteProduct("PR004");
-		ArrayList<Product> plist = p.selectAll();
+		LocalDate now = LocalDate.now();
+		System.out.println(now.toString().substring(0,7));
+		/*ProductDAO pDao = new ProductDAO();
+		ArrayList<Product> plist = pDao.selectAll();
 		
 		for (Product product : plist) {
-			System.out.println(product.toString());
-		}
+			System.out.println(product);
+		}*/
+//		SalesDAO s = new SalesDAO();
+//		System.out.println(s.monthSales("2023-05"));
+//		ArrayList<SalesByDateDTO> slist = s.selectAll();
+//		
+//		for (SalesByDateDTO salesByDate : slist) {
+//			System.out.println(salesByDate);
+//		}
 	}
 }

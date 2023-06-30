@@ -7,7 +7,7 @@ import dbCon.DBcon;
 import dto.Product;
 
 public interface SelectDAO {
-	final Connection conn = DBcon.getConnection();
+	final Connection conn = (new DBcon()).getConnection();
 	
-	public ArrayList<Product> selectAll();
+	public Object selectAll();
 }

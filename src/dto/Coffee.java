@@ -1,15 +1,12 @@
 package dto;
 
-
-
 public class Coffee extends Product{
 	
 	
 
-	public Coffee(String prodno, int price, String prodname, String category) {
-		super(prodno, prodname, price, category);
+	public Coffee(String prod_no, String prodname, int price, String category) {
+		super(prod_no, prodname, price, category);
 	}
-	
 
 	@Override
 	public int count() {

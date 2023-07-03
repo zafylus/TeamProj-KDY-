@@ -11,26 +11,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERP Project</title>
-    <%
-	    LocalDate now = LocalDate.now();
-		String yearMon = now.toString().substring(0,7);
-    
-        SalesDAO sd = new SalesDAO();
-    	int monthSales = sd.monthSales(yearMon);
-		request.setAttribute("monthSales", monthSales);    	
-    	
-        ArrayList<SalesByDateDTO> slist = sd.selectAll();
-        JSONArray jarray = new JSONArray(slist);
-    	System.out.print(jarray);
-    	pageContext.setAttribute("jarray", jarray);
-    %>
     <script src="js/index.global.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+        var jarray;
+      	document.addEventListener('DOMContentLoaded', function() {
+
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           locale: 'ko',
-          events: ${jarray}
+          events: ${sales}
         });
         calendar.render();
       });
@@ -61,7 +50,7 @@
     </div>
     <script>
     	const sales = document.getElementById('sales');
-    	sales.innerText = '이번달 매출 : '+${monthSales};
+    	sales.innerText = '이번달 매출 : ';
     </script>
     <script src="js/calSales.js"></script>
 </body>

@@ -19,12 +19,12 @@ public class SalesDateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SalesDAO sDao = new SalesDAO();
-		JSONArray jarray = new JSONArray(sDao.showSalesDate());
+		JSONArray jarray = new JSONArray(sDao.selectAll());
 		System.out.println(jarray);
 		ServletContext sc = this.getServletContext();
 		sc.setAttribute("sales", jarray);
 		System.out.println(sc.getAttribute("sales"));
-		response.sendRedirect("Sales.html");
+		response.sendRedirect("sales.jsp");
 		
 	}
 

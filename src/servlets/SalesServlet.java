@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
-import dao.SalesDAO;
+import services.SalesModel;
 
-@WebServlet("/salesservlet")
+@WebServlet("/sales")
 public class SalesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SalesDAO sDao = new SalesDAO();
-		JSONArray jarray = new JSONArray(sDao.showSalesDate());
-		System.out.println(jarray);
+		request.setCharacterEncoding("utf-8");
+		SalesModel sm = new SalesModel();
+		JSONArray jarray = sm.parseList();
 		ServletContext sc = this.getServletContext();
 		sc.setAttribute("sales", jarray);
-		System.out.println(sc.getAttribute("sales"));
-		response.sendRedirect("Sales.html");
+		System.out.println("SalesServlet : " + sc.getAttribute("sales"));
+		response.sendRedirect("sales.jsp");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

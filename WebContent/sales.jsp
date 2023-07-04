@@ -33,7 +33,7 @@
         </div>
         <div id="nav">
             <h2>
-                <a href="sales.jsp">매출</a> 
+                <a href="sales">매출</a> 
                 <a href="">지출</a>
                 <a href="">재고</a>
                 <a href="">직원</a>
@@ -50,7 +50,36 @@
     </div>
     <script>
     	const sales = document.getElementById('sales');
-    	sales.innerText = '이번달 매출 : ';
+        
+    	sales.innerText = `이번달 매출 : ${monthTotal}`;
+
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = date.getMonth()+1;
+        let nowMonth = document.getElementById('fc-dom-1');
+        alert(nowMonth);
+        if (month > 12 ) {
+            month = 1;
+            year+=1;
+        }
+        if (month < 1 ) {
+            month = 12;
+            year-=1;
+        }
+
+        document.querySelector('.fc-prev-button').addEventListener('click', prevSales);
+
+        function prevSales(){
+            month -= 1;
+            let yearMonth = year+'-'+month;
+            console.log(yearMonth);
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function(){
+            let monthSale = this.responseText;
+            }
+            xhttp.open('GET', 'sales?month='+yearMonth, true);
+            xhttp.send();
+        }
     </script>
     <script src="js/calSales.js"></script>
 </body>

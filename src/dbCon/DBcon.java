@@ -15,9 +15,7 @@ public class DBcon {
 	
 	public Connection getConnection() {
 		try {
-			System.out.println("DB컨 준비");
 			Class.forName("org.mariadb.jdbc.Driver");
-			System.out.println("클래스 네임");
 			String url = "jdbc:mariadb://localhost:3306/erp";
 			String id = "root";
 			String pw = "1234";

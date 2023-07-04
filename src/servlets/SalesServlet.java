@@ -18,17 +18,17 @@ public class SalesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		SalesModel sm = new SalesModel();
 		JSONArray jarray = sm.parseList();
 		ServletContext sc = this.getServletContext();
 		sc.setAttribute("sales", jarray);
-		System.out.println("SalesServlet : " + sc.getAttribute("sales"));
+		sc.setAttribute("monthTotal", sm.monthSalesNow());
 		response.sendRedirect("sales.jsp");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String month = request.getParameter("month");
+		
 	}
 
 }

@@ -140,8 +140,7 @@
 			target.style.color = "#4e4e4e";
 			target.style.borderBottom = "none";
 		}
-
-		// sub
+		
 		navs.forEach(function(nav) {
 			nav.addEventListener("focus", focus_nav);
 			nav.addEventListener("blur", blur_nav);

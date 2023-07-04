@@ -8,6 +8,7 @@
 	grid-template-columns: 1fr  1fr;
 	padding-top: 80px;
 	font-size: 17px;
+	font-weight: 700;
 	color:#686868;
 }
 
@@ -21,8 +22,13 @@
 	font-weight: 700;
 	text-align: center;
 }
+
+.an_date button{
+	font-weight: 700;
+}
 .an_container{
 	margin-top: 70px;
+	font-weight: 700;
 	padding-right: 100px;
 }
 .an_box{

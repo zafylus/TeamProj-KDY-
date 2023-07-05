@@ -36,9 +36,8 @@ public class DivisionService {
 			dataMap.put("CtgyOrderList", CtgyOrderList);
 			dataMap.put("topList", topList);
 			
-			return dataMap;
 		}
 		
-		return Map;
+		return dataMap;
 	}
 }

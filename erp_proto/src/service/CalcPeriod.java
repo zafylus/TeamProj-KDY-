@@ -3,25 +3,32 @@ package service;
 import java.time.LocalDate;
 import java.time.Period;
 
+import vo.DateBeginEnd;
 import vo.PeriodVO;
 
 public class CalcPeriod {
 
-	public PeriodVO getPeriod(String unit, int term) {
-		PeriodVO betweenPeriod = new PeriodVO();
-		Period period = null;
+	public DateBeginEnd getPeriod(PeriodVO period) {
+		DateBeginEnd betweenPeriod = new DateBeginEnd();
+		Period transTerm = null;
+		
+		String unit = period.getUnit();
+		String termString = period.getTerm();
+		int term = Integer.parseInt(termString);
 
 		if (unit.equals("day")) {
-			period = Period.ofDays(term);
+			transTerm = Period.ofDays(term);
 		} else if (unit.equals("month")) {
-			period = Period.ofMonths(term);
+			transTerm = Period.ofMonths(term);
 		}
+		
 		LocalDate now = LocalDate.now();
-		LocalDate endDay = now.minus(period);
+		LocalDate endDay = now.minus(transTerm);
 
 		betweenPeriod.setBeginPeriod(now);
 		betweenPeriod.setEndPeriod(endDay);
 
 		return betweenPeriod;
 	}
+	
 }

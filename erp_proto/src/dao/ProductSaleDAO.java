@@ -1,11 +1,14 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import db.DBcon;
+import vo.DateBeginEnd;
 import vo.ProductSaleVO;
 
 public class ProductSaleDAO {
@@ -15,8 +18,13 @@ public class ProductSaleDAO {
 		dbcon = new DBcon();
 	}
 
-	public List<ProductSaleVO> getTop3(String startDate, String endDate) {
+	public List<ProductSaleVO> getTop3(DateBeginEnd date) {
 		List<ProductSaleVO> top3List = new ArrayList<>();
+		LocalDate startLocalDate = date.getBeginPeriod();
+		LocalDate endLocalDate = date.getEndPeriod();
+		
+		Date startDate = Date.valueOf(startLocalDate);
+		Date endDate = Date.valueOf(endLocalDate);
 
 		try {
 			String sql = "SELECT pr_name, COUNT(pr_no) * pr_ea AS COUNT "
@@ -28,8 +36,8 @@ public class ProductSaleDAO {
 					+ "LIMIT 3";
 
 			PreparedStatement pstmt = dbcon.con.prepareStatement(sql);
-			pstmt.setString(1, startDate);
-			pstmt.setString(2, endDate);
+			pstmt.setDate(1, startDate);
+			pstmt.setDate(2, endDate);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -49,8 +57,14 @@ public class ProductSaleDAO {
 		return top3List;
 	}
 
-	public List<ProductSaleVO> getCategoryOrder(String startDate, String endDate) {
+	public List<ProductSaleVO> getCategoryOrder(DateBeginEnd date) {
 		List<ProductSaleVO> categoryOrderList = new ArrayList<>();
+		
+		LocalDate startLocalDate = date.getBeginPeriod();
+		LocalDate endLocalDate = date.getEndPeriod();
+		
+		Date startDate = Date.valueOf(startLocalDate);
+		Date endDate = Date.valueOf(endLocalDate);
 
 		try {
 			String sql = "SELECT "
@@ -64,8 +78,8 @@ public class ProductSaleDAO {
 					+ "GROUP BY category";
 
 			PreparedStatement pstmt = dbcon.con.prepareStatement(sql);
-			pstmt.setString(1, startDate);
-			pstmt.setString(2, endDate);
+			pstmt.setDate(1, startDate);
+			pstmt.setDate(2, endDate);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {

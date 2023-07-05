@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/erp.css">
 <link rel="stylesheet" type="text/css" href="css/saleAnalysis.css">
 <link rel="stylesheet" type="text/css" href="css/productAnalysis.css">
+<script src="jquery/jquery-3.7.0.js"></script>
 </head>
 <body>
 	<c:import url="importPage/header.jsp" />
@@ -30,7 +31,8 @@
 					<button>모두 보기</button>
 				</div>
 			</div>
-			<div class="product_showlist">해당 기간에 매출이 없습니다.</div>
+			<div class="product_showlist category_sale_cnt">해당 기간에 매출이
+				없습니다.</div>
 
 
 
@@ -53,21 +55,22 @@
 		//side css 
 		for (var index = 0; index < sides.length; index++) {
 			sides[index].addEventListener("focus", focus_side);
+			sides[index].addEventListener("click", transData);
 			sides[index].addEventListener("blur", blur_side);
 		};
 
 		// nav
 		function focus_nav(e) {
-			let target = e.target;
-			target.style.color = "#1c8dff";
-			target.style.borderBottom = "3px solid  #1c8dff";
-			target.removeEventListener("mouseout", blur);
+			let target = $(e.target);
+			target.css("color", "#1c8dff");
+			target.css("borderBottom", "3px solid #1c8dff");
+			target.off("mouseout", blur);
 		}
 
 		function blur_nav(e) {
-			let target = e.target;
-			target.style.color = "#4e4e4e";
-			target.style.borderBottom = "none";
+			let target = $("e.target");
+			target.css("color","#4e4e4e");
+			target.css("borderBottom","none");
 		}
 
 		// sub
@@ -101,11 +104,27 @@
 			let target = e.target;
 			target.style.color = "#1c8dff";
 			target.style.background = "#e6e6ff";
+			
+			
+			
 		}
 		function blur_side(e) {
 			let target = e.target;
 			target.style.color = "#4e4e4e";
 			target.style.background = "white";
+		}
+		
+		function transData(e){
+			let unit = e.target.getAttribute("data-unit"); // 데이터 속성 값 가져오기
+			let period = e.target.getAttribute("data-term"); 
+			
+			const x = new XMLHttpRequest();
+			x.onload = function(){
+				let result = this.responseText;
+			};
+			x.open("POST","../sale",true);
+			x.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			x.send("unit=" + unit +  "&term=" + term);
 		}
 	</script>
 </body>

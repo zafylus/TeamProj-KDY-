@@ -24,7 +24,7 @@ public class SalesModel {
 	}
 	
 	public int monthSalesNow() {
-		int sales = -1;
+		int sales = 0;
 		
 		LocalDate date = LocalDate.now();
 		int year = date.getYear();
@@ -37,6 +37,14 @@ public class SalesModel {
 		String nowYearMonth = year+"-"+month;
 		
 		sales = sd.monthSales(nowYearMonth);
+		
+		return sales;
+	}
+	
+	public int monthSales(String yearMonth) {
+		int sales = 0;
+		
+		sales = sd.monthSales(yearMonth);
 		
 		return sales;
 	}

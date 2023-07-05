@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,7 +26,6 @@ public class SalesDateServlet extends HttpServlet {
 		sc.setAttribute("sales", jarray);
 		System.out.println(sc.getAttribute("sales"));
 		response.sendRedirect("sales.jsp");
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

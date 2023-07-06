@@ -1,37 +1,69 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        locale: 'ko',
+        events: ${sales},
+        header: {
+            start: 'title',
+            center: '',
+            end: ''
+        }
+    });
+calendar.render();
+
+const sales = document.getElementById('sales');
 const date = new Date();
-const year = date.getFullYear();
-const month = date.getMonth()+1;
-let nowMonth = document.getElementById('fc-dom-1');
+let year = date.getFullYear();
+let month = date.getMonth()+1;
 
-const prev_Btn = document.getElementById('prev');
-prev_Btn.addEventListener('click', prevTest);
-
-
-
-function prevTest(){
-    // calendar.prev();
-    console.log('test');
-}
+sales.innerText = `이번달 매출 : ${monthTotal}`;
+document.getElementById('prev').addEventListener('click', prevSales);
+document.getElementById('next').addEventListener('click', nextSales);
 
 function fixDate(){
-    if (month > 12 ) {
-        month = 1;
-        year+=1;
-    }
-    if (month < 1 ) {
-        month = 12;
-        year-=1;
-    }
+if (month > 12 ) {
+    month = 1;
+    year+=1;
 }
+if (month < 1 ) {
+    month = 12;
+    year-=1;
+ }
+}
+
 function prevSales(){
-    month -= 1;
+    month = month-1;
     fixDate();
-    let yearMonth = year+'-'+month;
+    let yearMonth = year+'-'+(''+month).padStart(2, "0");
     console.log(yearMonth);
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function(){
-    let monthSale = this.responseText;
-    }
-    xhttp.open('GET', 'sales?month='+yearMonth, true);
-    xhttp.send();
+    calendar.prev();
+
+    $.ajax({
+        url: 'sales',
+        type: 'post',
+        data: {date: yearMonth},
+        dataType: 'text',
+        success: function(res){
+            sales.innerText = '이번달 매출 :' + res;
+        }
+    });
 }
+
+function nextSales(){
+    month = month+1;
+    fixDate();
+    let yearMonth = year+'-'+(''+month).padStart(2, "0");
+    console.log(yearMonth);
+    calendar.next();
+
+    $.ajax({
+        url: 'sales',
+        type: 'post',
+        data: {date: yearMonth},
+        dataType: 'text',
+        success: function(res){
+            sales.innerText = '이번달 매출 :' + res;
+        }
+    });
+}
+});

@@ -14,14 +14,20 @@
     <script src="js/jquery-3.7.0.js"></script>
     <script src="js/index.global.js"></script>
     <script>
-      	document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    height: 600,
+                    left: 'title',
+                    center: '',
+                    end: ''
+                },
                 locale: 'ko',
-                events: ${sales}
-        });
+                events: ${sales},
+            });
         calendar.render();
-       
+        
         const sales = document.getElementById('sales');
         const date = new Date();
         let year = date.getFullYear();
@@ -30,12 +36,8 @@
         sales.innerText = `이번달 매출 : ${monthTotal}`;
         document.getElementById('prev').addEventListener('click', prevSales);
         document.getElementById('next').addEventListener('click', nextSales);
-
-        function prevTest(){
-            calendar.prev();
-            console.log('test');
-        }
-
+        document.getElementById('today').addEventListener('click', todaySales);
+        
         function fixDate(){
         if (month > 12 ) {
             month = 1;
@@ -46,14 +48,14 @@
             year-=1;
          }
         }
-
+        
         function prevSales(){
             month = month-1;
             fixDate();
             let yearMonth = year+'-'+(''+month).padStart(2, "0");
             console.log(yearMonth);
             calendar.prev();
-
+        
             $.ajax({
                 url: 'sales',
                 type: 'post',
@@ -64,14 +66,14 @@
                 }
             });
         }
-
+        
         function nextSales(){
             month = month+1;
             fixDate();
             let yearMonth = year+'-'+(''+month).padStart(2, "0");
             console.log(yearMonth);
             calendar.next();
-
+        
             $.ajax({
                 url: 'sales',
                 type: 'post',
@@ -82,8 +84,14 @@
                 }
             });
         }
-    })
+
+        function todaySales(){
+            calendar.today();
+            sales.innerText = `이번달 매출 : ${monthTotal}`;
+        }
+        })
     </script>
+    
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -104,17 +112,16 @@
             <div class = "dtlmenu">조 회</div>
         </div>
         <div id="section">
-            <div id="sales">이번달 매출 : </div>
-            <div id="button">
-               <button id="prev"><</button> 
-               <button id="next">></button> 
+            <div>
+                <span id="sales">이번달 매출 : </span>
+                <span id="button">
+                   <button id="prev"><</button> 
+                   <button id="today">today</button>
+                   <button id="next">></button> 
+                </span>
             </div>
             <div id="calendar"></div>
         </div>
     </div>
-    <script>
-        
-    </script>
-    <!--<script src="js/calSales.js"></script>-->
 </body>
 </html>

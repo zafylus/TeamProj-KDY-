@@ -5,10 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dto.EachProductSalesVO;
 import dto.SalesByDateDTO;
 
 public class SalesDAO implements SelectDAO{
 	
+	//월 총 매출 반환
+	//매개변수 형식 : 'YYYY-MM'형식
 	public int monthSales(String yearMonth){
 		int sales = -1;
 		try {
@@ -29,6 +32,34 @@ public class SalesDAO implements SelectDAO{
 		return sales;
 	}
 	
+	//당일 상품 통계 데이터 반환
+	public ArrayList<EachProductSalesVO> daySalesStat(String date) {
+		ArrayList<EachProductSalesVO> epsList = new ArrayList<EachProductSalesVO>();
+		
+		try {
+			String sql = "SELECT pr_code, pr_name, sum(amount) AS amount, sum(sales) AS sales\r\n" + 
+					"FROM ordr_view WHERE odr_date = ? GROUP BY pr_code ORDER BY sales DESC";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, date);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				String pr_code = rs.getString(1);
+				String pr_name = rs.getString(2);
+				String amount = rs.getString(3);
+				String sales = rs.getString(4);
+				EachProductSalesVO e = new EachProductSalesVO(pr_code, pr_name, amount, sales);
+				epsList.add(e);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return epsList;
+	}
+	
+	
+	//모든 매출을 일별로(날짜, 매출) 배열로 반환 
 	@Override
 	public ArrayList<SalesByDateDTO> selectAll() {
 		ArrayList<SalesByDateDTO> slist = null;

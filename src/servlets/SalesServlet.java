@@ -21,7 +21,7 @@ public class SalesServlet extends HttpServlet {
 	ServletContext sc = null;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		JSONArray jarray = sm.parseList();
+		JSONArray jarray = sm.salesToJSON();
 		sc = this.getServletContext();
 		sc.setAttribute("sales", jarray);
 		sc.setAttribute("monthTotal", sm.monthSalesNow());

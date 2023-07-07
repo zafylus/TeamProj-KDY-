@@ -6,12 +6,25 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 import dao.SalesDAO;
+import dto.EachProductSalesVO;
 import dto.SalesByDateDTO;
 
 public class SalesModel {
-	SalesDAO sd = new SalesDAO();
+	private SalesDAO sd = new SalesDAO();
 	
-	public JSONArray parseList() {
+	public JSONArray dayStatToJSON(String date) {
+		JSONArray jarray = null;
+		ArrayList<EachProductSalesVO> epslist = sd.daySalesStat(date);
+		if (epslist != null) {
+			jarray = new JSONArray(epslist);
+			System.out.println("dayStats : " + jarray);
+		}else {
+			System.out.println("ArrayList Null");
+		}
+		
+		return jarray;
+	}
+	public JSONArray salesToJSON() {
 		JSONArray jarray = null;
 		ArrayList<SalesByDateDTO> slist = sd.selectAll();
 		if (slist != null) {
@@ -23,6 +36,9 @@ public class SalesModel {
 		return jarray;
 	}
 	
+	public JSONArray parseList(ArrayList<Object> list) {
+		return new JSONArray(list);
+	}
 	public int monthSalesNow() {
 		int sales = 0;
 		
@@ -36,7 +52,7 @@ public class SalesModel {
 		
 		String nowYearMonth = year+"-"+month;
 		
-		sales = sd.monthSales(nowYearMonth);
+		sales = monthSales(nowYearMonth);
 		
 		return sales;
 	}

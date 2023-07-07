@@ -1,6 +1,7 @@
 package filter;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import vo.PeriodVO;
 
@@ -27,12 +29,13 @@ public class productSaleFilter extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		 HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String referer = httpRequest.getHeader("Referer");
 		String jspFileName = referer.substring(referer.lastIndexOf('/') + 1);
 
 		String unit = request.getParameter("unit");
 		String term = request.getParameter("term");
-		
+
 		PeriodVO period = new PeriodVO(jspFileName, unit, term);
 
 		System.out.println("name = " + jspFileName);
@@ -42,6 +45,12 @@ public class productSaleFilter extends HttpFilter implements Filter {
 		httpRequest.setAttribute("period", period);
 
 		chain.doFilter(request, response);
+
+	    httpResponse.setCharacterEncoding("UTF-8");
+
+
+		
+		
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

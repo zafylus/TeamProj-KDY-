@@ -46,11 +46,9 @@ nav a ,button{
 	line-height: inherit;
 	transition: none;
 }
-nav   button,
-    button:focus,
-    button:active{
+nav {
         padding: 0;
-    }
+ }
 
 
 

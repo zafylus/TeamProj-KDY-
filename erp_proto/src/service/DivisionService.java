@@ -1,16 +1,12 @@
 package service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import dao.ProductSaleDAO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vo.DateBeginEnd;
 import vo.PeriodVO;
-import vo.ProductSaleVO;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,23 +17,18 @@ public class DivisionService {
 	private Object obj;
 
 	public Map<String, Object> dataDevision() {
-		Map<String, List<ProductSaleVO>> dataMap;
+		Map<String, Object> dataMap = new HashMap<>();
 		
 		if (obj instanceof PeriodVO) {
 			PeriodVO period = (PeriodVO) obj;
-			CalcPeriod calp = new CalcPeriod();
-			DateBeginEnd date =calp.getPeriod(period);
+			System.out.println("devision period : " + period);
 			
-			ProductSaleDAO psDao = new ProductSaleDAO();
-			List<ProductSaleVO> CtgyOrderList = psDao.getCategoryOrder(date);
-			List<ProductSaleVO> topList = psDao.getTop3(date);
+			ProductAnalysis pa = new ProductAnalysis();
 			
-			dataMap = new HashMap<>();
-			dataMap.put("CtgyOrderList", CtgyOrderList);
-			dataMap.put("topList", topList);
-			
+			 dataMap = pa.returnDAta(period);
+			 System.out.println("dataMap : " + dataMap);
+			return dataMap;
 		}
-		
 		return dataMap;
 	}
 }

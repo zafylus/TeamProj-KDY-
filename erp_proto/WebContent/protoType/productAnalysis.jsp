@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/erp.css">
 <link rel="stylesheet" type="text/css" href="css/saleAnalysis.css">
 <link rel="stylesheet" type="text/css" href="css/productAnalysis.css">
+
 <script src="jquery/jquery-3.7.0.js"></script>
 </head>
 <body>
@@ -18,29 +19,25 @@
 		<c:import url="importPage/side.jsp" />
 		<section>
 			<div class="an_header">
-				<div class="an_title">top 3 상품</div>
-				<div class="an_date">2023.06.23 18:36 기준</div>
+				<div class="an_title">top 3 인기 상품</div>
 			</div>
-			<div class="product_showlist">해당 기간에 매출이 없습니다.</div>
-
-
+			<div class="product_showlist" data-table="top3">
+				<div class="topOrder">
+				<div class="top1">top 1</div>
+				<div class="pr_top1"></div>
+					<div class="total_cnt"></div>
+					<div class="pr_pay"></div>
+					</div>
+				<div class ="top_value"></div>
+				<div class ="top_value"></div>
+			
+			</div>
 
 			<div class="an_header">
 				<div class="an_title">카테고리 별 주문</div>
-				<div class="an_date">
-					<button>모두 보기</button>
-				</div>
 			</div>
-			<div class="product_showlist category_sale_cnt">해당 기간에 매출이
+			<div class="product_showlist" data-table="ctgy">해당 기간에 매출이
 				없습니다.</div>
-
-
-
-
-
-
-
-
 
 		</section>
 	</div>
@@ -116,16 +113,79 @@
 		
 		function transData(e){
 			let unit = e.target.getAttribute("data-unit"); // 데이터 속성 값 가져오기
-			let period = e.target.getAttribute("data-term"); 
+			let term = e.target.getAttribute("data-term");
+			let top = $("div[data-table=top3]");
+			let ctgy = $("div[data-table=ctgy]");
+			
 			
 			const x = new XMLHttpRequest();
-			x.onload = function(){
-				let result = this.responseText;
-			};
+			x.onload = function() {
+				  let js = this.responseText;
+				  let jo = JSON.parse(js);
+				  console.log("jo :" +jo);
+				  
+
+				  let dataMap = new Map();
+				  // dataMap에 값을 추가
+				  dataMap.set("totalSale", jo.totalSale);
+				  dataMap.set("CtgyOrderList", jo.CtgyOrderList);
+				  dataMap.set("topList", jo.topList);
+
+				 
+				  
+				  let ctgyOrderList = dataMap.get("CtgyOrderList");
+				  let topList = dataMap.get("topList");
+				  
+				  
+				  let totalCnt = dataMap.get("totalSale");
+				  let spanTotalCnt = document.createElement("span");
+				  spanTotalCnt.textContent = totalCnt +"건";
+				  
+				  let spanPrdCnt = document.createElement("span");
+				  spanPrdCnt.textContent = topList[0].saleCnt +"건";
+				  
+				  
+				  $(".total_cnt").empty().append("총 ", spanTotalCnt, "의 주문수 중 ", spanPrdCnt, " 주문");
+				 
+				  console.log("ctgyOrderList :" + ctgyOrderList);
+				  console.log("topList :" + topList);
+				  $(".pr_top1").text(topList[0].prName);
+				  $(".pr_pay").text(topList[0].pay + "원");
+		    	  
+		    			$(".top_value").empty();
+		    			$(".top_value").each(function(index, item) {
+		    				  $(item).append($("<div>").text(index + 2));
+		    				  $(item).append($("<div>").text(topList[index + 1].prName));
+		    				  $(item).append($("<div>").text(topList[index + 1].saleCnt));
+		    				  $(item).append($("<div>").text(topList[index + 1].pay + "원") );
+
+		    				  $(item).find("div:nth-child(1), div:nth-child(2)").css("padding-right", "40px");
+		    				});
+				};
+
 			x.open("POST","../sale",true);
 			x.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			x.send("unit=" + unit +  "&term=" + term);
 		}
+		
+		
+		    // 테이블 바디 생성
+
+		    /* 	<div class="product_showlist" data-table="top3">
+				<div><div>top 1</div></div>
+				<div><div class="pr_top1"></div></div>
+				<div><div>총 <div class="total_cnt"></div>건의 주문 수 중 </div><div class="pr_cnt"></div>주문</div>
+				<div class ="top_value"></div>
+				<div class ="top_value"></div>
+			
+			</div> */
+		    // topList의 각 요소를 테이블에 추가
+	
+
+		    // 테이블에 바디 추가
+
+		    // top div에 테이블 추가
+		
 	</script>
 </body>
 </html>

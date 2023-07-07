@@ -20,7 +20,7 @@ public class DBcon {
 		try {
 			InitialContext initCtx  = new InitialContext(); 
 			Context ctx = (Context)initCtx.lookup("java:comp/env");
-			DataSource source = (DataSource)ctx.lookup("erpdb");
+			DataSource source = (DataSource)ctx.lookup("erp.db");
 			
 			con = source.getConnection();
 			

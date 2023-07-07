@@ -25,8 +25,8 @@ public class CalcPeriod {
 		LocalDate now = LocalDate.now();
 		LocalDate endDay = now.minus(transTerm);
 
-		betweenPeriod.setBeginPeriod(now);
-		betweenPeriod.setEndPeriod(endDay);
+		betweenPeriod.setBeginPeriod(endDay);
+		betweenPeriod.setEndPeriod(now);
 
 		return betweenPeriod;
 	}

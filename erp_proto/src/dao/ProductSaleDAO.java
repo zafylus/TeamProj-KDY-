@@ -1,15 +1,18 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import db.DBcon;
 import vo.DateBeginEnd;
-import vo.ProductSaleVO;
+import vo.SaleCategoryVO;
+import vo.SaleTop3VO;
 
 public class ProductSaleDAO {
 	private DBcon dbcon;
@@ -18,22 +21,25 @@ public class ProductSaleDAO {
 		dbcon = new DBcon();
 	}
 
-	public List<ProductSaleVO> getTop3(DateBeginEnd date) {
-		List<ProductSaleVO> top3List = new ArrayList<>();
+	public List<SaleTop3VO> getTop3(DateBeginEnd date) {
+		List<SaleTop3VO> top3List = new ArrayList<>();
 		LocalDate startLocalDate = date.getBeginPeriod();
 		LocalDate endLocalDate = date.getEndPeriod();
 		
 		Date startDate = Date.valueOf(startLocalDate);
 		Date endDate = Date.valueOf(endLocalDate);
+		
+		System.out.println("StartDate" + startDate);
+		System.out.println("EndDate" + endDate);
 
 		try {
-			String sql = "SELECT pr_name, COUNT(pr_no) * pr_ea AS COUNT "
-					+ "FROM sale_view "
-					+ "WHERE sa_date BETWEEN ? AND ? "
-					+ "AND pr_price > 0 "
-					+ "GROUP BY pr_no "
-					+ "ORDER BY COUNT(pr_no) * pr_ea DESC "
-					+ "LIMIT 3";
+			String sql = "	SELECT pr_name, COUNT(pr_no) * pr_ea AS COUNT, COUNT(pr_no) * pr_ea * pr_price  AS pay\r\n" + 
+					"	FROM sale_view\r\n" + 
+					"	WHERE sa_date BETWEEN '2023-07-' AND '2023-07-21'\r\n" + 
+					"	  AND pr_price > 0\r\n" + 
+					"	GROUP BY pr_no\r\n" + 
+					"	ORDER BY COUNT(pr_no) * pr_ea DESC\r\n" + 
+					"	LIMIT 3;";
 
 			PreparedStatement pstmt = dbcon.con.prepareStatement(sql);
 			pstmt.setDate(1, startDate);
@@ -43,8 +49,9 @@ public class ProductSaleDAO {
 			while (rs.next()) {
 				String prName = rs.getString("pr_name");
 				int count = rs.getInt("COUNT");
+				int pay = rs.getInt("pay");
 
-				ProductSaleVO productSale = new ProductSaleVO(prName, "", count);
+				SaleTop3VO productSale = new SaleTop3VO(prName, count, pay);
 				top3List.add(productSale);
 			}
 
@@ -57,8 +64,8 @@ public class ProductSaleDAO {
 		return top3List;
 	}
 
-	public List<ProductSaleVO> getCategoryOrder(DateBeginEnd date) {
-		List<ProductSaleVO> categoryOrderList = new ArrayList<>();
+	public List<SaleCategoryVO> getCategoryOrder(DateBeginEnd date) {
+		List<SaleCategoryVO> categoryOrderList = new ArrayList<>();
 		
 		LocalDate startLocalDate = date.getBeginPeriod();
 		LocalDate endLocalDate = date.getEndPeriod();
@@ -86,7 +93,7 @@ public class ProductSaleDAO {
 				String category = rs.getString("category");
 				int count = rs.getInt("count");
 
-				ProductSaleVO productSale = new ProductSaleVO("", category, count);
+				SaleCategoryVO productSale = new SaleCategoryVO(category, count);
 				categoryOrderList.add(productSale);
 			}
 
@@ -101,5 +108,37 @@ public class ProductSaleDAO {
 
 	public void close() {
 		dbcon.close();
+	}
+	public int getTotalProductSale(DateBeginEnd date) {
+	    int totalCount = 0;
+	    
+	    LocalDate startLocalDate = date.getBeginPeriod();
+	    LocalDate endLocalDate = date.getEndPeriod();
+	    
+	    Date startDate = Date.valueOf(startLocalDate);
+	    Date endDate = Date.valueOf(endLocalDate);
+
+	    try {
+	        String sql = "SELECT COUNT(pr_no) * pr_ea AS cnt " +
+	                     "FROM sale_view " +
+	                     "WHERE sa_date BETWEEN ? AND ? " +
+	                     "AND pr_price > 0";
+
+	        PreparedStatement pstmt = dbcon.con.prepareStatement(sql);
+	        pstmt.setDate(1, startDate);
+	        pstmt.setDate(2, endDate);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            totalCount = rs.getInt("cnt");
+	        }
+
+	        rs.close();
+	        pstmt.close();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return totalCount;
 	}
 }

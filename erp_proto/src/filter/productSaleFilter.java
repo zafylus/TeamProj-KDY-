@@ -32,7 +32,8 @@ public class productSaleFilter extends HttpFilter implements Filter {
 		 HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String referer = httpRequest.getHeader("Referer");
 		String jspFileName = referer.substring(referer.lastIndexOf('/') + 1);
-
+		jspFileName = jspFileName.substring(0, jspFileName.length() - 4);
+		
 		String unit = request.getParameter("unit");
 		String term = request.getParameter("term");
 

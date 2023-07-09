@@ -4,8 +4,13 @@
 }
 
 .an_header{
+	display:grid;
+	grid-template-columns: 1fr  1fr;
+	padding-top: 80px;
+	font-size: 17px;
+	font-weight: 700;
+	color:#686868;
 	margin-top:30px;
-	text-align: center;
 }
 
 .an_title{
@@ -13,7 +18,7 @@
 	font-weight: 700;
 	font-size:18px;
 	text-align: left;
-	padding-left: 300px;
+	padding-left: 100px;
 }
 .an_date{
 	width:100%;

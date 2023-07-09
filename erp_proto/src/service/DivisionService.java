@@ -1,34 +1,61 @@
 package service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import erp_interface.getPageDbData;
+import vo.DateBeginEnd;
 import vo.PeriodVO;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class DivisionService {
+	Date startDate;
+	Date endDate;
+	getPageDbData getDataInterface = null;
 
-	
-	private Object obj;
-
-	public Map<String, Object> dataDevision() {
-		Map<String, Object> dataMap = new HashMap<>();
+	public Map<String, Object> dataDevision(PeriodVO period) {
 		
-		if (obj instanceof PeriodVO) {
-			PeriodVO period = (PeriodVO) obj;
-			System.out.println("devision period : " + period);
+		String url = period.getUrlName();
+		Map<String, Object> dataMap = new HashMap<>();
+
+		
+		switch (url) {
+		case "productAnalysis":
+			getDataInterface = new ProductAnalysis(); 
+			break;
+
+		case "saleAnalysis":
+			getDataInterface = new SaleAnalysis();
+			break;
 			
-			ProductAnalysis pa = new ProductAnalysis();
+		case "saleCalendar":
+			getDataInterface = new SaleCalendar();
+			break;
 			
-			 dataMap = pa.returnDAta(period);
-			 System.out.println("dataMap : " + dataMap);
-			return dataMap;
+		default:
+			break;
 		}
+		
+		getStartEndDate(period);
+		dataMap = getDataInterface.returnData(startDate, endDate);
+		System.out.println("dataMap : " + dataMap);
 		return dataMap;
+	}
+	
+	
+	
+	private void getStartEndDate(PeriodVO period) {
+		CalcPeriod calp = new CalcPeriod();
+		DateBeginEnd date =calp.getPeriod(period);
+		
+		LocalDate startLocalDate = date.getBeginPeriod();
+		LocalDate endLocalDate = date.getEndPeriod();
+		
+		startDate = Date.valueOf(startLocalDate);
+		endDate = Date.valueOf(endLocalDate);
+		
+		System.out.println("StartDate" + startDate);
+		System.out.println("EndDate" + endDate);
 	}
 }

@@ -11,6 +11,18 @@
 	margin-bottom: 100px;
 }
 
+.header{
+	margin-top:30px;
+	text-align: center;
+}
+
+.title{
+	width:70%;
+	font-weight: 700;
+	font-size:18px;
+	text-align: left;
+	padding-left: 300px;
+}
 
 
 .topOrder{
@@ -24,6 +36,7 @@
 }
 
 .top1{
+	display:none;
 	width:139px;
 	height:39px;
 	text-align:center;
@@ -32,6 +45,7 @@
 	line-height: 30px;
 	border: 1px solid #99ccff;
 	border-radius: 35px;
+	
 }
 .pr_top1{
 	margin-left:50px;
@@ -42,8 +56,7 @@
 }
 
 
-.topOrder > div{
-}
+
 .total_cnt{
 	width:700px;
 	line-height:50px;
@@ -61,7 +74,7 @@
 
 
 .top_value {
-  display: grid;
+  display: none;
   grid-template-columns: 1fr 1fr 3fr 1fr;
   width: 70%;
   padding: 15px 0px;
@@ -71,4 +84,8 @@
 
 
 
-
+#svg{
+	width:600px;
+	height:600px;
+	background-color:#eee;
+}

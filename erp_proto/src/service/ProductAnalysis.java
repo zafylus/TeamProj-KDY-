@@ -1,34 +1,32 @@
 package service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import dao.ProductSaleDAO;
-import vo.DateBeginEnd;
-import vo.PeriodVO;
+import erp_interface.getPageDbData;
 import vo.SaleCategoryVO;
 import vo.SaleTop3VO;
 
-public class ProductAnalysis {
-	public Map<String, Object> returnDAta(PeriodVO period) {
-		Map<String, Object> dataMap = null;
+public class ProductAnalysis implements getPageDbData{
+	
+	public Map<String, Object> returnData(Date startDate, Date endDate) {
+		Map<String, Object> dataMap;
 		
-		CalcPeriod calp = new CalcPeriod();
-		DateBeginEnd date =calp.getPeriod(period);
+		ProductSaleDAO psDao = new ProductSaleDAO(startDate, endDate);
+		List<SaleCategoryVO> ctgyOrderList = psDao.getCategoryOrder();
+		List<SaleTop3VO> topList = psDao.getTop3();
+		int totalProductSale = psDao.getTotalProductSale();
 		
-		ProductSaleDAO psDao = new ProductSaleDAO();
-		List<SaleCategoryVO> CtgyOrderList = psDao.getCategoryOrder(date);
-		List<SaleTop3VO> topList = psDao.getTop3(date);
-		int totalProductSale = psDao.getTotalProductSale(date);
-		
-		System.out.println(CtgyOrderList);
+		System.out.println(ctgyOrderList);
 		System.out.println(topList);
 		
 		dataMap = new HashMap<>();
-		dataMap.put("totalSale", totalProductSale);
-		dataMap.put("CtgyOrderList", CtgyOrderList);
 		dataMap.put("topList", topList);
+		dataMap.put("ctgyOrderList", ctgyOrderList);
+		dataMap.put("totalProductSale", totalProductSale);
 		
 		return dataMap;
 	}

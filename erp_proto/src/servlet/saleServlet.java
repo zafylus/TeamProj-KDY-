@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 import service.DivisionService;
+import vo.PeriodVO;
 
 @WebServlet("/sale")
 public class saleServlet extends HttpServlet {
@@ -27,11 +28,11 @@ public class saleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Object input =  request.getAttribute("period");
-		
+		PeriodVO input = (PeriodVO) request.getAttribute("period");
 		System.out.println("input : " + input);
-		DivisionService division = new DivisionService(input);
-		Map<String, Object> output = division.dataDevision();
+		
+		DivisionService division = new DivisionService();
+		Map<String, Object> output = division.dataDevision(input);
 		System.out.println("output : " + output);
 		
 		response.setCharacterEncoding("UTF-8");

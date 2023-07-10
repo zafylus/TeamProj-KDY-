@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import dto.EachProductSalesVO;
@@ -71,7 +72,9 @@ public class SalesDAO implements SelectDAO{
 			slist = new ArrayList<SalesByDateDTO>();
 			while (rs.next()) {
 				String date = rs.getString(1);
-				int sales = rs.getInt(2);
+				int salesInt = rs.getInt(2);
+				NumberFormat nf = NumberFormat.getInstance();
+				String sales = nf.format(salesInt);
 				SalesByDateDTO sbd = new SalesByDateDTO(date, sales);
 				slist.add(sbd);
 			}

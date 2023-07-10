@@ -30,26 +30,28 @@
             
             const sales = document.getElementById('sales');
             const daySales = $('.fc-event-title-container');
+            const dialog = document.querySelector('dialog');
             console.log(daySales);
             const date = new Date();
             let year = date.getFullYear();
             let month = date.getMonth()+1;
             
-            sales.innerText = `이번달 매출 : ${monthTotal}`;
+            todaySales();
             document.getElementById('prev').addEventListener('click', prevSales);
             document.getElementById('next').addEventListener('click', nextSales);
             document.getElementById('today').addEventListener('click', todaySales);
             daySales.click(showModal);
+           
 
             function fixDate(){
-            if (month > 12 ) {
-                month = 1;
-                year+=1;
-            }
-            if (month < 1 ) {
-                month = 12;
-                year-=1;
-            }
+                if (month > 12 ) {
+                    month = 1;
+                    year+=1;
+                }
+                if (month < 1 ) {
+                    month = 12;
+                    year-=1;
+                }
             }
             
             function prevSales(){
@@ -65,7 +67,7 @@
                     data: {date: yearMonth},
                     dataType: 'text',
                     success: function(res){
-                        sales.innerText = '이번달 매출 : ' + res;
+                        sales.innerText = '이번달 매출 : ' + Number(res).toLocaleString();
                     }
                 });
             }
@@ -83,35 +85,46 @@
                     data: {date: yearMonth},
                     dataType: 'text',
                     success: function(res){
-                        sales.innerText = '이번달 매출 : ' + res;
+                        sales.innerText = '이번달 매출 : ' + Number(res).toLocaleString();
                     }
                 });
             }
 
             function todaySales(){
                 calendar.today();
-                sales.innerText = `이번달 매출 : ${monthTotal}`;
+                year = date.getFullYear();
+                month = date.getMonth()+1;
+                const monthTotaltoLocal = (${monthTotal}).toLocaleString();
+                console.log(monthTotaltoLocal);
+                sales.innerText = '이번달 매출 : ' + monthTotaltoLocal;
             }
 
             function showModal(e){
                 let jq_et = null;
                 if(e.target.className == 'fc-event-title fc-sticky'){
-                   jq_et = $(e.target).parent();
+                    jq_et = $(e.target).parent();
                 }else{
                     jq_et = $(e.target);
                 }
                 console.log('jq_et');
                 console.log(jq_et);
                 console.log(jq_et.parent().parent().parent().parent().parent().parent().parent()[0].dataset.date);
+                dialog.showModal();
             }
-
-
+            
+            
         })
     </script>
-    
+   
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+    <dialog>
+        Hello Modal
+        <form method="dialog">
+            <button>Close</button>
+        </form>
+    </dialog>
     <div id = "wrapper">
         <div id="header">
             <h1>ERP</h1> 
@@ -129,6 +142,7 @@
             <div class = "dtlmenu">조 회</div>
         </div>
         <div id="section">
+            
             <div>
                 <span id="sales">이번달 매출 : </span>
                 <span id="button">

@@ -18,6 +18,7 @@ body {
     "nav nav"
     "sidebar section";
     text-align: center;
+    z-index: 50;
 }
 #header, #nav,.dtlmenu{
     display: flex;
@@ -50,4 +51,8 @@ a{
     font-size: 30px;
     font-weight: bolder;
     height: 80px;
+}
+
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.6);
 }

@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class SalesByDateDTO {
 	private String start;
-	private int title;
+	private String title;
 }

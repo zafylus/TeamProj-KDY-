@@ -39,6 +39,7 @@ public class SalesModel {
 	public JSONArray parseList(ArrayList<Object> list) {
 		return new JSONArray(list);
 	}
+	
 	public int monthSalesNow() {
 		int sales = 0;
 		

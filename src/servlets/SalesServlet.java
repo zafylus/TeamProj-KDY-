@@ -18,7 +18,7 @@ import services.SalesModel;
 public class SalesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SalesModel sm = new SalesModel();
-	ServletContext sc = null;
+	private ServletContext sc = null;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONArray jarray = sm.salesToJSON();
@@ -30,7 +30,6 @@ public class SalesServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String date = request.getParameter("date");
-		System.out.println("Servlet Date :  " + date);
 		sc = this.getServletContext();
 		int sales = sm.monthSales(date);
 		

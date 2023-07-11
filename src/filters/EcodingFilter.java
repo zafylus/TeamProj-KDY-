@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 
 @WebFilter("/*")
+
 public class EcodingFilter extends HttpFilter implements Filter {
 
     public EcodingFilter() {

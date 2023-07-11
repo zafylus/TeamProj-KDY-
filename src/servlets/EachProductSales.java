@@ -13,23 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import dao.SalesDAO;
+import services.SalesModel;
 
-@WebServlet("/salesdate")
-public class SalesDateServlet extends HttpServlet {
+@WebServlet("/eachProdSales")
+public class EachProductSales extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private SalesModel sm = new SalesModel();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SalesDAO sDao = new SalesDAO();
-		JSONArray jarray = new JSONArray(sDao.selectAll());
-		System.out.println(jarray);
-		ServletContext sc = this.getServletContext();
-		sc.setAttribute("sales", jarray);
-		System.out.println(sc.getAttribute("sales"));
-		response.sendRedirect("sales.jsp");
+		String date = request.getParameter("date");
+		System.out.println("EachProductDate :  " + date);
+		JSONArray jarray = sm.dayStatToJSON(date); 
+		System.out.println("EachProdServl : " + jarray);
+		
+		PrintWriter out = response.getWriter();
+		out.print(jarray);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 	}
 
 }

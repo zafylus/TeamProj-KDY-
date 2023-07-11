@@ -38,8 +38,11 @@ public class SalesDAO implements SelectDAO{
 		ArrayList<EachProductSalesVO> epsList = new ArrayList<EachProductSalesVO>();
 		
 		try {
-			String sql = "SELECT pr_code, pr_name, sum(amount) AS amount, sum(sales) AS sales\r\n" + 
-					"FROM ordr_view WHERE odr_date = ? GROUP BY pr_code ORDER BY sales DESC";
+			String sql = "SELECT pr_code, pr_name, pr_img, sum(amount) AS amount, sum(sales) AS sales\r\n" + 
+					"FROM ordr_view\r\n" + 
+					"WHERE odr_date = ?\r\n" + 
+					"GROUP BY pr_code\r\n" + 
+					"ORDER BY sales DESC";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, date);
 			ResultSet rs = stmt.executeQuery();
@@ -47,9 +50,10 @@ public class SalesDAO implements SelectDAO{
 			while(rs.next()) {
 				String pr_code = rs.getString(1);
 				String pr_name = rs.getString(2);
-				String amount = rs.getString(3);
-				String sales = rs.getString(4);
-				EachProductSalesVO e = new EachProductSalesVO(pr_code, pr_name, amount, sales);
+				String pr_img = rs.getNString(3);
+				String amount = rs.getString(4);
+				String sales = rs.getString(5);
+				EachProductSalesVO e = new EachProductSalesVO(pr_code, pr_name, pr_img, amount, sales); 
 				epsList.add(e);
 			}
 		} catch (SQLException e) {

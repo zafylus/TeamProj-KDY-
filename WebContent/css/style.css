@@ -56,3 +56,12 @@ a{
 dialog::backdrop{
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+.prodimg{
+    height: 100px;
+    width: 100px;
+}
+
+tr, td, th {
+    border : 1px solid black;
+}

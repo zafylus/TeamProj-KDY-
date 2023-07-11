@@ -18,9 +18,9 @@
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 headerToolbar: {
-                    height: 'auto',
-                    left: 'title',
-                    center: '',
+                    height: '100%',
+                    left: '',
+                    center: 'title',
                     end: ''
                 },
                 locale: 'ko',
@@ -29,7 +29,7 @@
             calendar.render();
             
             const sales = document.getElementById('sales');
-            const daySales = $('.fc-event-title-container');
+            let daySales = $('.fc-event-title-container');
             const dialog = document.querySelector('dialog');
             console.log(daySales);
             const date = new Date();
@@ -58,8 +58,11 @@
                 month = month-1;
                 fixDate();
                 let yearMonth = year+'-'+(''+month).padStart(2, "0");
-                console.log(yearMonth);
                 calendar.prev();
+                daySales = $('.fc-event-title-container');
+                daySales.click(showModal);
+                console.log(yearMonth);
+                console.log(daySales);
             
                 $.ajax({
                     url: 'sales',
@@ -76,9 +79,12 @@
                 month = month+1;
                 fixDate();
                 let yearMonth = year+'-'+(''+month).padStart(2, "0");
-                console.log(yearMonth);
                 calendar.next();
-            
+                daySales = $('.fc-event-title-container');
+                daySales.click(showModal);
+                console.log(yearMonth);
+                console.log(daySales);
+                
                 $.ajax({
                     url: 'sales',
                     type: 'post',
@@ -95,7 +101,6 @@
                 year = date.getFullYear();
                 month = date.getMonth()+1;
                 const monthTotaltoLocal = (${monthTotal}).toLocaleString();
-                console.log(monthTotaltoLocal);
                 sales.innerText = '이번달 매출 : ' + monthTotaltoLocal;
             }
 
@@ -106,10 +111,30 @@
                 }else{
                     jq_et = $(e.target);
                 }
+                let date = jq_et.parent().parent().parent().parent().parent().parent().parent()[0].dataset.date;
                 console.log('jq_et');
                 console.log(jq_et);
-                console.log(jq_et.parent().parent().parent().parent().parent().parent().parent()[0].dataset.date);
+                console.log(date);
                 dialog.showModal();
+
+                $.ajax({
+                    url: 'eachProdSales?date='+date,
+                    type: 'get',
+                    dataType: 'text',
+                    success: function(res){
+                        const jo = JSON.parse(res);
+                        console.log(jo);
+                        const prodstat = $('#prodstat');
+                        let htmlString = '';
+                        console.log(prodstat);
+                        for (let i = 0; i < jo.length; i++) {
+                            htmlString += '<tr><td>'+ (i+1) +'</td><td><img class="prodimg"src="img/' + jo[i].pr_img + '"><span>' + jo[i].pr_name + '</span></td>'
+                                + '<td>' + jo[i].amount + '</td>' + '<td>' + jo[i].sales + '</td><tr>' 
+                        }
+                        console.log(htmlString);
+                        prodstat.html(htmlString);
+                    }
+                });
             }
             
             
@@ -120,7 +145,19 @@
 </head>
 <body>
     <dialog>
-        Hello Modal
+        <h2>매출순위</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>순위</th>
+                    <th>제품</th>
+                    <th>판매량</th>
+                    <th>총매출</th>
+                </tr>
+            </thead>
+            <tbody id="prodstat">
+            </tbody>
+        </table>
         <form method="dialog">
             <button>Close</button>
         </form>

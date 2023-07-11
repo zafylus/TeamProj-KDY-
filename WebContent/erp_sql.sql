@@ -6,7 +6,10 @@ CREATE TABLE product(
 	pr_ctgry VARCHAR(20)
 );
 SELECT * FROM product;
-
+DESC product
+ALTER TABLE product add pr_img VARCHAR(50);
+UPDATE product SET pr_img ='bread.png' 
+WHERE pr_code = 'PR501';
 INSERT INTO product VALUES ('01010003', 'ㅋ', 4000, '커피');
 UPDATE product SET prodname = '바닐라라떼', price = 6000, category = '커피' WHERE prodno = '01010003'
 DELETE from product WHERE prodno = '01010003';
@@ -49,13 +52,12 @@ INSERT INTO orderlist (pr_code, amount, odr_date) VALUES
 
 --판매기록
 CREATE VIEW ordr_view AS
-SELECT o.odr_no, p.pr_code, p.pr_name, p.pr_price, o.amount,
-p.pr_price*o.amount AS sales, o.odr_date
+SELECT o.odr_no, p.pr_code, p.pr_name, p.pr_img,p.pr_price, o.amount, p.pr_price*o.amount AS sales, o.odr_date
 FROM product p, orderlist o WHERE p.pr_code = o.pr_code ORDER BY odr_date DESC;
 SELECT * FROM ordr_view;
 
 -- 일별 매출 기록
-SELECT pr_code, pr_name, sum(amount) AS amount, sum(sales) AS sales
+SELECT pr_code, pr_name, pr_img, sum(amount) AS amount, sum(sales) AS sales
 FROM ordr_view
 WHERE odr_date = '2023-07-15'
 GROUP BY pr_code

@@ -50,10 +50,9 @@ public class SalesDAO implements SelectDAO{
 			while(rs.next()) {
 				String pr_code = rs.getString(1);
 				String pr_name = rs.getString(2);
-				String pr_img = rs.getNString(3);
-				String amount = rs.getString(4);
-				String sales = rs.getString(5);
-				EachProductSalesVO e = new EachProductSalesVO(pr_code, pr_name, pr_img, amount, sales); 
+				String amount = rs.getString(3);
+				String sales = rs.getString(4);
+				EachProductSalesVO e = new EachProductSalesVO(pr_code, pr_name, amount, sales); 
 				epsList.add(e);
 			}
 		} catch (SQLException e) {

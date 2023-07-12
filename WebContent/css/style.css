@@ -8,17 +8,16 @@ body {
 #wrapper{
     margin: 0 auto;
     border: 1px solid black;
-    width: 1200px;
+    width: 1600px;
     display: grid;
     grid-template-rows: 10% 10% 1fr;
-    grid-template-columns: 15% 1fr;
+    grid-template-columns: 266px 1fr;
     height: 900px;
     grid-template-areas: 
     "header header"
     "nav nav"
     "sidebar section";
     text-align: center;
-    z-index: 50;
 }
 #header, #nav,.dtlmenu{
     display: flex;
@@ -43,6 +42,7 @@ body {
 #sales{
     font-size: 30px;
 }
+
 a{
     margin: 30px;
 }
@@ -55,11 +55,6 @@ a{
 
 dialog::backdrop{
     background-color: rgba(0, 0, 0, 0.6);
-}
-
-.prodimg{
-    height: 100px;
-    width: 100px;
 }
 
 tr, td, th {

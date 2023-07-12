@@ -13,7 +13,7 @@
     <title>ERP Project</title>
     <script src="js/jquery-3.7.0.js"></script>
     <script src="js/index.global.js"></script>
-    <script>
+    <script src="">
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -128,7 +128,7 @@
                         let htmlString = '';
                         console.log(prodstat);
                         for (let i = 0; i < jo.length; i++) {
-                            htmlString += '<tr><td>'+ (i+1) +'</td><td><img class="prodimg"src="img/' + jo[i].pr_img + '"><span>' + jo[i].pr_name + '</span></td>'
+                            htmlString += '<tr><td>'+ (i+1) +'</td><td><span>' + jo[i].pr_name + '</span></td>'
                                 + '<td>' + jo[i].amount + '</td>' + '<td>' + jo[i].sales + '</td><tr>' 
                         }
                         console.log(htmlString);
@@ -136,8 +136,6 @@
                     }
                 });
             }
-            
-            
         })
     </script>
    

@@ -28,15 +28,19 @@ public class Test {
 			System.out.println(product);
 		}*/
 		SalesDAO s = new SalesDAO();
+		ArrayList<SalesByDateDTO> alist = s.selectAll();
+		for (SalesByDateDTO salesByDateDTO : alist) {
+			System.out.println(salesByDateDTO);
+		}
 //		ArrayList<EachProductSalesVO> elist = s.daySalesStat("2023-07-15");
 //		for (EachProductSalesVO eachProductSalesVO : elist) {
 //			System.out.println(eachProductSalesVO);
 //		}
-		System.out.println(s.monthSales("2023-05"));
-		ArrayList<SalesByDateDTO> slist = s.selectAll();
-		
-		for (SalesByDateDTO salesByDate : slist) {
-			System.out.println(salesByDate);
-		}
+//		System.out.println(s.monthSales("2023-05"));
+//		ArrayList<SalesByDateDTO> slist = s.selectAll();
+//		
+//		for (SalesByDateDTO salesByDate : slist) {
+//			System.out.println(salesByDate);
+//		}
 	}
 }

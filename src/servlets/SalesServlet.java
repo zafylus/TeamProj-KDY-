@@ -22,6 +22,7 @@ public class SalesServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONArray jarray = sm.salesToJSON();
+		System.out.println(jarray);
 		sc = this.getServletContext();
 		sc.setAttribute("sales", jarray);
 		sc.setAttribute("monthTotal", sm.monthSalesNow());

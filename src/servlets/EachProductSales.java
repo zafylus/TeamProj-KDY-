@@ -22,7 +22,7 @@ public class EachProductSales extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String date = request.getParameter("date");
-		System.out.println("EachProductDate :  " + date);
+//		System.out.println("EachProductDate :  " + date);
 		JSONArray jarray = sm.dayStatToJSON(date); 
 		System.out.println("EachProdServl : " + jarray);
 		
@@ -31,7 +31,6 @@ public class EachProductSales extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }

@@ -8,7 +8,6 @@ import lombok.Data;
 public class EachProductSalesVO {
 	private String pr_code;
 	private String pr_name;
-	private String pr_img;
 	private String amount;
 	private String sales;
 }

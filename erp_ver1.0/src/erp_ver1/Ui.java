@@ -71,7 +71,7 @@ public class Ui {
 				switch(sel3) {
 				case 1:
 					line(80);
-					e_serv.selectAllExpense();
+					//e_serv.selectAllExpense();
 					break;
 				case 2:
 					System.out.println("조회할 기간을 입력하세요.");
@@ -111,7 +111,7 @@ public class Ui {
 					line(80);
 					s_serv.getTotalList();
 					line(80);
-					s_serv.selectAllStock();
+					//s_serv.selectAllStock();
 					break;
 				case 2:
 					System.out.println("조회할 기간을 입력하세요.");
@@ -120,7 +120,7 @@ public class Ui {
 					System.out.println("기간2 (yyyy-MM-dd) : >>");
 					String date2 = sc.next();
 					line(80);
-					s_serv.stockDateList(date1, date2);
+					//s_serv.stockDateList(date1, date2);
 					
 				}
 				break;

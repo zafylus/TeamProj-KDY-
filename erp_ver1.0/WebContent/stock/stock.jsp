@@ -5,17 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
 	* {
 		box-sizing: border-box;
 	}
 	
 	#page {
-        width: 1400px; height: 900px;
+        width: 1600px; height: 900px;
         margin: 0px auto;
         display: grid;
         grid-gap: 10px;
-        grid-template-columns: 15% 1fr;
+        grid-template-columns: 266px 1fr;
         grid-template-rows: 10% 100px 1fr;
         grid-template-areas: 
             "header header"
@@ -37,16 +38,7 @@
 		box-shadow: 5px 5px 5px grey;
 	}
 
-	ul {
-		list-style: none;
-		margin : 0px;
-		padding : 0px;
-	}
-	
-	li {
-		text-align: center;
-		line-height: 100px;
-	}
+
 </style>
 </head>
 <body>
@@ -65,6 +57,7 @@
 %>
 <div id = "page">
 	<jsp:include page="../header.jsp" />
+	
 	<jsp:include page="../nav.jsp" />
 	
 	<aside>
@@ -81,5 +74,6 @@
 		<jsp:include page="${page }" />
 	</section>
 </div>
+
 </body>
 </html>

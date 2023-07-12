@@ -11,11 +11,11 @@
 	}
 	
 	#page {
-        width: 1400px; height: 900px;
+        width: 1600px; height: 900px;
         margin: 0px auto;
         display: grid;
         grid-gap: 10px;
-        grid-template-columns: 15% 1fr;
+        grid-template-columns: 266px 1fr;
         grid-template-rows: 10% 100px 1fr;
         grid-template-areas: 
             "header header"

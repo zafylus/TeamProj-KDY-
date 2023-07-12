@@ -12,12 +12,12 @@
 		box-shadow: 5px 5px 5px grey;
 	}
 
-	ul {
+	#aside-ul {
 		list-style: none;
 		margin : 0px;
 		padding : 0px;
 	}
-	li {
+	.aside-li {
 		text-align: center;
 		line-height: 100px;
 	}
@@ -25,13 +25,13 @@
 </head>
 <body>
 	<aside>
-		<ul>
-			<li>세부메뉴1</li>
-			<li>세부메뉴2</li>
-			<li>세부메뉴3</li>
-			<li>세부메뉴4</li>
-			<li>세부메뉴5</li>
-			<li>세부메뉴6</li>
+		<ul id="aside-ul">
+			<li class="aside-li">세부메뉴1</li>
+			<li class="aside-li">세부메뉴2</li>
+			<li class="aside-li">세부메뉴3</li>
+			<li class="aside-li">세부메뉴4</li>
+			<li class="aside-li">세부메뉴5</li>
+			<li class="aside-li">세부메뉴6</li>
 		</ul>
 	</aside>
 </body>

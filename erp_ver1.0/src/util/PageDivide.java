@@ -5,7 +5,7 @@ public class PageDivide {
 	// 한페이지에 자료가 20개 일 경우
 	// 받은 자료 갯수로 만들수 있는 최대 페이지 수
 	public int pageMaxNum(int p) {
-		int lastPageNum = (int)Math.ceil(p/20.0);
+		int lastPageNum = (int)Math.ceil(p/15.0);
 		return lastPageNum;
 	}
 	

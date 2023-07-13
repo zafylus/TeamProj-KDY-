@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link href="css/bootstrap.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <style>
 	* {
 		box-sizing: border-box;
@@ -15,7 +15,7 @@
 	
 	#page {
         width: 1600px; height: 900px;
-        margin: 0px auto;
+        margin: 20px auto;
         display: grid;
         grid-gap: 10px;
         grid-template-columns: 266px 1fr;
@@ -26,7 +26,6 @@
             "aside section"
         ;
 	}
-	
 	
 	section {
 		grid-area : section;

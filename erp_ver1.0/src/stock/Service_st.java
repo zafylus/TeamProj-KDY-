@@ -6,15 +6,17 @@ import java.util.List;
 
 import dao.StockDAO;
 import dto.StockDTO;
+import vo.StockOptionVO;
 import vo.TotalStockVO;
 
 public class Service_st {
 
-		public void insertStock(String ma_code, int st_ea) {
+		public void insertStock(String ma_code, int st_ea, String note) {
 			StockDTO s = new StockDTO();
 			StockDAO dao = new StockDAO();
 			s.setMa_code(ma_code);
 			s.setSt_ea(st_ea);
+			s.setSt_note(note);
 			s.setSt_recDate(LocalDateTime.now());
 			if (dao.insert(s)) {
 				System.out.println("재고 등록 완료");
@@ -75,5 +77,22 @@ public class Service_st {
 			StockDAO sdao = new StockDAO();
 			int cnt = sdao.getListCntBetweenDate(date1, date2);
 			return cnt;
+		}
+		
+		// 재고 알람 옵션 설정
+		public void setStockOption(boolean checked, int num) {
+			StockDAO sdao = new StockDAO();
+			if(sdao.setOption(checked, num)) {
+				System.out.println("옵션 변경 완료");
+			}
+		}
+		
+		// 재고 알람 옵션 가져오기
+		public StockOptionVO getStockOption() {
+			StockDAO sdao = new StockDAO();
+			StockOptionVO opt = new StockOptionVO();
+			
+			opt = sdao.getOption();
+			return opt;
 		}
 }

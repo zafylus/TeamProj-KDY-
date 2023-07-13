@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import DButil.DBcon;
-import DButil.DBconPool;
 import DButil.DBconnect;
 import DButil.DBcrud;
 import dto.StockDTO;
+import vo.StockOptionVO;
 import vo.TotalStockVO;
 
 public class StockDAO implements DBcrud{
@@ -58,7 +57,7 @@ public class StockDAO implements DBcrud{
 	}
 	
 	// 현재 페이지를 번호를 받아
-	// 20개 단위로 모은 재고 입/출력 리스트 반환
+	// 15개 단위로 모은 재고 입/출력 리스트 반환
 	@Override
 	public List<Object> getData(int p) {
 		Connection con = null;
@@ -66,12 +65,12 @@ public class StockDAO implements DBcrud{
 		ResultSet rs = null;
 		List<Object> list = new ArrayList<>();
 		
-		int firstPage = ((p-1) * 20);
+		int firstPage = ((p-1) * 15);
 		
 		String query = "SELECT s.st_no, m.ma_name, s.st_ea, s.st_recDate, s.st_note" + 
 				" FROM stock s LEFT join  material m" + 
 				" on s.ma_code = m.ma_code" + 
-				" ORDER BY st_no DESC LIMIT ?, 20";
+				" ORDER BY st_no DESC LIMIT ?, 15";
 		
 		try {
 			DBconnect connect = new DBconnect();
@@ -182,43 +181,6 @@ public class StockDAO implements DBcrud{
 		}
 		return flag;
 	}
-	
-	// 특정 재료 재고 총량 불러오는 메서드 만들기
-	public int totalAmount(String ma_code) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int total = 0;
-		
-		String query = "SELECT s_totalAmount FROM stock WHERE ma_code = ? ORDER BY st_recDate DESC LIMIT 1";
-		
-		try {
-			con = DBcon.getConn();
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, ma_code);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) 
-				total = rs.getInt(1);
-			
-		} catch (Exception e) {
-			System.out.println("특정 재고 총량 데이터 반환 실패 : " + e.getMessage());
-			
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (Exception e) {
-				System.out.println("연결 해제 실패 : " + e.getMessage());
-			}
-		}
-		return total;
-	}
-	
 	
 	// 현재 페이지 번호를 받아
 	// 기간 사이의 재고 입출력 리스트 반환 (20개 단위)
@@ -379,5 +341,77 @@ public class StockDAO implements DBcrud{
 			}
 		}
 		return cnt;
+	}
+	
+	// 재고 설정 옵션 저장 (매개변수 : 알람여부 , 알림 수량 설정)
+	@SuppressWarnings("resource")
+	public boolean setOption(boolean checked, int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean flag = false;
+		int result = 0;
+		
+		String sql1 = "DELETE FROM st_option";
+		String sql2 = "INSERT INTO st_option VALUE (?, ?)";
+		
+		try {
+			con = DBcon.getConn();
+			pstmt = con.prepareStatement(sql1);
+			result = pstmt.executeUpdate();
+			
+			if (result == 1) {
+				result = 0;
+				pstmt = con.prepareStatement(sql2);
+				pstmt.setBoolean(1, checked);
+				pstmt.setInt(2, num);
+				result = pstmt.executeUpdate();
+			}
+			
+			if (result == 1)
+				flag = true;
+			
+		} catch (Exception e) {
+			System.out.println("옵션 변경 실패 : " + e.getMessage());
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e) {
+				System.out.println("연결 해제 실패 : " + e.getMessage());
+			}
+		}
+		return flag;
+	}
+	
+	// 재고 설정 가져오기
+	public StockOptionVO getOption() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StockOptionVO opt = new StockOptionVO();
+		
+		String sql = "SELECT * FROM st_option";
+		
+		try {
+			con = DBcon.getConn();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				opt.setAlramOpt(rs.getBoolean(1));
+				opt.setAlramNum(rs.getInt(2));
+			}
+		} catch (Exception e) {
+			System.out.println("옵션 조회 실패 : " + e.getMessage());
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e) {
+				System.out.println("연결 해제 실패 : " + e.getMessage());
+			}
+		}
+		return opt;
 	}
 }

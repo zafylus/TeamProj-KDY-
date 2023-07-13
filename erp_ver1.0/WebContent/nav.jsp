@@ -6,10 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link href="css/bootstrap.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <style>
 	#main-nav {
 		grid-area : nav;
+	}
+	
+	.nav-item {
+		width:150px;
+		text-align: center;
 	}
 	
 </style>
@@ -32,6 +37,7 @@
 		      <li><a class="dropdown-item" href="totalstock">총 재고량</a></li>
 		      <li><a class="dropdown-item" href="stockList">재고 입/출 리스트</a></li>
 		      <li><a class="dropdown-item" href="registStock">재고 등록</a></li>
+		      <li><a class="dropdown-item" href="StockOption">옵션</a></li>
 		    </ul>
 		  </li>
 		</ul>

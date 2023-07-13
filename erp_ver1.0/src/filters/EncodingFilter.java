@@ -9,15 +9,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter(asyncSupported = true, urlPatterns = { "/EncodingFilter" })
+@WebFilter("/*")
 public class EncodingFilter implements Filter {
 
-    public EncodingFilter() {
-    }
-
-	public void destroy() {
-	}
-
+	private static final long serialVersionUID = 1L;
+	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// place your code here
 		response.setContentType("text/html;charset=utf-8");

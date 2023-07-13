@@ -1,3 +1,4 @@
+<%@page import="util.PageCheck"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link href="css/bootstrap.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <style>
 	* {
 		box-sizing: border-box;
@@ -15,7 +16,7 @@
 	
 	#page {
         width: 1600px; height: 900px;
-        margin: 0px auto;
+        margin: 20px auto;
         display: grid;
         grid-gap: 10px;
         grid-template-columns: 266px 1fr;
@@ -29,15 +30,10 @@
 	
 	section {
 		grid-area: section;
-		padding : 20px;
-		border : 1px solid black;
-		box-shadow: 5px 5px 5px grey;
 	}
 	
 	aside {
 		grid-area : aside;
-		border : 1px solid black;
-		box-shadow: 5px 5px 5px grey;
 	}
 
 	#aside-ul {
@@ -55,32 +51,26 @@
 </head>
 <body>
 <%
+	PageCheck pageCheck = new PageCheck();
 	String req = request.getParameter("req");
-	String includeP = "";
-	if (req != null && req.equals("list")) {
-		includeP = "stockList.jsp";
-	} else if(req.equals("reg")) {
-		includeP = "insertStock.jsp";
-	} else {
-		includeP = "totalStock.jsp";
-	}
+	String includeP = pageCheck.stockPageCheck(req);
 	
 	pageContext.setAttribute("page", includeP);
 %>
 <div id = "page">
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="../nav.jsp" />
-	<aside>
-		<ul id="aside-ul">
-			<li class="aside-li"><a href="totalstock">총 채고량</a></li>
-			<li class="aside-li"><a href="stockList">재고 입/출 리스트</a></li>
-			<li class="aside-li"><a href="registStock">재고 등록</a></li>
-			<li class="aside-li">세부메뉴4</li>
-			<li class="aside-li">세부메뉴5</li>
-			<li class="aside-li">세부메뉴6</li>
+	<aside class="container-fluid border shadow p-3  bg-body rounded">
+		<ul id="aside-ul" class="nav justify-content-center">
+			<li class="aside-li nav-item"><a class="nav-link" href="totalstock">총 채고량</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="stockList">입/출 리스트</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="registStock">재고 등록</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴4</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴5</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="StockOption">옵션</a></li>
 		</ul>
 	</aside>
-	<section>
+	<section class="container-fluid border shadow p-3  bg-body rounded">
 		<jsp:include page="${page }" />
 	</section>
 </div>

@@ -24,14 +24,14 @@
 </style>
 </head>
 <body>
-	<aside>
-		<ul id="aside-ul">
-			<li class="aside-li">세부메뉴1</li>
-			<li class="aside-li">세부메뉴2</li>
-			<li class="aside-li">세부메뉴3</li>
-			<li class="aside-li">세부메뉴4</li>
-			<li class="aside-li">세부메뉴5</li>
-			<li class="aside-li">세부메뉴6</li>
+	<aside class="container-fluid border shadow p-3  bg-body rounded">
+		<ul id="aside-ul" class="nav justify-content-center">
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴1</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴2</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴3</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴4</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴5</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴6</a></li>
 		</ul>
 	</aside>
 </body>

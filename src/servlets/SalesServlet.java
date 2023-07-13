@@ -19,19 +19,20 @@ public class SalesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SalesModel sm = new SalesModel();
 	private ServletContext sc = null;
-
+	
+	//매출 조회 페이지 초기화 서블릿
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONArray jarray = sm.salesToJSON();
-		System.out.println(jarray);
 		sc = this.getServletContext();
 		sc.setAttribute("sales", jarray);
 		sc.setAttribute("monthTotal", sm.monthSalesNow());
+		
 		response.sendRedirect("sales.jsp");
 	}
 	
+	//월별 총 매출 서블릿
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String date = request.getParameter("date");
-		sc = this.getServletContext();
 		int sales = sm.monthSales(date);
 		
 		PrintWriter out = response.getWriter();

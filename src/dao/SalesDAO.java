@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import dto.EachProductSalesVO;
 import dto.SalesByDateDTO;
 
+//상품 관리 DAO
 public class SalesDAO implements SelectDAO{
 	
+	//월별 매출
 	public int monthSales(String yearMonth){
 		int sales = -1;
 		try {
@@ -31,6 +33,7 @@ public class SalesDAO implements SelectDAO{
 		return sales;
 	}
 	
+	//일자별 상품 정보
 	public ArrayList<EachProductSalesVO> daySalesStat(String date) {
 		ArrayList<EachProductSalesVO> epsList = new ArrayList<EachProductSalesVO>();
 		
@@ -59,6 +62,7 @@ public class SalesDAO implements SelectDAO{
 		return epsList;
 	}
 	
+	//일자별 매출
 	@Override
 	public ArrayList<SalesByDateDTO> selectAll() {
 		ArrayList<SalesByDateDTO> slist = null;

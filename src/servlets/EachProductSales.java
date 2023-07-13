@@ -20,6 +20,7 @@ public class EachProductSales extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SalesModel sm = new SalesModel();
 	
+	//일별 각 상품 정보 서블릿
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String date = request.getParameter("date");
 //		System.out.println("EachProductDate :  " + date);

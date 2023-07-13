@@ -10,8 +10,10 @@ import dto.EachProductSalesVO;
 import dto.SalesByDateDTO;
 
 public class SalesModel {
+	//SalesDAO 선언
 	private SalesDAO sd = new SalesDAO();
 	
+	//일자별 상품 정보 변환
 	public JSONArray dayStatToJSON(String date) {
 		JSONArray jarray = null;
 		ArrayList<EachProductSalesVO> epslist = sd.daySalesStat(date);
@@ -24,6 +26,8 @@ public class SalesModel {
 		
 		return jarray;
 	}
+	
+	//일자별 매출 변환
 	public JSONArray salesToJSON() {
 		JSONArray jarray = null;
 		ArrayList<SalesByDateDTO> slist = sd.selectAll();
@@ -36,10 +40,12 @@ public class SalesModel {
 		return jarray;
 	}
 	
+	//전체 변환
 	public JSONArray parseList(ArrayList<Object> list) {
 		return new JSONArray(list);
 	}
 	
+	//현재 월별 매출 변환
 	public int monthSalesNow() {
 		int sales = 0;
 		
@@ -52,15 +58,15 @@ public class SalesModel {
 		}		
 		
 		String nowYearMonth = year+"-"+month;
-		
 		sales = monthSales(nowYearMonth);
 		
 		return sales;
 	}
 	
+	//월별 매출 변환
 	public int monthSales(String yearMonth) {
 		int sales = 0;
-		
+	
 		sales = sd.monthSales(yearMonth);
 		
 		return sales;

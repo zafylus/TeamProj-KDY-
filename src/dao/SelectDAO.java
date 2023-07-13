@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import dbCon.DBcon;
 import dto.Product;
 
+//DAO Interface
 public interface SelectDAO {
 	final Connection conn = (new DBcon()).getConnection();
 	

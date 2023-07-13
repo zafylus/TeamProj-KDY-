@@ -13,12 +13,11 @@
     <title>ERP Project</title>
     <script src="js/jquery-3.7.0.js"></script>
     <script src="js/index.global.js"></script>
-    <script src="">
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 headerToolbar: {
-                    height: '100%',
                     left: '',
                     center: 'title',
                     end: ''
@@ -111,10 +110,9 @@
                 }else{
                     jq_et = $(e.target);
                 }
-                let date = jq_et.parent().parent().parent().parent().parent().parent().parent()[0].dataset.date;
-                console.log('jq_et');
                 console.log(jq_et);
-                console.log(date);
+                let date = jq_et.parent().parent().parent().parent().parent().parent().parent()[0].dataset.date;
+                console.log(`showModal : ${date}`);
                 dialog.showModal();
 
                 $.ajax({
@@ -126,17 +124,17 @@
                         console.log(jo);
                         const prodstat = $('#prodstat');
                         let htmlString = '';
-                        console.log(prodstat);
                         for (let i = 0; i < jo.length; i++) {
-                            htmlString += '<tr><td>'+ (i+1) +'</td><td><span>' + jo[i].pr_name + '</span></td>'
-                                + '<td>' + jo[i].amount + '</td>' + '<td>' + jo[i].sales + '</td><tr>' 
+                            htmlString += 
+                            '<tr><td>'+ (i+1) +'</td><td><span>' + jo[i].pr_name + '</span></td><td>' 
+                                + jo[i].amount + '</td>' + '<td>' + jo[i].sales + '</td><tr>' 
                         }
                         console.log(htmlString);
                         prodstat.html(htmlString);
                     }
                 });
             }
-        })
+        });
     </script>
    
     <link href="css/style.css" rel="stylesheet">

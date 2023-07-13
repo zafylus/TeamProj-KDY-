@@ -11,8 +11,6 @@ import dto.SalesByDateDTO;
 
 public class SalesDAO implements SelectDAO{
 	
-	//월 총 매출 반환
-	//매개변수 형식 : 'YYYY-MM'형식
 	public int monthSales(String yearMonth){
 		int sales = -1;
 		try {
@@ -33,12 +31,11 @@ public class SalesDAO implements SelectDAO{
 		return sales;
 	}
 	
-	//당일 상품 통계 데이터 반환
 	public ArrayList<EachProductSalesVO> daySalesStat(String date) {
 		ArrayList<EachProductSalesVO> epsList = new ArrayList<EachProductSalesVO>();
 		
 		try {
-			String sql = "SELECT pr_code, pr_name, pr_img, sum(amount) AS amount, sum(sales) AS sales\r\n" + 
+			String sql = "SELECT pr_code, pr_name, sum(amount) AS amount, sum(sales) AS sales\r\n" + 
 					"FROM ordr_view\r\n" + 
 					"WHERE odr_date = ?\r\n" + 
 					"GROUP BY pr_code\r\n" + 
@@ -62,8 +59,6 @@ public class SalesDAO implements SelectDAO{
 		return epsList;
 	}
 	
-	
-	//모든 매출을 일별로(날짜, 매출) 배열로 반환 
 	@Override
 	public ArrayList<SalesByDateDTO> selectAll() {
 		ArrayList<SalesByDateDTO> slist = null;

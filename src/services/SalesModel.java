@@ -65,10 +65,6 @@ public class SalesModel {
 	
 	//월별 매출 변환
 	public int monthSales(String yearMonth) {
-		int sales = 0;
-	
-		sales = sd.monthSales(yearMonth);
-		
-		return sales;
+		return sd.monthSales(yearMonth);
 	}
 }

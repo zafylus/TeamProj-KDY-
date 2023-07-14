@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter("/EncodingFilter")
+@WebFilter("*.do")
 public class EncodingFilter implements Filter {
 
 	//인코딩 필터

@@ -13,15 +13,64 @@
     <title>ERP Project</title>
     <script src="js/jquery-3.7.0.js"></script>
     <script src="js/index.global.js"></script>
-    <script>
+ 
+   
+ <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <dialog>
+        <h2>매출순위</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>순위</th>
+                    <th>제품</th>
+                    <th>판매량</th>
+                    <th>총매출</th>
+                </tr>
+            </thead>
+            <tbody id="prodstat">
+            </tbody>
+        </table>
+        <form method="dialog">
+            <button>Close</button>
+        </form>
+    </dialog>
+    <div id = "wrapper">
+        <div id="header">
+            <h1>ERP</h1> 
+        </div>
+        <div id="nav">
+            <h2>
+                <a href="sales">매출</a> 
+                <a href="">지출</a>
+                <a href="">재고</a>
+                <a href="">직원</a>
+                <a href="index.html">홈으로</a>
+            </h2>
+        </div>
+        <div id="sidebar">
+            <div class = "dtlmenu">조 회</div>
+        </div>
+        <div id="section">
+            
+            <div style="width:900px; height:900px;">
+            <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+       <script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             headerToolbar: {
                 left: '',
-                center: 'title',
-                end: ''
+                center: 'prev title next',
+				end: 'today',
             },
+            buttonText: {
+				today: '오늘'
+			},
             locale: 'ko',
         });
         calendar.render();
@@ -87,6 +136,77 @@
         document.getElementById('today').addEventListener('click', todaySales);
         daySales.click(showModal);
 
+        $("#fc-dom-1").css("text-align", "center");
+
+        $(".show_sale_box").css({
+          display: "grid",
+          height: "210px",
+          "grid-template-columns": "1fr 1fr",
+          padding: "10px",
+          "margin-bottom": "20px"
+        });
+
+        $(".first_box").css({
+          "border-right": "1px solid #e4e4e4",
+          "text-align": "center"
+        });
+
+        $(".sale_title_box").css("margin-bottom", "10px");
+
+        $(".sale_value").css({
+          display: "inline-block",
+          "font-weight": "900",
+          "font-size": "30px"
+        });
+
+        $(".second_box").css("text-align", "center");
+
+        $(".refund_title_box").css("margin-bottom", "10px");
+
+        $(".refund_value").css({
+          display: "inline-block",
+          "font-weight": "900",
+          "font-size": "30px",
+          color: "red"
+        });
+
+        $(".fc-toolbar").css({
+          "padding-left": "80px",
+          "line-height": "50px"
+        });
+
+        $(".fc-toolbar-title").css("display", "inline-block");
+
+        $(".fc-today-button").css({
+          width: "80px",
+          "background-color": "white",
+          border: "2px solid #0093d9",
+          color: "#0093d9",
+          "border-radius": "8px"
+        });
+
+        $(".fc-prev-button").css({
+          position: "relative",
+          "font-size": "20px",
+          top: "-6px",
+          "background-color": "white",
+          border: "none",
+          "box-shadow": "none"
+        });
+
+        $(".fc-next-button").css({
+          position: "relative",
+          "font-size": "20px",
+          top: "-6px",
+          "background-color": "white",
+          border: "none",
+          "box-shadow": "none"
+        });
+
+        $(".title_box").css("display", "inline-block");
+
+        $(".fc-scroller::-webkit-scrollbar").css("display", "none");
+        
 
         function fixDate() {
             if (month > 12) {
@@ -182,58 +302,5 @@
         }
     });
     </script>
-   
-</head>
- <link href="css/style2.css" rel="stylesheet">
-<body>
-    <dialog>
-        <h2>매출순위</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>순위</th>
-                    <th>제품</th>
-                    <th>판매량</th>
-                    <th>총매출</th>
-                </tr>
-            </thead>
-            <tbody id="prodstat">
-            </tbody>
-        </table>
-        <form method="dialog">
-            <button>Close</button>
-        </form>
-    </dialog>
-    <div id = "wrapper">
-        <div id="header">
-            <h1>ERP</h1> 
-        </div>
-        <div id="nav">
-            <h2>
-                <a href="sales">매출</a> 
-                <a href="">지출</a>
-                <a href="">재고</a>
-                <a href="">직원</a>
-                <a href="index.html">홈으로</a>
-            </h2>
-        </div>
-        <div id="sidebar">
-            <div class = "dtlmenu">조 회</div>
-        </div>
-        <div id="section">
-            
-            <div>
-                <span id="sales">이번달 매출 : </span>
-                <span id="button">
-                   <button id="prev"><</button> 
-                   <button id="today">today</button>
-                   <button id="next">></button> 
-                </span>
-            </div>
-            <div style="width:900px; height:900px;">
-            <div id="calendar"></div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

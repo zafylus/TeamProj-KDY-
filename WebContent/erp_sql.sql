@@ -33,22 +33,22 @@ CREATE TABLE orderlist(
 ALTER TABLE orderlist AUTO_INCREMENT=20230001;
 SELECT * FROM orderlist ORDER BY odr_date desc
 
-INSERT INTO orderlist (pr_code, amount) VALUES ('PR001', 5)
-('PR001', 5 , '2023-07-01'),
-('PR001', 1 , '2023-07-10'),
-('PR001', 2 , '2023-07-11'),
-('PR001', 4 , '2023-07-20'),
-('PR001', 9 , '2023-07-24'),
-('PR001', 1 , '2023-07-05'),
-('PR002', 1 , '2023-07-01'),
-('PR002', 3 , '2023-07-05'),
-('PR002', 2 , '2023-07-13'),
-('PR002', 4 , '2023-07-22'),
-('PR002', 2 , '2023-07-28'),
-('PR003', 1 , '2023-07-01'),
-('PR003', 1 , '2023-07-15'),
-('PR003', 2 , '2023-07-30'),
-('PR501', 1 , '2023-07-15');
+INSERT INTO orderlist (pr_code, amount, odr_date) values
+('PR001', 5 , '2023-08-01'),
+('PR001', 1 , '2023-08-10'),
+('PR001', 2 , '2023-08-11'),
+('PR001', 4 , '2023-08-20'),
+('PR001', 9 , '2023-08-24'),
+('PR001', 1 , '2023-08-05'),
+('PR002', 1 , '2023-08-01'),
+('PR002', 3 , '2023-08-05'),
+('PR002', 2 , '2023-08-13'),
+('PR002', 4 , '2023-08-22'),
+('PR002', 2 , '2023-08-28'),
+('PR003', 1 , '2023-08-01'),
+('PR003', 1 , '2023-08-15'),
+('PR003', 2 , '2023-08-30'),
+('PR501', 1 , '2023-08-15');
 
 --판매기록
 CREATE VIEW ordr_view AS
@@ -57,9 +57,9 @@ FROM product p, orderlist o WHERE p.pr_code = o.pr_code ORDER BY odr_date DESC;
 SELECT * FROM ordr_view;
 
 -- 일별 매출 기록
-SELECT pr_code, pr_name, pr_img, sum(amount) AS amount, sum(sales) AS sales
+SELECT pr_code, pr_name, sum(amount) AS amount, sum(sales) AS sales
 FROM ordr_view
-WHERE odr_date = '2023-07-15'
+WHERE odr_date BETWEEN '2023-07-12 00:00:00' and '2023-07-12 23:59:59'
 GROUP BY pr_code
 ORDER BY sales DESC
 

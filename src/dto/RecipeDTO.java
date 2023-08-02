@@ -6,6 +6,12 @@ public class RecipeDTO {
 	private double ma002;
 	private double ma003;
 	
+	public RecipeDTO(double ma001, double ma002, double ma003) {
+		this.ma001 = ma001;
+		this.ma002 = ma002;
+		this.ma003 = ma003;
+	}
+	
 	public String getPr_code() {
 		return pr_code;
 	}

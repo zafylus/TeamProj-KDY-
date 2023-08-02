@@ -46,7 +46,7 @@
 		      <li><a class="dropdown-item" href="StockOption">옵션</a></li>
 		    </ul>
 		  </li>
-		  		  <li class="nav-item dropdown">
+			<li class="nav-item dropdown">
 		    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">상품</a>
 		    <ul class="dropdown-menu">
 		      <li><a class="dropdown-item" href="#">준비중</a></li>

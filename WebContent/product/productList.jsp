@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,14 +42,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox" name="all"></td>
-                        <td>test</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" name="all"></td>
-                        <td>test</td>
-                    </tr>
+                    <c:forEach var="pl" items="${plist }">
+                        <tr>
+                            <td><input type="checkbox" class="check"></td>
+                            <td>${pl.pr_code}</td>
+                            <td>${pl.pr_name}</td>
+                            <td>${pl.pr_ctgry}</td>
+                            <td>${pl.pr_price}</td>
+                            <td>${pl.total_cost}</td>
+                            <td>${pl.margin}</td>
+                            <td>${pl.margin_per}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </form>
             </table>

@@ -1,9 +1,11 @@
 package tests;
 
-import dao.OrderDAO;
+import services.ProductService;
 
 public class Test {
 	public static void main(String[] args) {
+		ProductService ps = new ProductService();
+		System.out.println(ps.parseProductInfo());
 		
 		/*ProductMDAO pDao = new ProductMDAO();
 		ArrayList<Product> plist = pDao.productList_imgX();
@@ -14,11 +16,11 @@ public class Test {
 		for (ProductInfoDTO productInfoDTO : plist) {
 			System.out.println(productInfoDTO);
 		}
-		
-		PosService pss = new PosService();
-		System.out.println(pss.productList());
 		*/
-		OrderDAO oDao = new OrderDAO();
+//		PosService pss = new PosService();
+//		System.out.println(pss.productList());
+		
+		/*OrderDAO oDao = new OrderDAO();
 //		oDao.regist();
 		/*Map<String, Timestamp> olist = oDao.selectAll();
 		olist.forEach((String code, Timestamp date) -> {

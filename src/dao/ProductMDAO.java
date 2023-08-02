@@ -7,31 +7,62 @@ import java.util.ArrayList;
 
 import dto.Coffee;
 import dto.Product;
+import dto.RecipeDTO;
 
 //상품 관리 DAO
 public class ProductMDAO implements ISelectDAO{
-	//상품등록
+	
 	private PreparedStatement stmt = null;
-	public void regist(Product p) {
+	
+	//상품등록
+	public int regist(Product p) {
+		int res = 0;
 		String sql = "INSERT INTO product VALUES (?, ?, ?, ?)";
 		try {
-			String prodno = plusProdno(p.getPr_code());
-			String prodname = p.getPr_name();
-			int price = p.getPr_price();
-			String category = p.getPr_ctgry();
+			String pr_code = plusProdno(p.getPr_code());
+			String pr_name = p.getPr_name();
+			int pr_price = p.getPr_price();
+			String pr_ctgry = p.getPr_ctgry();
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, prodno);
-			stmt.setString(2, prodname);
-			stmt.setInt(3, price);
-			stmt.setString(4, category);
+			stmt.setString(1, pr_code);
+			stmt.setString(2, pr_name);
+			stmt.setInt(3, pr_price);
+			stmt.setString(4, pr_ctgry);
 			
-			stmt.executeUpdate();
+			res = stmt.executeUpdate();
 			System.out.println("ProductDAO Regist Success");
 		} catch (SQLException e1) {
 			System.out.println("ProducDAO insert method sql 구문 잘못됌");
 			e1.printStackTrace();
 		}
+		return res;
+	}
+	
+	//레시피 등록
+	public int registRecipe(RecipeDTO p) {
+		int res = 0;
+		String sql = "INSERT INTO recipe VALUES (?, ?, ?, ?)";
+		try {
+			String pr_code = plusProdno(p.getPr_code());
+			double ma001 = p.getMa001();
+			double ma002 = p.getMa002();
+			double ma003 = p.getMa003();
+			
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, pr_code);
+			stmt.setDouble(2, ma001);
+			stmt.setDouble(3, ma002);
+			stmt.setDouble(4, ma003);
+			
+			res = stmt.executeUpdate();
+			System.out.println("ProductDAO Regist Success");
+		} catch (SQLException e1) {
+			System.out.println("ProducDAO insert method sql 구문 잘못됌");
+			e1.printStackTrace();
+		}
+		
+		return res;
 	}
 	
 	//전체 상품 목록 조회
@@ -52,7 +83,7 @@ public class ProductMDAO implements ISelectDAO{
 				int pr_price = rs.getInt(5);
 				int total_cost = rs.getInt(6);
 				int margin = rs.getInt(7);
-				double margin_per = rs.getDouble(8);
+				double margin_per = Math.round(rs.getDouble(8)*100)/100.0;
 				dto.ProductInfoDTO p = new dto.ProductInfoDTO(pr_code, pr_name, pr_price, pr_ctgry, pr_img, total_cost, margin, margin_per);
 				plist.add(p);
 			}

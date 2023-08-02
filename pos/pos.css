@@ -1,0 +1,346 @@
+@charset "UTF-8";
+
+body {
+	
+	padding: 3px;
+	background-color: black;
+}
+
+.container{
+	margin: 0;
+	padding: 10px;
+	background-color: rgb(218, 218, 218);
+	border-radius: 20px;
+}
+
+.section {
+	height: 88vh;
+	display: grid;
+	grid-template-columns: 49% 49%;
+	padding:5px;
+	margin-top:15px;
+	text-align:center;
+	grid-gap: 1%;
+	border-radius:10px 10px 20px 20px;
+	background-color:#b4b4b4;
+}
+
+header {
+	display: flex;
+	position:relative;
+	flex-direction: row;
+	align-content: center;
+	height: 9vh;
+	background-color:  rgb(218, 218, 218);
+	border-radius: 20px 20px 5px 5px;
+}
+.now_day{
+	position:absolute;
+	top:50%;
+	transform: translateY(-50%);
+	right:200px;
+	color:white;
+	font-size: 32px;
+}
+
+.now_time{
+	position:absolute;
+	top:50%;
+	transform: translateY(-50%);
+	right:30px;
+	color:#dbae73;
+	font-size: 45px;
+}
+
+
+.title {
+	width: 310px;
+	height: 75px;
+	line-height: 75px;
+	color: black;
+	font-size: 45px;
+	text-align: center;
+	background-color:rgb(218, 218, 218);;
+	border-radius: 10px 10px 5px 5px;
+}
+
+.header_bar {
+	width: 1500px;
+	height: 68px;
+	margin-top:7px;
+	background-color: #262737;
+	border-radius: 10px 0 0 10px;
+	position: absolute;
+	right:0px;
+}
+
+.print_section {
+	display: grid;
+	grid-template-rows: 42% 10% 48%;
+	grid-gap: 1%;
+	margin-top:5px;
+	height: 80vh;
+	margin-left:2%;
+}
+
+.menu_section {
+	background-color: rgb(218, 218, 218);
+	height: 84vh;
+}
+
+.print_payinfo {
+	background-color: #e6e6e6;
+	position: relative;
+	height:100%;
+	border-radius: 5px;
+	border:2px solid  rgb(218, 218, 218);
+}
+.payinfo_box{
+	display:flex;
+	flex-direction:row;
+	width:100%;
+	color:#dbae73;
+	text-align: center;
+	border-radius: 7px 7px 0 0;
+	background-color: #191208;
+}
+.payinfo{
+	border:1px solid silver;
+}
+.payinfo:nth-child(1) {
+    width: 10%;
+}
+.payinfo:nth-child(2) {
+    width: 25%;
+}
+.payinfo:nth-child(3) {
+    width: 20%;
+}
+.payinfo:nth-child(4) {
+    width: 10%;
+}
+.payinfo:nth-child(5) {
+    width: 10%;
+}
+.payinfo:nth-child(6) {
+    width:25%;
+}
+
+.patinfo_result_box{
+	display:flex;
+	flex-direction:row;
+	position:absolute;
+	width:100%;
+	color:#dbae73;
+	text-align: center;
+	bottom:0px;
+	border-radius: 0 0 7px 7px;
+	background-color: #191208;
+}
+
+.payinfo_result{
+	border:1px solid silver;
+}
+.payinfo_result:nth-child(1) {
+    width: 55%;
+}
+
+.payinfo_result:nth-child(2) {
+    width: 10%;
+}
+.payinfo_result:nth-child(3) {
+    width: 10%;
+}
+.payinfo_result:nth-child(4) {
+    width: 25%;
+}
+
+
+.print_btnbox {
+  display: grid;
+  transform: translate(0, 5%);
+  grid-template-columns: repeat(8, 1fr);
+  background-color:#b4b4b4;
+  margin-left:15px;
+  padding:3px;
+}
+
+.print_btnbox button {
+  
+  width: 85px;
+  height: 65px;
+  color: #404040;
+  line-height:65px;
+  text-align:center;
+  font-size:17px;
+  font-weight:700;
+  border:1px solid silver;
+  border-radius: 5px;
+  background-color:  #dbdbe3;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+}
+
+.print_bottom_box {
+  display: grid;
+  margin-top:10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 1%;
+}
+  
+.print_result{
+	background-color: #736e74;
+	color:white;
+	border-radius: 10px;
+	padding:3px;
+	border:3px solid rgb(218, 218, 218);
+}
+.print_result_title{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	font-size: 27px;
+	width:100%;
+	height:15%;
+	background-color: #20212f;
+}
+
+.print_result_value{
+	display: grid;
+	height:85%;
+	grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    background-color: #20212f;
+}
+.print_result_name{
+	align-content: left;
+	margin-left: 35px;
+}
+.print_result_value div{
+	display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+/* numberpad 전체를 감싸는 div의 스타일 */
+.numpad {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    background-color: rgb(218, 218, 218);
+    border-radius: 10px;
+	padding:3px;
+	border:3px solid rgb(218, 218, 218);
+}
+.numpad div{
+	margin:2px;
+}
+.row{
+	display:grid;
+}
+
+.key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    color:#eeeeee;
+    font-size: 32px;
+    border-radius: 5px;
+    background-color: #19100b;
+    box-shadow: 1px 1px 3px 1px #16171b;
+    
+}
+
+
+.display {
+    font-size: 32px;
+    font-weight: bolder;
+    position:relative;
+    box-shadow: -2px -2px 5px 1px #8e959b;
+    color:#eeeeee;
+    text-align:right;
+    background: linear-gradient( to bottom, #919191, #6b6b6b );
+}
+
+.row-1 {
+    grid-template-columns: 1fr;
+    
+    border-radius: 5px;
+}
+
+.row-2,
+.row-3,
+.row-4,
+.row-5 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.row-6 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.menu_section{
+	border-radius: 10px;
+	background-color:#b4b4b4;
+}
+
+
+.menu_print_box{
+	display: grid;
+    gap:1%;
+	height:80%;
+    padding:5px;
+    border-radius: 10px;
+    background-color:#b4b4b4;
+	grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+.menu_print{
+	position:relative;
+	border:2px solid #dedede;
+	border-radius: 10px;
+	background-color:rgb(218, 218, 218);
+	box-shadow: 1px 1px 3px 1px #dadce0;
+}
+.prod_name{
+	position:absolute;
+	left: 50%;
+  	top: 27%;
+  	transform: translate(-50%, 0);
+  	font-size: 15px;
+  	font-weight: 600
+}
+
+.prod_price{
+	position:absolute;
+	bottom:5px;
+  	right: 5px;
+  	color:#c68733;
+  	font-size:20px;
+}
+
+.menu_print_box2{
+	display: grid;
+	height:20%;
+	grid-template-columns: repeat(2, 1fr);
+    padding:5px;
+    background-color: #b4b4b4;
+    gap:1%;
+}
+.menu_print2{
+	color:white;
+	font-size:25px;
+	line-height:149px;
+	text-align:center;
+	border:1px solid #565656;
+	border-radius: 10px;
+	background-color: #20212f;
+}
+
+
+.yello_color{
+	color:#dbae73;
+}
+
+.black_color{
+	color:black;
+}

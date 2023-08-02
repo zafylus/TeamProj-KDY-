@@ -1,0 +1,53 @@
+@charset "UTF-8";
+*{
+	margin: 0 auto;
+}
+
+.an_header{
+	display:grid;
+	grid-template-columns: 1fr  1fr;
+	padding-top: 80px;
+	font-size: 17px;
+	font-weight: 700;
+	color:#686868;
+	margin-top:30px;
+}
+
+.an_title{
+	width:70%;
+	font-weight: 700;
+	font-size:18px;
+	text-align: left;
+	padding-left: 100px;
+}
+.an_date{
+	width:100%;
+	font-weight: 700;
+	text-align: center;
+}
+
+.an_date button{
+	font-weight: 700;
+}
+.an_container{
+	margin-top: 70px;
+	font-weight: 700;
+	padding-right: 100px;
+}
+.an_box{
+	display: flex;
+	flex-direction: row;
+	font-size: 17px;
+	color:#3f3f3f;
+	margin-top: 50px;
+}
+.an_box p{
+	margin-bottom: 20px;
+}
+.an_value{
+	font-weight: 900;
+	font-size: 30px;
+}
+.red{
+	color:red;
+}

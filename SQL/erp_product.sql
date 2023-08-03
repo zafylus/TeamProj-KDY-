@@ -8,7 +8,7 @@ CREATE TABLE product(
 
 ALTER TABLE product ADD pr_img VARCHAR(100);
 
-INSERT INTO product VALUES 
+INSERT INTO product (pr_code, pr_name, pr_price, pr_ctgry) VALUES 
 ('PR001', '아메리카노', 4000, '커피'),
 ('PR002', '카페라떼', 5000, '커피'),
 ('PR003', '바닐라라떼', 6000, '커피'),
@@ -20,7 +20,7 @@ UPDATE product SET pr_img ='CafeLatte.png' WHERE pr_code = 'PR002';
 UPDATE product SET pr_img ='VanillaLatte.png' WHERE pr_code = 'PR003';
 
 SELECT * FROM product;
-
+SELECT MAX(pr_code) FROM product WHERE pr_ctgry = '커피';
 
 -- 재료 테이블
 CREATE TABLE material (
@@ -34,10 +34,6 @@ INSERT INTO material VALUE ('MA002', '우유', 2000);
 INSERT INTO material VALUE ('MA003', '시럽', 5000);
 
 SELECT * FROM material;
-
-SELECT MAX(pr_code) FROM product WHERE pr_ctgry = '커피';
-
-
 -- 레시피 테이블
 CREATE TABLE recipe(
 	pr_code CHAR(8) PRIMARY KEY,

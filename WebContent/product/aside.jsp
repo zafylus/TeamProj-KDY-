@@ -17,7 +17,7 @@
 	<aside class="container-fluid border shadow p-3  bg-body rounded">
 		<ul id="aside-ul" class="nav justify-content-center m-0 p-0 text-center">
 			<li class="aside-li nav-item"><a class="nav-link" href="product">상품조회</a></li>
-			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴2</a></li>
+			<li class="aside-li nav-item"><a class="nav-link" href="product-regist">상품등록</a></li>
 			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴3</a></li>
 			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴4</a></li>
 			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴5</a></li>

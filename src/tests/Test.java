@@ -1,16 +1,19 @@
 package tests;
 
+import dao.ProductMDAO;
 import services.ProductService;
 
 public class Test {
 	public static void main(String[] args) {
-		ProductService ps = new ProductService();
-		System.out.println(ps.parseProductInfo());
+//		ProductService ps = new ProductService();
+//		System.out.println(ps.parseProductInfo());
 		
-		/*ProductMDAO pDao = new ProductMDAO();
-		ArrayList<Product> plist = pDao.productList_imgX();
-		JSONArray jlist = new JSONArray(plist);
-		System.out.println(jlist);
+		ProductMDAO pDao = new ProductMDAO();
+		System.out.println((pDao.productOne("pr005")).getPr_name());
+		
+//		ArrayList<Product> plist = pDao.productList_imgX();
+//		JSONArray jlist = new JSONArray(plist);
+//		System.out.println(jlist);
 
 		/*ArrayList<ProductInfoDTO> plist = pDao.selectAll();
 		for (ProductInfoDTO productInfoDTO : plist) {

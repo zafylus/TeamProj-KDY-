@@ -16,12 +16,12 @@
             <h1>상품 조회</h1>
             <hr>
         </header>
-        <section>
+        <section id="section">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-secondary me-md-1" type="button">
+                <button class="btn btn-secondary me-md-1" type="button" id="card">
                     <i class="bi bi-grid"></i>
                 </button>
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary" type="button" id="list">
                     <i class="bi bi-list-check"></i>
                 </button>
               </div>
@@ -63,6 +63,7 @@
             </div>
         </section>
     </div>
+<script src="js/product/link.js"></script>
 <script src="js/product/productDel.js"></script>
 <script src="js/bootstrap.bundle.js" ></script>
 </body>

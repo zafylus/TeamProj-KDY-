@@ -1,7 +1,10 @@
 package tests;
 
+import java.util.ArrayList;
+
 import dao.ProductMDAO;
-import services.ProductService;
+import dto.RecipeDTO;
+import dto.RecipeOrderbyNameDTO;
 
 public class Test {
 	public static void main(String[] args) {
@@ -9,7 +12,10 @@ public class Test {
 //		System.out.println(ps.parseProductInfo());
 		
 		ProductMDAO pDao = new ProductMDAO();
-		System.out.println((pDao.productOne("pr005")).getPr_name());
+		ArrayList<RecipeOrderbyNameDTO> rlist = pDao.recipeListByName();
+		for (RecipeOrderbyNameDTO recipeOrderbyNameDTO : rlist) {
+			System.out.println(recipeOrderbyNameDTO);
+		}
 		
 //		ArrayList<Product> plist = pDao.productList_imgX();
 //		JSONArray jlist = new JSONArray(plist);

@@ -57,11 +57,14 @@
                     <span class="input-group-text">ml</span>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-secondary me-md-2" type="submit">상품등록</button>
+                    <button class="btn btn-secondary me-md-2" type="submit" id="submitbtn">상품등록</button>
                 </div>
             </form>
             </div>
         </div>
     </div>
+
+    <script src="js/product/validation.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

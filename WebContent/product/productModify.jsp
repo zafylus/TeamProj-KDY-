@@ -74,5 +74,6 @@
             radioDessert.checked = true;
         }
     </script>
+    <script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

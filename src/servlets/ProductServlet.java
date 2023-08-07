@@ -20,12 +20,20 @@ public class ProductServlet extends HttpServlet {
 	
 	//상품목록 페이지 이동
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = null;
+		uri = request.getParameter("uri");
+		System.out.println(uri);
 		List<ProductInfoDTO> plist = ps.productInfo(); 
-		
 		request.setAttribute("plist", plist);
-		request.setAttribute("uri", "productList.jsp");
 		
-		request.getRequestDispatcher("product/product.jsp").forward(request, response);
+		if (uri == null || uri.equals("card")) {
+			request.setAttribute("uri", "productList_card.jsp");
+			request.getRequestDispatcher("product/product.jsp").forward(request, response);
+		}
+		else if (uri.equals("list")) {
+			request.setAttribute("uri", "productList.jsp");
+			request.getRequestDispatcher("product/product.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

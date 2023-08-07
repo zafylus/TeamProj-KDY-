@@ -39,6 +39,11 @@ public class RecipeDTO {
 	public void setMa003(double ma003) {
 		this.ma003 = ma003;
 	}
+
+	@Override
+	public String toString() {
+		return "RecipeDTO [pr_code=" + pr_code + ", ma001=" + ma001 + ", ma002=" + ma002 + ", ma003=" + ma003 + "]";
+	}
 	
 	
 }

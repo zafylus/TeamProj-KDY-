@@ -45,8 +45,9 @@
 		  <li class="nav-item dropdown active">
 		    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">상품</a>
 		    <ul class="dropdown-menu">
-		      <li><a class="dropdown-item" href="product">상품조회</a></li>
-		      <li><a class="dropdown-item" href="product-regist">상품등록</a></li>
+				<li><a class="dropdown-item" href="product">상품 조회</a></li>
+				<li><a class="dropdown-item" href="product-regist">상품 등록</a></li>
+				<li><a class="dropdown-item" href="product-recipe">레시피 조회</a></li>
 		    </ul>
 		  </li>
 		</ul>

@@ -9,6 +9,7 @@ import dto.Coffee;
 import dto.Product;
 import dto.ProductInfoDTO;
 import dto.RecipeDTO;
+import dto.RecipeOrderbyNameDTO;
 
 //상품 서비스
 public class ProductService {
@@ -39,6 +40,11 @@ public class ProductService {
 		return plist;
 	} 
 	
+	//레시피 목록 불러오기
+	public ArrayList<RecipeOrderbyNameDTO> recipeList(){
+		return pdao.recipeListByName();
+	}
+	
 	//상품 불러오기
 	public Product productOne(String pr_code){
 		return pdao.productOne(pr_code);
@@ -57,15 +63,23 @@ public class ProductService {
 	}
 	
 	//상품 수정
-		public boolean modify(Product p, RecipeDTO r) {
-			int prodModRes = pdao.updateProduct((Coffee) p);
-			int reciModRes = pdao.updateRecipe(r);
-			if (prodModRes*reciModRes == 1) {
-				return true;
-			}
-			
-			return false;
+	public boolean modify(Product p, RecipeDTO r) {
+		int prodModRes = pdao.updateProduct((Coffee) p);
+		int reciModRes = pdao.updateRecipe(r);
+		if (prodModRes*reciModRes == 1) {
+			return true;
 		}
+		
+		return false;
+	}
+	
+	public boolean delete(String pr_code) {
+		if (pdao.deleteProduct(pr_code) == 1) {
+			return true;
+		}
+
+		return false;
+	}
 	
 	// 상품번호 +1
 	private String plusProdno(String category) {

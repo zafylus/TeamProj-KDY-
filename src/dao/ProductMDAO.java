@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import dto.Coffee;
 import dto.Product;
 import dto.RecipeDTO;
+import dto.RecipeOrderbyNameDTO;
 
 //상품 관리 DAO
 public class ProductMDAO implements ISelectDAO{
@@ -185,11 +186,13 @@ public class ProductMDAO implements ISelectDAO{
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
-				double ma001 = rs.getDouble(1);
-				double ma002 = rs.getDouble(2);
-				double ma003 = rs.getDouble(3);
-				RecipeDTO r = new RecipeDTO(ma001, ma002, ma003);
-				rlist.add(r);
+				double ma001 = rs.getDouble(2);
+				double ma002 = rs.getDouble(3);
+				double ma003 = rs.getDouble(4);
+				if (!(ma001 + ma002 + ma003 == 0)) {
+					RecipeDTO r = new RecipeDTO(ma001, ma002, ma003);
+					rlist.add(r);					
+				}
 			}
 		} catch (SQLException e) {
 			System.out.println("상품등록 SQL 구문 오류");
@@ -199,6 +202,35 @@ public class ProductMDAO implements ISelectDAO{
 		return rlist;
 	}	
 	
+	//레시피 목록 이름으로
+		public ArrayList<RecipeOrderbyNameDTO> recipeListByName(){
+			ArrayList<RecipeOrderbyNameDTO> rlist = null;
+			
+			try {
+				rlist = new ArrayList<RecipeOrderbyNameDTO>();
+				String sql = "SELECT p.pr_name, r.ma001, r.ma002, r.ma003\r\n" + 
+						"FROM product p, recipe r\r\n" + 
+						"WHERE p.pr_code = r.pr_code;";
+				stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery();
+				
+				while (rs.next()) {
+					String pr_name = rs.getString(1);
+					double ma001 = rs.getDouble(2);
+					double ma002 = rs.getDouble(3);
+					double ma003 = rs.getDouble(4);
+					if (!(ma001 + ma002 + ma003 == 0)) {
+						RecipeOrderbyNameDTO r = new RecipeOrderbyNameDTO(pr_name, ma001, ma002, ma003);
+						rlist.add(r);					
+					}
+				}
+			} catch (SQLException e) {
+				System.out.println("레시피조회 SQL 구문 오류");
+				e.printStackTrace();
+			}
+			
+			return rlist;
+		}	
 	//레시피
 	public RecipeDTO recipe(String pr_code){
 		RecipeDTO r = null;
@@ -283,18 +315,20 @@ public class ProductMDAO implements ISelectDAO{
 	}
 	
 	//Delete
-	public void deleteProduct(String prodno) {
+	public int deleteProduct(String pr_code) {
+		int res = 0;
 		String sql = "DELETE from product WHERE pr_code = ?;";
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, prodno);
-			stmt.executeUpdate();
+			stmt.setString(1, pr_code);
+			res = stmt.executeUpdate();
 			System.out.println("ProductDAO Delete Success");
 		} catch (SQLException e1) {
 			System.out.println("ProducDAO delete method sql 구문 오류");
 			e1.printStackTrace();
 		}
+		return res;
 	}
 		
 	//카테고리별 최대 상품번호 등록

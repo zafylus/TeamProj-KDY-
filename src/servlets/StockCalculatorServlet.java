@@ -13,37 +13,34 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 import dto.RecipeDTO;
-import service.Service_st;
+import services.Service_st;
+import util.StockCalculator;
 
-@WebServlet("/stockCalc")
+@WebServlet("/stock-c")
 public class StockCalculatorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		
 		Service_st st_serv = new Service_st();
 		List<RecipeDTO> rlist = st_serv.getRecipeList();
 		
 		request.setAttribute("rlist", rlist);
-		request.getRequestDispatcher("stock/stock.jsp?req=calc").forward(request, response);
+		request.setAttribute("page", "stockCalc.jsp");
+		request.getRequestDispatcher("stock/stock.jsp").forward(request, response);
 		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
-		
-		String[] pr_name = request.getParameterValues("products");
-		String priority = request.getParameter("priority");
-		System.out.println(pr_name);
 		PrintWriter out = response.getWriter();
-		if (pr_name != null) {
-			for (int i = 0; i < pr_name.length; i++) {
-				out.print(pr_name[i]);
-			}
-		}
-		out.print(priority);
+		
+		String[] products = request.getParameterValues("products");
+		
+		JSONObject jobj = StockCalculator.getCalc(products);
+		
+		out.print(jobj);
 	}
 }

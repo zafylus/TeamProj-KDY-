@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid silver;
+  width: 300px;
+  padding:10px;
+}
+.radius-top{
+  border-radius: 5px 5px 0 0;
+}
+
+.radius-bottom{
+  border-radius: 0 0 5px 5px;
+}
+
+.input-group:focus-within {
+  
+  border-color: orange;
+}
+
+.input-group:focus-within input {
+  background-color: #d7ecf2;
+}
+
+.icon {
+  color: silver;
+  margin-right: 10px;
+}
+
+.icon:focus {
+  color: black;
+}
+
+input {
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.login-button {
+  background-color: #9acfe0;
+  color: white;
+  margin-top: 50px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.erp-text {
+  color: #9acfe0;
+  font-size: 25px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 1;
+  width: 60px; /* 같은 크기로 맞춤 */
+}
+
+.login-form > * {
+  width: 300px; /* input 요소의 3배로 맞춤 */
+}

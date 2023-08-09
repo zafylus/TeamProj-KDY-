@@ -8,8 +8,8 @@ import dao.ProductDAO;
 import dao.StockDAO;
 import dto.RecipeDTO;
 import dto.StockDTO;
-import vo.StockOptionVO;
-import vo.TotalStockVO;
+import vos.StockOptionVO;
+import vos.TotalStockVO;
 
 public class Service_st {
 
@@ -46,7 +46,7 @@ public class Service_st {
 		
 		public void deleteStock(StockDTO s) {
 			StockDAO dao = new StockDAO();
-			if (dao.dalete(s)) {
+			if (dao.delete(s)) {
 				System.out.println("삭제 완료");
 			}
 		}

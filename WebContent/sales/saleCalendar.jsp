@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>erp</title>
 
-<link rel="stylesheet" type="text/css" href="/erp_merge_v_0.1/css/saleCalendar.css">
+<link rel="stylesheet" type="text/css" href="/erp_v1.1/css/saleCalendar.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 	
 <script>
@@ -263,7 +263,6 @@
 	<div class="container">
 		<section id="calendar"></section>
 	</div>
-
-	<!--  <script src="js/bootstrap.bundle.js" ></script>-->
+<script src="js/bootstrap.bundle.js" ></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/bootstrap.css">
-<script src="js/jquery.js"></script>
-<title>Insert title here</title>
+<link rel="stylesheet" href="/erp_ver1.1/css/bootstrap.css">
+<script src="/erp_ver1.1/js/jquery.js"></script>
+<title>Aside Page</title>
 <style>
 	.aside-li {
 		line-height: 100px;
@@ -24,6 +24,6 @@
 			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴6</a></li>
 		</ul>
 	</aside>
-<script src="js/bootstrap.bundle.js"></script>
+<script src="/erp_ver1.1/js/bootstrap.bundle.js"></script>
 </body>
 </html>

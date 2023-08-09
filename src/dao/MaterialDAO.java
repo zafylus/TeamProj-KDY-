@@ -124,7 +124,7 @@ public class MaterialDAO implements IERP_DAO{
 	}
 
 	@Override
-	public boolean dalete(Object dto) {
+	public boolean delete(Object dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		MaterialDTO m = (MaterialDTO)dto;

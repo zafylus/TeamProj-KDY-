@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>재고 옵션</title>
 <!-- CSS only -->
 <link href="css/bootstrap.css" rel="stylesheet" >
 <script src="js/jquery.js"></script>
@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-		<form id ="opt" action="StockOption" method="post">
+		<form id ="opt" action="stock-o" method="post">
 		    <div class="container border h-100 pt-5 text-center shadow-lg p-3 mb-5 bg-body rounded" >
 		    
 		    	<div class="row">

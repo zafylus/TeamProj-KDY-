@@ -44,7 +44,7 @@ public class Service_ex {
 	
 	public void deleteExpense(ExpenseDTO e) {
 		ExpenseDAO dao = new ExpenseDAO();
-		if (dao.dalete(e))
+		if (dao.delete(e))
 			System.out.println("삭제 완료");
 	}
 	

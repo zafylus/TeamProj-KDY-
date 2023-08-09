@@ -1,8 +1,10 @@
 package dto;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 public class RecipeDTO {
 	private String pr_code;
 	private double ma001;

@@ -10,8 +10,8 @@ import java.util.List;
 import DButil.DBcon;
 import DButil.DBconnect;
 import dto.StockDTO;
-import vo.StockOptionVO;
-import vo.TotalStockVO;
+import vos.StockOptionVO;
+import vos.TotalStockVO;
 
 public class StockDAO implements IERP_DAO{
 
@@ -141,7 +141,7 @@ public class StockDAO implements IERP_DAO{
 	}
 
 	@Override
-	public boolean dalete(Object dto) {
+	public boolean delete(Object dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		StockDTO stock = (StockDTO)dto;

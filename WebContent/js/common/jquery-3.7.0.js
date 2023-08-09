@@ -1,4 +1,3 @@
-console.log('jquery load');
 /*!
  * jQuery JavaScript Library v3.7.0
  * https://jquery.com/

@@ -1,23 +1,45 @@
 // 사이드 바를 클릭하면 DB에서 데이터를 가져온다.	
-for (var index = 0; index < sides.length; index++) {
+for (var index = 0; index < sides.length - 1; index++) {
 	console.log(sides[index]);
 	sides[index].addEventListener("click", transData);
 };
 
-
+document.addEventListener("DOMContentLoaded", transData);
 // 서버에 정보를 보내 데이터를 받아온다.
 // 받은 데이터를 UI에 출력한다.
 function transData(e) {
-	let unit = $(e.target).attr("data-dateUnit");
-	let value = $(e.target).attr("data-dateValue");
+
+	let unit;
+	let value;
+	let free_btn = $(".side_btn:contains('기간 선택')");
+
+	if (e) {
+		unit = $(this).attr("data-dateUnit");
+		value = $(this).attr("data-dateValue");
+	} else {
+		unit = free_btn.attr("data-dateUnit");
+		value = free_btn.data("dateValue");
+	}
+
+	if (unit === undefined) {
+		unit = "fix_month";
+		value = "1";
+	}
 
 
+	// xhd
 	const x = new XMLHttpRequest();
 	x.onload = function() {
 		let js = this.responseText;
 		console.log("js :" + js);
 		let jo = JSON.parse(js);
 		console.log("jo :" + jo);
+
+		var pageRedirect = jo.pageRedirect;
+		if (pageRedirect) {
+			window.location.href = pageRedirect;
+		}
+
 
 		let dataMap = new Map();
 		// response를 받을 준비를 한다.
@@ -30,9 +52,35 @@ function transData(e) {
 		let topList = dataMap.get("topList");
 
 
+		$(".apexcharts-canvas").remove();
+		if (allProductList.length === 0) {
+			$("#chart").css("display", "none");
+			$(".product_showlist").children().each(function() {
+				$(this).css("display", "none");
+			});
+
+			$(".product_showlist").append("<span class='null_response_msg'>아직 매출이 없어요...</span>");
+			let null_msg = $(".null_response_msg");
+			null_msg.css({
+				position: "absolute",
+				top: "45%",
+				left: "50%",
+				transform: "translate(-50%, -50%)",
+				fontSize: "22px",
+				fontWeight: "700",
+				color: "black"
+			});
+			return;
+		}
+		$(".null_response_msg").remove();
+
 		// display: none을 해제한다.
+		$(".product_showlist").children().each(function() {
+			$(this).css("display", "block");
+		});
 		$(".top1").css("display", "block");
-		$(".top_value").css("display", "grid");
+		$(".topOrder").css("display", "flex");
+		$("#chart").css("display", "block");
 
 		// color 값을 주기 위해 span으로 값을 담는다.
 		// 원래는 text로 바로 넣을 생각이었음
@@ -55,7 +103,7 @@ function transData(e) {
 		console.log("topList :" + topList);
 		// 1등 데이터의 상품명과 판매금액을 할당한다.
 		$(".pr_top1").text(topList[0].prName);
-		$(".pr_pay").text(topList[0].pay + "원");
+		$(".pr_pay").text(topList[0].pay.toLocaleString() + "원");
 
 		// 2, 3 등을 처리하는 구간
 		// append를 사용하기 때문에 계속 추가될 수 있다.
@@ -65,14 +113,24 @@ function transData(e) {
 		// 검색된 div는 2개고, topList는 3개다.
 		// div index 0 ,1과 topList index 1, 2를 매칭한다.
 		$(".top_value").each(function(index, item) {
+			if(!topList[index + 1]){
+				$(".top_value").eq(index).css("display", "none");
+			}else{
+		    $(".top_value").eq(index).css("display", "grid");
 			$(item).append($("<div>").text(index + 2));
 			$(item).append($("<div>").text(topList[index + 1].prName));
 			$(item).append($("<div>").text(topList[index + 1].saleCnt));
-			$(item).append($("<div>").text(topList[index + 1].pay + "원"));
+			$(item).append($("<div>").text(topList[index + 1].pay.toLocaleString() + "원"));
 
 			// 등수와 상품명 div에 padding을 준다.
 			// 1등 데이터와 수직을 맞춘다
 			$(item).find("div:nth-child(1), div:nth-child(2)").css("padding-right", "40px");
+			$(item).find("div:nth-child(2)").css({
+				"text-align": "left",
+				"width": "120px"
+			});
+			$(item).find("div:nth-child(4)").css("padding-left", "10px");
+			}
 		});
 
 		// 차트 호출하는 구간
@@ -80,6 +138,7 @@ function transData(e) {
 		if ($(".apexcharts-canvas").length === 0) {
 			callChart(allProductList);
 		}
+
 	};
 
 	x.open("POST", "../sale", true);

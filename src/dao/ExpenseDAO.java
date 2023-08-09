@@ -131,7 +131,7 @@ public class ExpenseDAO implements IERP_DAO{
 	}
 
 	@Override
-	public boolean dalete(Object dto) {
+	public boolean delete(Object dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ExpenseDTO expense = (ExpenseDTO)dto;

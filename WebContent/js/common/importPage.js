@@ -1,4 +1,4 @@
-console.log('importPage load');	
+	
 	
 		let navs = document.querySelectorAll(".nav");
 		let sides = document.querySelectorAll(".side_btn");
@@ -12,51 +12,42 @@ console.log('importPage load');
 			sides[index].addEventListener("blur", blur_side);
 		};
 
-		// nav
-		function focus_nav(e) {
-			let target = $(e.target);
-			target.css("color", "#1c8dff");
-			target.css("borderBottom", "3px solid #1c8dff");
-			target.off("mouseout", blur);
-		}
 
-		function blur_nav(e) {
-			let target = $("e.target");
-			target.css("color","#4e4e4e");
-			target.css("borderBottom","none");
-		}
+	  // 각 nav 요소에 클릭 이벤트를 추가합니다.
+	  	navs.forEach(nav => {
+	    nav.addEventListener('click', function() {
+      // 클릭한 nav 요소에 active 클래스를 추가합니다.
+      	this.classList.add('active');
 
-		// sub
-		navs.forEach(function(nav) {
-			nav.addEventListener("focus", focus_nav);
-			nav.addEventListener("blur", blur_nav);
-			nav.addEventListener("blur", function() {
-				setTimeout(sub_off, 120);
-			});
-			nav.addEventListener("focus", function(e) {
-				setTimeout(function() {
-					sub_on(e.target);
-				}, 130);
-			});
-		});
+      // 나머지 nav 요소들에서 active 클래스를 제거하고 해당 nav의 sub_box를 감춥니다.
+	    navs.forEach(otherNav => {
+	        if (otherNav !== this) {
+	          otherNav.classList.remove('active');
+	          otherNav.nextElementSibling.style.display = 'none';
+	        }
+	      });
 
-		// sub
-		function sub_on(target) {
-			let index = Array.from(navs).indexOf(target);
-			sub[index].style.display = "flex";
-		}
-
-		function sub_off() {
-			sub.forEach(function(subBox) {
-				subBox.style.display = "none";
-			});
-		}
-
+	      const subBox = this.nextElementSibling;
+	      subBox.style.display = 'flex';
+	    });
+	  });
+	document.addEventListener('click', function(event) {
+	  const target = event.target;
+	  // 클릭한 요소가 nav가 아니라면 모든 sub_box를 감춥니다.
+	  if (!target.classList.contains('nav')) {
+	    sub.forEach(subBox => {
+	      subBox.style.display = 'none';
+	  	});
+	 navs.forEach(nav => {
+	      nav.classList.remove('active');
+	    });
+	 }
+	});
 		// side
 		function focus_side(e) {
 			let target = e.target;
-			target.style.color = "#1c8dff";
-			target.style.background = "#e6e6ff";
+			target.style.color = "#4da6ff";
+			target.style.background = "#f0f0ff";
 			
 			
 			

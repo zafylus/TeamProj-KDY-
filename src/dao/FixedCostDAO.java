@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import DButil.DBcon;
+import db.DBcon;
 import dto.FixedCostDTO;
 
 public class FixedCostDAO implements IERP_DAO{
@@ -18,14 +18,15 @@ public class FixedCostDAO implements IERP_DAO{
 		boolean flag = false;
 		FixedCostDTO cost = (FixedCostDTO) dto;
 		
-		String query = "INSERT INTO fixedcost VALUE (?, ? ,?)";
+		String query = "INSERT INTO fixedcost VALUE (?, ?, ? ,?)";
 		
 		try {
 			con = DBcon.getConn();
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, cost.getFi_name());
-			pstmt.setInt(2, cost.getFi_cost() );
-			pstmt.setInt(3, cost.getFi_date());
+			pstmt.setInt(1, cost.getFi_no());
+			pstmt.setString(2, cost.getFi_name());
+			pstmt.setInt(3, cost.getFi_cost() );
+			pstmt.setInt(4, cost.getFi_date());
 			int result = pstmt.executeUpdate();
 			if (result == 1 )
 				flag = true;
@@ -54,13 +55,14 @@ public class FixedCostDAO implements IERP_DAO{
 		String query = "SELECT * FROM fixedcost";
 		
 		try {
-			con = DButil.DBcon.getConn();
+			con = db.DBcon.getConn();
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				if( rs != null ) {
 					FixedCostDTO dto = new FixedCostDTO();
+					dto.setFi_no(rs.getInt("fi_no"));
 					dto.setFi_name(rs.getString("fi_name"));
 					dto.setFi_cost(rs.getInt("fi_cost"));
 					dto.setFi_date(rs.getInt("fi_date"));
@@ -91,14 +93,15 @@ public class FixedCostDAO implements IERP_DAO{
 		FixedCostDTO cost = (FixedCostDTO)dto;
 		boolean flag = false;
 		
-		String query = "UPDATE FROM fixedcost SET fi_cost=?, fi_date=? WHERE fi_name=?";
+		String query = "UPDATE fixedcost SET fi_name=?, fi_cost=?, fi_date=? WHERE fi_no=?";
 		
 		try {
 			con = DBcon.getConn();
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, cost.getFi_cost());
-			pstmt.setInt(2, cost.getFi_date());
-			pstmt.setString(3, cost.getFi_name());
+			pstmt.setString(1, cost.getFi_name());
+			pstmt.setInt(2, cost.getFi_cost());
+			pstmt.setInt(3, cost.getFi_date());
+			pstmt.setInt(4, cost.getFi_no());
 			int result = pstmt.executeUpdate();
 			
 			if (result == 1 )
@@ -119,18 +122,18 @@ public class FixedCostDAO implements IERP_DAO{
 	}
 
 	@Override
-	public boolean dalete(Object dto) {
+	public boolean delete(Object dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		FixedCostDTO cost = (FixedCostDTO)dto;
 		boolean flag = false;
 		
-		String query = "DELETE FROM fixedcost WHERE fi_name=?";
+		String query = "DELETE FROM fixedcost WHERE fi_no=?";
 		
 		try {
 			con = DBcon.getConn();
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, cost.getFi_name());
+			pstmt.setInt(1, cost.getFi_no());
 			int result = pstmt.executeUpdate();
 			
 			if (result ==1)

@@ -95,8 +95,10 @@ public class EmployeeDAO implements IERP_DAO{
 		return false;
 	}
 
+
 	@Override
-	public boolean dalete(Object dto) {
+	public boolean delete(Object dto) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	

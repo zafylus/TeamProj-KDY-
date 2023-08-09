@@ -63,6 +63,6 @@
 		<jsp:include page="${uri }" />
 	</section>
 </div>
-
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

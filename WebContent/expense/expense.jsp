@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>지출 파트</title>
 <!-- CSS only -->
-<link href="css/bootstrap.css" rel="stylesheet" >
+<link href="/erp_ver2.0/css/bootstrap.css" rel="stylesheet" >
+<link rel="stylesheet" type="text/css" href="/erp_ver2.0/css/erp.css">
 <script src="js/jquery.js"></script>
 <style>
 	* {
@@ -46,12 +47,6 @@
 </style>
 </head>
 <body>
-<%
-	String reqPage = (String)request.getParameter("req");
-	String includeP = PageCheck.expensePageCheck(reqPage);
-	
-	pageContext.setAttribute("page", includeP);
-%>
 <div id = "page">
 	<jsp:include page="../header.jsp" />
 	<jsp:include page="nav.jsp" />

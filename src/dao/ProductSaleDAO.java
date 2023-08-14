@@ -32,7 +32,7 @@ public class ProductSaleDAO {
 		try {
 			String sql = "SELECT pr_name, SUM(amount) AS total_amount, SUM(amount * pr_price) AS pay\r\n" + 
 					"FROM ordr_view\r\n" + 
-					"WHERE odr_date BETWEEN ? AND ?\r\n" + 
+					"WHERE order_date BETWEEN ? AND ?\r\n" + 
 					"  AND pr_price > 0\r\n" + 
 					"GROUP BY pr_code, pr_name\r\n" + 
 					"ORDER BY total_amount DESC, pay DESC\r\n" + 
@@ -74,7 +74,7 @@ public class ProductSaleDAO {
 			try {
 				String sql = "SELECT pr_name, SUM(amount) AS total_amount, SUM(amount * pr_price) AS pay\r\n" + 
 						"		FROM ordr_view\r\n" + 
-						"		WHERE odr_date BETWEEN ? AND ?\r\n" + 
+						"		WHERE order_date BETWEEN ? AND ?\r\n" + 
 						"  		AND pr_price > 0\r\n" + 
 						"		GROUP BY pr_code, pr_name\r\n" + 
 						"		ORDER BY total_amount DESC;";
@@ -116,7 +116,7 @@ public class ProductSaleDAO {
 	    try {
 	        String sql = "SELECT pr_name, SUM(amount) AS total_amount\r\n" + 
 	        		"	FROM ordr_view\r\n" + 
-	        		"	WHERE odr_date BETWEEN ? AND ?\r\n" + 
+	        		"	WHERE order_date BETWEEN ? AND ?\r\n" + 
 	        		"	AND pr_price >0 \r\n" + 
 	        		"	LIMIT 3;";
 

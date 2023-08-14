@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import services.PosService;
 
@@ -28,7 +27,7 @@ public class PosServlet extends HttpServlet {
 		System.out.println(jarray);
 		
 		request.setAttribute("plist", jarray);
-		request.getRequestDispatcher("pos.jsp").forward(request, response);
+		request.getRequestDispatcher("jsp/pos.jsp").forward(request, response);
 	}
 	
 	//주문 결제 처리하는 Servlet

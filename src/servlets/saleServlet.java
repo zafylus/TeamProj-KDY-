@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import service.common.PageDataManager;
 import vo.transData.TransInfoDTO;
 
-@WebServlet("/sale")
+@WebServlet("/saleTransData")
 public class saleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,12 +31,15 @@ public class saleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String url = "saleAnalysis";
-		String dateUnit = request.getParameter("dateUnit");
-		String dateValue = request.getParameter("dateValue");
+		/*
+		 * String url = request.getParameter("dateUnit"); String dateUnit =
+		 * request.getParameter("dateUnit"); String dateValue =
+		 * request.getParameter("dateValue");
+		 */
 		
-		TransInfoDTO info = new TransInfoDTO(url, dateUnit, dateValue);
+		TransInfoDTO info = (TransInfoDTO) request.getAttribute("info");
 		// 요청 데이터 불러오기
+		System.out.println("info : " + info);
 		// service에 전달 -> db값 받기 -> jsp 전송
 		PageDataManager pageDataManager= new PageDataManager();
 		Map<String, Object> pageData = pageDataManager.dataDevision(info);
@@ -44,6 +47,7 @@ public class saleServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		JSONObject jobj  = getJsonStringFromMap(pageData);
 		PrintWriter out = response.getWriter();
+		System.out.println(jobj);
 		out.print(jobj);
 	}
 	

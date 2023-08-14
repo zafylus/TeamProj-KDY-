@@ -24,7 +24,7 @@ public class SaleDAO {
 	// 실질 기간 별 매출 (달력 파트)
 	public int getRealTotalSales() {
 		String totalSalesQuery = "SELECT SUM(sales) AS total_pay " + "FROM ordr_view "
-				+ "WHERE odr_date BETWEEN ? AND ?";
+				+ "WHERE order_date BETWEEN ? AND ?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(totalSalesQuery);
 			pstmt.setDate(1, startDate);
@@ -49,11 +49,11 @@ public class SaleDAO {
 	// 일별 매출(달력 파트)
 	public List<DailySaleVO> getDailySales() {
 		List<DailySaleVO> saleDailyList = new ArrayList<>(); 
-		String dailyTotalSalesQuery = "SELECT odr_date, SUM(sales) AS sales " 
+		String dailyTotalSalesQuery = "SELECT order_date, SUM(sales) AS sales " 
 		+ "FROM ordr_view "
-		+ "WHERE odr_date BETWEEN ? AND ? "
+		+ "WHERE order_date BETWEEN ? AND ? "
 		+ "AND pr_price > 0 " 
-		+ "GROUP BY odr_date";
+		+ "GROUP BY order_date";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(dailyTotalSalesQuery);
 			pstmt.setDate(1, startDate);
@@ -62,7 +62,7 @@ public class SaleDAO {
 
 			while (rs.next()) {
 				DailySaleVO daily = new DailySaleVO();
-				daily.setDate(rs.getDate("odr_date"));
+				daily.setDate(rs.getDate("order_date"));
 				daily.setDailySale(rs.getInt("sales"));
 				saleDailyList.add(daily);
 			}
@@ -81,7 +81,7 @@ public class SaleDAO {
 	// 기간 별 매출 (분석 파트)
 		public int getTotalSales() {
 			String totalSalesQuery = "SELECT SUM(sales) AS total_pay " + "FROM ordr_view "
-					+ "WHERE odr_date BETWEEN ? AND ? " + "AND pr_price > 0";
+					+ "WHERE order_date BETWEEN ? AND ? " + "AND pr_price > 0";
 			try {
 				PreparedStatement pstmt = con.prepareStatement(totalSalesQuery);
 				pstmt.setDate(1, startDate);
@@ -104,7 +104,7 @@ public class SaleDAO {
 	// 기간 별 매출 건수(분석 파트)
 	public int getSaleCount() {
 
-		String saleCountQuery = "SELECT COUNT(odr_no) AS sa_cnt " + "FROM ordr_view " + "WHERE odr_date BETWEEN ? AND ? "
+		String saleCountQuery = "SELECT COUNT(odr_code) AS sa_cnt " + "FROM ordr_view " + "WHERE order_date BETWEEN ? AND ? "
 				+ "AND pr_price > 0";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(saleCountQuery);
@@ -129,8 +129,8 @@ public class SaleDAO {
 	// 기간 별 평균 결제 금액 (분석 파트)
 	public int getAveragePayment() {
 		String averagePayQuery = "SELECT CAST(AVG(sales) AS INT) AS pr_avg " + "FROM ( "
-				+ "    SELECT odr_no, SUM(sales) AS sales " + "    FROM ordr_view "
-				+ "    WHERE odr_date BETWEEN ? AND ? " + "      AND pr_price > 0 " + "    GROUP BY odr_no "
+				+ "    SELECT odr_code, SUM(sales) AS sales " + "    FROM ordr_view "
+				+ "    WHERE order_date BETWEEN ? AND ? " + "      AND pr_price > 0 " + "    GROUP BY odr_code "
 				+ ") AS subquery";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(averagePayQuery);
@@ -158,7 +158,7 @@ public class SaleDAO {
 		int totalRefunds = 0;
 
 		String totalRefundsQuery = "SELECT SUM(sales) AS sales " + "FROM ordr_view "
-				+ "WHERE odr_date BETWEEN ? AND ? " + "AND pr_price < 0";
+				+ "WHERE order_date BETWEEN ? AND ? " + "AND pr_price < 0";
 
 		try {
 			PreparedStatement pstmt = con.prepareStatement(totalRefundsQuery);
@@ -183,8 +183,8 @@ public class SaleDAO {
 	public int getRefundCount() {
 		int refundCount = 0;
 
-		String refundCountQuery = "SELECT COUNT(odr_no) AS sa_cnt " + "FROM ordr_view "
-				+ "WHERE odr_date BETWEEN ? AND ? " + "AND pr_price < 0";
+		String refundCountQuery = "SELECT COUNT(odr_code) AS sa_cnt " + "FROM ordr_view "
+				+ "WHERE order_date BETWEEN ? AND ? " + "AND pr_price < 0";
 
 		try {
 			PreparedStatement pstmt = con.prepareStatement(refundCountQuery);
@@ -211,11 +211,11 @@ public class SaleDAO {
 
 		String averageRefundQuery = "	SELECT CAST(AVG(sales) AS INT) AS pr_avg\r\n" + 
 				"	FROM (\r\n" + 
-				"    SELECT odr_no, SUM(sales) AS sales\r\n" + 
+				"    SELECT odr_code, SUM(sales) AS sales\r\n" + 
 				"    FROM ordr_view\r\n" + 
-				"    WHERE odr_date BETWEEN ? AND ?\r\n" + 
+				"    WHERE order_date BETWEEN ? AND ?\r\n" + 
 				"      AND pr_price < 0\r\n" + 
-				"    GROUP BY odr_no\r\n" + 
+				"    GROUP BY odr_code\r\n" + 
 				"	) AS subquery";
 
 		try {

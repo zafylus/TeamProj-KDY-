@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- CSS only -->
-<link href="css/bootstrap.css" rel="stylesheet">
-<script src="js/jquery.js"></script>
+<link href="/erp_ver1.2/css/bootstrap.css" rel="stylesheet">
+<script src="/erp_ver1.2/js/jquery.js"></script>
 <style>
 	.nav-item {
 		width:150px;
@@ -22,10 +22,11 @@
 		    <a class="nav-link" aria-current="page" href="main">Home</a>
 		  </li>
 		  <li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle active" aria-current="page" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">매출</a>
+		    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">매출</a>
 		    <ul class="dropdown-menu">
-		    	<li><a class="dropdown-item" href="SalesServlet">매출 달력</a></li>
-		   		<li><a class="dropdown-item" href="#">??</a></li>
+		    	<li><a class="dropdown-item" href="sales">매출 달력</a></li>
+		    	<li><a class="dropdown-item" href="saleAnalysis">매출 분석</a></li>
+		   		<li><a class="dropdown-item" href="productAnalysis" >상품 분석</a></li>
 		    </ul>
 		  </li>
 		  <li class="nav-item dropdown">
@@ -46,14 +47,14 @@
 		      <li><a class="dropdown-item" href="StockOption">옵션</a></li>
 		    </ul>
 		  </li>
-			<li class="nav-item dropdown">
+		  	<li class="nav-item dropdown">
 		    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">상품</a>
 		    <ul class="dropdown-menu">
-		      <li><a class="dropdown-item" href="#">준비중</a></li>
+		    	<li><a class="dropdown-item" href="#">준비중</a></li>
 		    </ul>
 		  </li>
 		</ul>
 	</nav>
-<script src="js/bootstrap.bundle.js"></script>
+<script src="/erp_ver1.2/js/bootstrap.bundle.js"></script>
 </body>
 </html>

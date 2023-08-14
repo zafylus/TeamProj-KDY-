@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>erp_ver1.1</display-name>
+  <display-name>erp_ver1.2</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,4 +9,40 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 필터 등록 -->
+	<filter>
+		<filter-name>authenticationFilter</filter-name>
+		<filter-class>filter.authenticationFilter</filter-class>
+	</filter>
+	<!-- 필터 매핑 
+		 limit 폴더로 이동 시 동작
+	-->
+	  <filter-mapping>
+		<filter-name>authenticationFilter</filter-name>
+		<url-pattern>/limit/*</url-pattern>
+	</filter-mapping>  
+	
+	<filter>
+		<filter-name>saleFilter</filter-name>
+		<filter-class>filter.saleFilter</filter-class>
+	</filter>
+	
+	
+ 	<filter-mapping>
+		<filter-name>saleFilter</filter-name>
+		<url-pattern>/saleTransData</url-pattern>
+	</filter-mapping>
+	 
+	
+	
+	
+	
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>filter.loginCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/loginCheck</url-pattern>
+	</filter-mapping>
 </web-app>

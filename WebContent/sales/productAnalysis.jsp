@@ -12,10 +12,10 @@
 	LocalDate now = LocalDate.now();
 String nowDate = now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy.MM.dd"));
 %>
-<link rel="stylesheet" type="text/css" href="../css/erp.css">
-<link rel="stylesheet" type="text/css" href="../css/productAnalysis.css">
-<link rel="stylesheet" href="../css/modal.css">
-<link rel="stylesheet" href="../css/datepicker.css">
+<link rel="stylesheet" type="text/css" href="/erp_ver1.2/css/erp.css">
+<link rel="stylesheet" type="text/css" href="/erp_ver1.2/css/productAnalysis.css">
+<link rel="stylesheet" href="/erp_ver1.2/css/modal.css">
+<link rel="stylesheet" href="/erp_ver1.2/css/datepicker.css">
 
 
 
@@ -23,10 +23,9 @@ String nowDate = now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy.M
 
 <body>
 
-	<c:import url="../importPage/header.jsp" />
-	<c:import url="../importPage/nav.jsp" />
+	
+	
 	<div class="container">
-		<c:import url="../importPage/side.jsp" />
 		<section>
 			<div class="header">
 				<div class="title">top 3 인기 상품</div>
@@ -116,13 +115,13 @@ String nowDate = now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy.M
 			showUserProfile(userId);
 		}
 	</script>
-	<script src="../js/common/jquery-3.7.0.js"></script>
-	<script src="../js/common/importPage.js"></script>
-	<script src="../js/library/datepicker.js"></script>
-	<script src="../js/library/datepicker.ko-KR.js"></script>
-	<script src="../js/library/datepickerModal.js"></script>
+	<script src="/erp_ver1.2/js/common/jquery-3.7.0.js"></script>
+	<script src="/erp_ver1.2/js/common/importPage.js"></script>
+	<script src="/erp_ver1.2/js/library/datepicker.js"></script>
+	<script src="/erp_ver1.2/js/library/datepicker.ko-KR.js"></script>
+	<script src="/erp_ver1.2/js/library/datepickerModal.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-	<script src="../js/sale/productAnalysis.js"></script>
+	<script src="/erp_ver1.2/js/sale/productAnalysis.js"></script>
 </body>
 
 

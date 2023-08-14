@@ -63,7 +63,7 @@ function transData(e) {
 			let null_msg = $(".null_response_msg");
 			null_msg.css({
 				position: "absolute",
-				top: "45%",
+				top: "40%",
 				left: "50%",
 				transform: "translate(-50%, -50%)",
 				fontSize: "22px",
@@ -141,9 +141,9 @@ function transData(e) {
 
 	};
 
-	x.open("POST", "../sale", true);
+	x.open("POST", "/erp_ver1.2/saleTransData", true);
 	x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	x.send("dateUnit=" + unit + "&dateValue=" + value);
+	x.send("dateUnit=" + unit + "&dateValue=" + value + "&page=productAnalysis");
 
 
 }

@@ -31,12 +31,12 @@ function transData(e) {
 	}
 
 
-	fetch("/erp_ver2.0/sale", {
+	fetch("/erp_ver1.2/saleTransData", {
 		method: "POST",
 		headers: {
 			"Content-type": "application/x-www-form-urlencoded"
 		},
-		body: "dateUnit=" + unit + "&dateValue=" + value
+		body: "dateUnit=" + unit + "&dateValue=" + value + "&page=saleAnalysis"
 	})
 		.then(response => response.json())
 		.then(jo => {

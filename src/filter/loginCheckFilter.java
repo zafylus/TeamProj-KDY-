@@ -8,7 +8,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,7 +47,6 @@ public class loginCheckFilter implements Filter {
 	        
 	        // 로그아웃 처리
 	        if (httpRequest.getParameter("logout") != null) {
-	        	System.out.println("로그아웃 함수");
 	        	session.removeAttribute("userId");// 세션 무효화
 	        	if(containsLimit) {
 	        		System.out.println("로그아웃 홈으로 가요....");

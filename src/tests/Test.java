@@ -1,21 +1,22 @@
 package tests;
 
-import java.util.ArrayList;
 
-import dao.ProductMDAO;
-import dto.RecipeDTO;
-import dto.RecipeOrderbyNameDTO;
+import dao.ReceiptDAO;
 
 public class Test {
 	public static void main(String[] args) {
 //		ProductService ps = new ProductService();
 //		System.out.println(ps.parseProductInfo());
 		
-		ProductMDAO pDao = new ProductMDAO();
-		ArrayList<RecipeOrderbyNameDTO> rlist = pDao.recipeListByName();
-		for (RecipeOrderbyNameDTO recipeOrderbyNameDTO : rlist) {
-			System.out.println(recipeOrderbyNameDTO);
-		}
+		ReceiptDAO rd = new ReceiptDAO();
+		
+		System.out.println(rd.getMaxOdrNo());
+		
+//		ProductMDAO pDao = new ProductMDAO();
+//		ArrayList<RecipeOrderbyNameDTO> rlist = pDao.recipeListByName();
+//		for (RecipeOrderbyNameDTO recipeOrderbyNameDTO : rlist) {
+//			System.out.println(recipeOrderbyNameDTO);
+//		}
 		
 //		ArrayList<Product> plist = pDao.productList_imgX();
 //		JSONArray jlist = new JSONArray(plist);

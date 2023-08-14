@@ -321,7 +321,7 @@ header {
 .menu_print_box2{
 	display: grid;
 	height:20%;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 2fr 1fr 1fr;
     padding:5px;
     background-color: #b4b4b4;
     gap:1%;

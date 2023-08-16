@@ -10,14 +10,15 @@
 ## 역할
 - 김도윤 : 세부 CSS, 로그인, POS, 매출
 - 도수현 : 메인 CSS, 재고, 지출
-- 윤도일 : POS Back-End, 매출, 상품, git/github 
+- 윤도일 : 세부 CSS, POS Back-End, 매출, 상품, git/github 
 
 ## 작업환경
 - OS : Windows 10
 - Java : OpenJDK 11
+  - JSP, Servlet, JSTL
 - JavaSript : JQuery, Ajax
 - RDBMS : MariaDB
-- IDE : eclipse, VSC
+- IDE : eclipse(4.16.0), VSC
 - Open API : BootStrap, FullCalendar, Apex Chart
 
 ### 진행
@@ -43,7 +44,17 @@
 - 통계 : 상품 판매 통계를 차트로 조회
   
 #### 재고
+- 현재 재고 총량 계산
+  - 재고 부족 알림
+- 재고 입/출 리스트
+- 재고 등록
+- 재고 생산 계산
+- 재고 알림 옵션
+
 #### 지출
+- 지출 등록
+- 지출 리스트
+
 #### 상품
 - 상품 조회
   - 이미지 조회
@@ -57,7 +68,11 @@
 #### 윤도일
 - 상품
   - 도메인을 RESTful하게 구현
-  - 상품 등록 : 파일 업로드 기능 구현
-
+  - 상품 등록
+    - 파일 업로드 기능 구현
+    - 유효성 검사
+- 매출 : 달력 코드 리펙토링
+  
 ---
 ## 문서
+- 문서 작업 중... 추가예정

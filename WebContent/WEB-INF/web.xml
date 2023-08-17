@@ -14,13 +14,46 @@
 		<filter-name>authenticationFilter</filter-name>
 		<filter-class>filter.authenticationFilter</filter-class>
 	</filter>
+	<filter>
+		<filter-name>expenseAuthenticationFilter</filter-name>
+		<filter-class>filter.authenticationFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>fixedcostAuthenticationFilter</filter-name>
+		<filter-class>filter.authenticationFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>productRegistAuthenticationFilter</filter-name>
+		<filter-class>filter.authenticationFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>productAuthenticationFilter</filter-name>
+		<filter-class>filter.authenticationFilter</filter-class>
+	</filter>
 	<!-- 필터 매핑 
 		 limit 폴더로 이동 시 동작
 	-->
-	  <filter-mapping>
+	   
+	   <filter-mapping>
+		<filter-name>productAuthenticationFilter</filter-name>
+		<url-pattern>/product</url-pattern>
+		</filter-mapping>
+	   <filter-mapping>
+		<filter-name>productRegistAuthenticationFilter</filter-name>
+		<url-pattern>/product-regist</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
 		<filter-name>authenticationFilter</filter-name>
-		<url-pattern>/limit/*</url-pattern>
-	</filter-mapping>  
+		<url-pattern>/expenses</url-pattern>
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>expenseAuthenticationFilter</filter-name>
+		<url-pattern>/expense</url-pattern>
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>fixedcostAuthenticationFilter</filter-name>
+		<url-pattern>/fixedcost</url-pattern>
+	</filter-mapping> 
 	
 	<filter>
 		<filter-name>saleFilter</filter-name>

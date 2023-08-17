@@ -22,14 +22,19 @@
 		    <a class="nav-link" aria-current="page" href="main">Home</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="#">매출</a>
+		    <a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" role="button" aria-expanded="false">매출</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="sales">매출 달력</a></li>
+					<li><a class="dropdown-item" href="saleAnalysis">매출 분석</a></li>
+					<li><a class="dropdown-item" href="productAnalysis" >상품 분석</a></li>
+				</ul>
 		  </li>
 		  <li class="nav-item dropdown">
 		    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">지출</a>
 		    <ul class="dropdown-menu">
-		    	<li><a class="dropdown-item" href="InsertExpnese">지출 등록</a></li>
-		    	<li><a class="dropdown-item" href="expenseList"> 지출 리스트</a></li>
-		   		<li><a class="dropdown-item" href="#">??</a></li>
+		    	<li><a class="dropdown-item" href="expense">지출 등록</a></li>
+				<li><a class="dropdown-item" href="expenses"> 지출 리스트</a></li>
+				<li><a class="dropdown-item" href="fixedcost"> 고정비</a></li>
 		    </ul>
 		  </li>
 		  <li class="nav-item dropdown">
@@ -50,6 +55,9 @@
 				<li><a class="dropdown-item" href="product-recipe">레시피 조회</a></li>
 		    </ul>
 		  </li>
+		  <li class="nav-item dropdown">
+			<a class="nav-link"  href="pos"  >Pos</a>
+			</li>
 		</ul>
 	</nav>
 <script src="js/bootstrap.bundle.js"></script>

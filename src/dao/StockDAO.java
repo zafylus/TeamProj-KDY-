@@ -26,8 +26,7 @@ public class StockDAO implements IERP_DAO{
 				+ "VALUE (null, ?, ?, ?, ?)";
 		
 		try {
-			DBconnect connect = new DBconnect();
-			con = connect.getConn();
+			con = DBcon.getConn();
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, stock.getMa_code());
 			pstmt.setInt(2, stock.getSt_ea());
@@ -66,8 +65,7 @@ public class StockDAO implements IERP_DAO{
 		String query = "SELECT * FROM stock";
 		
 		try {
-			DBconnect connect = new DBconnect();
-			con = connect.getConn();
+			con = DBcon.getConn();
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			
@@ -189,7 +187,7 @@ public class StockDAO implements IERP_DAO{
 		
 		
 		try {
-			con = DButil.DBcon.getConn();
+			con = DBcon.getConn();
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, date1);
 			pstmt.setString(2, date2);

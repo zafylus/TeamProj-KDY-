@@ -171,9 +171,9 @@ String formattedDate = sdfDate.format(now);
 	setInterval(updateClock, 1000);
 </script>
 
-<script src="/erp/js/common/jquery-3.7.0.js"></script>
-<script src="/erp/js/library/datepicker.js"></script>
-<script src="/erp/js/library/datepicker.ko-KR.js"></script>
+<script src="/erp_ver1.2/js/common/jquery-3.7.0.js"></script>
+<script src="/erp_ver1.2/js/library/datepicker.js"></script>
+<script src="/erp_ver1.2/js/library/datepicker.ko-KR.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".datepicker").datepicker({
@@ -184,6 +184,142 @@ String formattedDate = sdfDate.format(now);
 	});
 </script>
 
+
+<script type="text/javascript">
+	var refund = document.querySelector(".refund");
+	refund.addEventListener("click", function() {
+		var orderNum = document.querySelector(".order_num_value");
+		var orderNumValue = orderNum.textContent;
+		alert(orderNum.textContent);
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "receiptData", true);
+		xhr.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				// AJAX 요청이 완료된 경우의 처리
+				var response = xhr.responseText;
+				console.log(response); // 서버 응답 출력
+				location.reload();
+			}
+		};
+
+		var requestData = "orderNum=" + orderNumValue;
+		xhr.send(requestData); // 데이터 전송
+	});
+</script>
+<script type="text/javascript">
+var check = document.querySelector(".check");
+check.addEventListener("click", function() {
+    var date_start = document.querySelector(".date_start").value;
+    var date_last = document.querySelector(".date_last").value;
+    var selectedRadioButton = document.querySelector('input[name="content-type"]:checked').id;
+    var low_price = document.querySelector(".low_price").value;
+    var high_price = document.querySelector(".high_price").value;
+    var receipt_num = document.querySelector(".input_receipt_num").value;
+
+
+    // 데이터를 객체로 만들기
+	var requestData = {
+	    date_start: date_start,
+	    date_last: date_last,
+	    content_type: selectedRadioButton
+	};
+	
+	if (low_price !== "") {
+	    requestData.low_price = low_price;
+	}
+	
+	if (high_price !== "") {
+	    requestData.high_price = high_price;
+	}
+	
+	if (receipt_num !== "") {
+	    requestData.receipt_num = receipt_num;
+	}
+
+    // 데이터 객체를 쿼리 스트링으로 변환
+    var queryParams = Object.keys(requestData).map(key => {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(requestData[key]);
+    }).join('&');
+
+    // GET 요청을 보낼 URL
+    var requestURL = "receiptData?" + queryParams;
+    // Ajax GET 요청 보내기
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", requestURL, true);
+
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        // 여기서 받은 데이터를 처리하여 동적으로 HTML 생성
+        var container = document.querySelector(".receipt_list_container"); // HTML 컨테이너
+
+		while (container.children.length >= 2)  {
+			container.removeChild(container.children[1]);
+		}
+		for (var i = 0; i < response.length; i++) {
+			var receiptSales = response[i];
+			var odrDateParts = receiptSales.odrDate.split(" ");
+			var datePart = odrDateParts[0].substring(5);
+			var timeParts = odrDateParts[1].split(":");
+			var hour = timeParts[0];
+			var minute = timeParts[1];
+			var type = receiptSales.totalSales >= 0 ? '판매' : '환불';
+
+			var div = document.createElement("div");
+			div.className = "receipt_list_box";
+			div.setAttribute("data-no", receiptSales.odrCode);
+			div.setAttribute("data-date", receiptSales.odrDate);
+
+			var div = document.createElement("div");
+			div.className = "receipt_list_box";
+			div.setAttribute("data-no", receiptSales.odrCode);
+			div.setAttribute("data-date", receiptSales.odrDate);
+
+			var datePartDiv = document.createElement("div");
+			datePartDiv.className = "receipt_list datePart";
+			datePartDiv.textContent = datePart;
+			div.appendChild(datePartDiv);
+
+			var odrCodeDiv = document.createElement("div");
+			odrCodeDiv.className = "receipt_list";
+			odrCodeDiv.textContent = receiptSales.odrCode;
+			div.appendChild(odrCodeDiv);
+
+			var timeDiv = document.createElement("div");
+			timeDiv.className = "receipt_list time";
+			timeDiv.textContent = hour + ":" + minute;
+			div.appendChild(timeDiv);
+
+			var totalSalesDiv = document.createElement("div");
+			totalSalesDiv.className = "receipt_list";
+			totalSalesDiv.textContent = new Intl.NumberFormat().format(receiptSales.totalSales);
+			div.appendChild(totalSalesDiv);
+
+			var typeDiv = document.createElement("div");
+			typeDiv.className = "receipt_list";
+			typeDiv.textContent = type;
+			div.appendChild(typeDiv);
+
+			container.appendChild(div);
+			
+		}
+		var receiptList = document.querySelectorAll(".receipt_list_box");
+		receiptList.forEach(function (item) {
+   		item.addEventListener("click", function () {
+        handleReceiptItemClick(item);
+    });
+});
+    }
+};
+xhr.send();
+});
+
+
+</script>
 <script type="text/javascript">
 	var receiptList = document.querySelectorAll(".receipt_list_box");
 	var dateTimeBox = document.querySelector(".date_time");
@@ -193,30 +329,27 @@ String formattedDate = sdfDate.format(now);
 	var cost = document.querySelector(".print_cost");
 	var printContent = document.querySelector(".print_section");
 
-	//각 요소에 클릭 이벤트를 추가합니다.
-	receiptList.forEach(function(item) {
-		item.addEventListener("click", function() {
-			var printListContainer = document
-					.querySelector(".print_list_container");
-			printContent.style.display = 'block';
+	function handleReceiptItemClick(item) {
+    var printListContainer = document.querySelector(".print_list_container");
+    printContent.style.display = 'block';
 
-			while (printListContainer.firstChild) {
-				printListContainer.removeChild(printListContainer.firstChild);
-			}
+    while (printListContainer.firstChild) {
+        printListContainer.removeChild(printListContainer.firstChild);
+    }
 
-			var date = item.getAttribute("data-date").slice(0, -3);
-			dateTimeBox.textContent = date;
-			var dataNoValue = item.getAttribute("data-no");
-			orderNum.textContent = dataNoValue;
-			var total_price = 0;
+    var date = item.getAttribute("data-date").slice(0, -3);
+    dateTimeBox.textContent = date;
+    var dataNoValue = item.getAttribute("data-no");
+    orderNum.textContent = dataNoValue;
+    var total_price = 0;
 
-			setTimeout(function() {
-				var xhr = new XMLHttpRequest();
-				xhr.open("GET", "receiptData?dataNo=" + dataNoValue, true);
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState === 4 && xhr.status === 200) {
-						var rilist = JSON.parse(xhr.response);
-						for (var i = 0; i < rilist.length; i++) {
+    setTimeout(function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "receiptData?dataNo=" + dataNoValue, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var rilist = JSON.parse(xhr.response);
+               for (var i = 0; i < rilist.length; i++) {
 							var receiptItem = rilist[i];
 							var prName = receiptItem.prName;
 							var prNo = receiptItem.prNo;
@@ -275,84 +408,11 @@ String formattedDate = sdfDate.format(now);
 				};
 				xhr.send();
 			}, 150);
-		});
-	});
-</script>
-<script type="text/javascript">
-	var refund = document.querySelector(".refund");
-	refund.addEventListener("click", function() {
-		var orderNum = document.querySelector(".order_num_value");
-		var orderNumValue = orderNum.textContent;
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "receiptData", true);
-		xhr.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded");
-
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState === 4 && xhr.status === 200) {
-				// AJAX 요청이 완료된 경우의 처리
-				var response = xhr.responseText;
-				console.log(response); // 서버 응답 출력
-				location.reload();
-			}
-		};
-
-		var requestData = "orderNum=" + orderNumValue;
-		xhr.send(requestData); // 데이터 전송
-	});
-</script>
-<script type="text/javascript">
-var check = document.querySelector(".check");
-check.addEventListener("click", function() {
-    var date_start = document.querySelector(".date_start").value;
-    var date_last = document.querySelector(".date_last").value;
-    var selectedRadioButton = document.querySelector('input[name="content-type"]:checked').id;
-    var low_price = document.querySelector(".low_price").value;
-    var high_price = document.querySelector(".high_price").value;
-    var receipt_num = document.querySelector(".input_receipt_num").value;
-    alert(date_start);
-
-    // 데이터를 객체로 만들기
-	var requestData = {
-	    date_start: date_start,
-	    date_last: date_last,
-	    content_type: selectedRadioButton
-	};
-	
-	if (low_price !== "") {
-	    requestData.low_price = low_price;
-	}
-	
-	if (high_price !== "") {
-	    requestData.high_price = high_price;
-	}
-	
-	if (receipt_num !== "") {
-	    requestData.receipt_num = receipt_num;
-	}
-
-    // 데이터 객체를 쿼리 스트링으로 변환
-    var queryParams = Object.keys(requestData).map(key => {
-        return encodeURIComponent(key) + '=' + encodeURIComponent(requestData[key]);
-    }).join('&');
-
-    // GET 요청을 보낼 URL
-    var requestURL = "receiptData?" + queryParams;
-	alert(requestURL);
-    // Ajax GET 요청 보내기
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", requestURL, true);
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var response = xhr.responseText;
-            console.log(response); // 서버 응답 출력
-            // 여기서 받은 데이터를 처리하는 로직을 추가하세요.
-        }
-    };
-
-    xhr.send();
+}
+receiptList.forEach(function (item) {
+    item.addEventListener("click", function () {
+        handleReceiptItemClick(item);
+    });
 });
 </script>
 </html>

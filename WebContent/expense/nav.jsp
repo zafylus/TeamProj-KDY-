@@ -24,7 +24,8 @@
 		    	<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">매출</a>
 		    		<ul class="dropdown-menu">
 		    			<li><a class="dropdown-item" href="sales">매출 달력</a></li>
-		    			<li><a class="dropdown-item" href="/erp_ver1.1/sale">매출 분석</a></li>
+						<li><a class="dropdown-item" href="saleAnalysis">매출 분석</a></li>
+						<li><a class="dropdown-item" href="productAnalysis" >상품 분석</a></li>
 		   			</ul>
 			</li>
 			
@@ -50,10 +51,14 @@
 		  	<li class="nav-item dropdown">
 		    	<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">상품</a>
 		    		<ul class="dropdown-menu">
-		      			<li><a class="dropdown-item" href="#">준비중</a></li>
+						<li><a class="dropdown-item" href="product">상품 조회</a></li>
+						<li><a class="dropdown-item" href="product-regist">상품 등록</a></li>
+						<li><a class="dropdown-item" href="product-recipe">레시피 조회</a></li>
 		    		</ul>
 		  	</li>
-		  	
+			  <li class="nav-item dropdown">
+		    	<a class="nav-link"  href="pos"  >Pos</a>
+			</li>
 		</ul>
 	</nav>
 <script src="js/bootstrap.bundle.js" ></script>

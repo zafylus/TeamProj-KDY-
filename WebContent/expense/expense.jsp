@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>지출 파트</title>
 <!-- CSS only -->
-<link href="/erp_ver2.0/css/bootstrap.css" rel="stylesheet" >
-<link rel="stylesheet" type="text/css" href="/erp_ver2.0/css/erp.css">
+<link href="/erp_ver1.2/css/bootstrap.css" rel="stylesheet" >
+<link rel="stylesheet" type="text/css" href="/erp_ver1.2/css/erp.css">
 <script src="js/jquery.js"></script>
 <style>
 	* {

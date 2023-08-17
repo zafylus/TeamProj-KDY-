@@ -39,11 +39,11 @@ public class loginCheckServlet extends HttpServlet {
 	        if (isValidLogin) {
 	        	System.out.println("로그인 성공...");
 	            session.setAttribute("userId", id);
-	            response.sendRedirect("/erp_ver1.1/main"); 
+	            response.sendRedirect("/erp_ver1.2/main"); 
 	  		  
 	        } else {
 	        	System.out.println("로그인 실패...");
-	            response.sendRedirect("/erp_ver1.1/jsp/login.jsp?error=1"); // 로그인 실패 시 이동할 페이지 (예: 다시 로그인 페이지로)
+	            response.sendRedirect("/erp_ver1.2/jsp/login.jsp?error=1"); // 로그인 실패 시 이동할 페이지 (예: 다시 로그인 페이지로)
 	        }
 	}
 

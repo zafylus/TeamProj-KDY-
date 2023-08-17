@@ -17,7 +17,33 @@ public class ReceiptDAO {
     public ReceiptDAO() {
         conn = DBcon.getConn();
     }
+    
+    public List<ReceiptSales> getReceipt(String query) {
+        List<ReceiptSales> salesList = new ArrayList<>();
 
+        try {
+
+            PreparedStatement pstt = conn.prepareStatement(query);
+            ResultSet rs =  pstt.executeQuery();
+
+            while (rs.next()) {
+                String odrCode = rs.getString("odr_code");
+                double totalSales = rs.getDouble("total_sales");
+                String odrDate = rs.getString("order_date");
+                
+                ReceiptSales sales = new ReceiptSales(odrCode, totalSales, odrDate);
+                salesList.add(sales);
+            }
+            
+            rs.close();
+            pstt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return salesList;
+    }
+    
     public List<ReceiptSales> getSales() {
         List<ReceiptSales> salesList = new ArrayList<>();
 
@@ -82,8 +108,9 @@ public class ReceiptDAO {
 
         return itemList;
     }
-    public int getMaxodrCode() {
-        int maxodrCode = 0;
+    
+    public String getMaxodrCode() {
+        String maxodrCode = "";
 
         try {
             String query = "SELECT MAX(odr_code) AS highest_odr_code FROM ordr_view";
@@ -91,7 +118,7 @@ public class ReceiptDAO {
             ResultSet rs = pstt.executeQuery();
 
             if (rs.next()) {
-                maxodrCode = rs.getInt("highest_odr_code");
+                maxodrCode = rs.getString("highest_odr_code");
             }
 
             rs.close();
@@ -103,6 +130,24 @@ public class ReceiptDAO {
         return maxodrCode;
     }
     
+   
+
+    public boolean insertOrderTbl(String odrCode) {
+        try {
+            String query = "INSERT INTO order_tbl (odr_code) VALUES (?)";
+            PreparedStatement pstt = conn.prepareStatement(query);
+            pstt.setString(1, odrCode);
+
+            int rowsAffected = pstt.executeUpdate();
+            pstt.close();
+
+            return rowsAffected > 0; // 삽입이 성공하면 true 반환
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
     public boolean insertOrder(String odrCode, String prCode, int amount) {
         try {

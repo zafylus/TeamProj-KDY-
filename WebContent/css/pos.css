@@ -344,3 +344,8 @@ header {
 .black_color{
 	color:black;
 }
+
+a{
+	color:white;
+	text-decoration:none;
+}

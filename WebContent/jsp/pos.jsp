@@ -218,8 +218,8 @@ String formattedDate = sdfDate.format(now);
 				</div>
 				<div class="menu_print_box2">
 					<div class="payment menu_print2">결제</div>
-					<div class="receipt menu_print2">영수증 관리</div>
-					<div class="menu_print2">ERP</div>
+					<div class="receipt menu_print2"><a href="/erp_ver1.2/receipt">영수증 관리</a></div>
+					<div class="menu_print2"><a href="/erp_ver1.2/main">ERP</a></div>
 				</div>
 			</div>
 		</div>

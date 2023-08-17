@@ -10,7 +10,7 @@
 <title>재고 파트</title>
 <!-- CSS only -->
 <link href="css/bootstrap.css" rel="stylesheet" >
-<link rel="stylesheet" type="text/css" href="/erp_ver1.1/css/erp.css">
+<link rel="stylesheet" type="text/css" href="/erp_ver1.2/css/erp.css">
 <script src="js/jquery.js"></script>
 <style>
 	* {

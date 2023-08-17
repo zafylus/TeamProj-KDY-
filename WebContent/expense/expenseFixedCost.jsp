@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>고정비 목록</title>
-<link href="/erp_ver1.1/css/bootstrap.css" rel="stylesheet" >
-<script src="/erp_ver1.1/js/jquery.js"></script>
+<link href="/erp_ver1.2/css/bootstrap.css" rel="stylesheet" >
+<script src="/erp_ver1.2/js/jquery.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -206,6 +206,6 @@
 		return regExpCost.test(cost);
 	}
 </script>
-<script src="/erp_ver1.1/js/bootstrap.bundle.js" ></script>
+<script src="/erp_ver1.2/js/bootstrap.bundle.js" ></script>
 </body>
 </html>

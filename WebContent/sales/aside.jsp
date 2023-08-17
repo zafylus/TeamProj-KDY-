@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/erp_ver2.0/css/bootstrap.css">
-<script src="/erp_ver2.0/js/jquery.js"></script>
+<link rel="stylesheet" href="/erp_ver1.2/css/bootstrap.css">
+<script src="/erp_ver1.2/js/jquery.js"></script>
 <title>Insert title here</title>
 <style>
 	.aside-li {
@@ -23,6 +23,6 @@
 			<li class="aside-li nav-item"><a class="side_btn nav-link" data-dateUnit="free" data-dateValue="입력 대기 중" href="#">기간 선택</a></li>
 		</ul>
 	</aside>
-<script src="/erp_ver2.0/js/bootstrap.bundle.js"></script>
+<script src="/erp_ver1.2/js/bootstrap.bundle.js"></script>
 </body>
 </html>

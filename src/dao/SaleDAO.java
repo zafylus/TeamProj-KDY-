@@ -52,7 +52,7 @@ public class SaleDAO {
 		String dailyTotalSalesQuery = "SELECT order_date, SUM(sales) AS sales " 
 		+ "FROM ordr_view "
 		+ "WHERE order_date BETWEEN ? AND ? "
-		+ "AND pr_price > 0 " 
+		+ "AND sales > 0 " 
 		+ "GROUP BY order_date";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(dailyTotalSalesQuery);
@@ -81,7 +81,7 @@ public class SaleDAO {
 	// 기간 별 매출 (분석 파트)
 		public int getTotalSales() {
 			String totalSalesQuery = "SELECT SUM(sales) AS total_pay " + "FROM ordr_view "
-					+ "WHERE order_date BETWEEN ? AND ? " + "AND pr_price > 0";
+					+ "WHERE order_date BETWEEN ? AND ? " + "AND sales > 0";
 			try {
 				PreparedStatement pstmt = con.prepareStatement(totalSalesQuery);
 				pstmt.setDate(1, startDate);
@@ -105,7 +105,7 @@ public class SaleDAO {
 	public int getSaleCount() {
 
 		String saleCountQuery = "SELECT COUNT(odr_code) AS sa_cnt " + "FROM ordr_view " + "WHERE order_date BETWEEN ? AND ? "
-				+ "AND pr_price > 0";
+				+ "AND sales > 0";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(saleCountQuery);
 			pstmt.setDate(1, startDate);
@@ -130,7 +130,7 @@ public class SaleDAO {
 	public int getAveragePayment() {
 		String averagePayQuery = "SELECT CAST(AVG(sales) AS INT) AS pr_avg " + "FROM ( "
 				+ "    SELECT odr_code, SUM(sales) AS sales " + "    FROM ordr_view "
-				+ "    WHERE order_date BETWEEN ? AND ? " + "      AND pr_price > 0 " + "    GROUP BY odr_code "
+				+ "    WHERE order_date BETWEEN ? AND ? " + "      AND sales > 0 " + "    GROUP BY odr_code "
 				+ ") AS subquery";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(averagePayQuery);
@@ -158,7 +158,7 @@ public class SaleDAO {
 		int totalRefunds = 0;
 
 		String totalRefundsQuery = "SELECT SUM(sales) AS sales " + "FROM ordr_view "
-				+ "WHERE order_date BETWEEN ? AND ? " + "AND pr_price < 0";
+				+ "WHERE order_date BETWEEN ? AND ? " + "AND sales < 0";
 
 		try {
 			PreparedStatement pstmt = con.prepareStatement(totalRefundsQuery);
@@ -184,7 +184,7 @@ public class SaleDAO {
 		int refundCount = 0;
 
 		String refundCountQuery = "SELECT COUNT(odr_code) AS sa_cnt " + "FROM ordr_view "
-				+ "WHERE order_date BETWEEN ? AND ? " + "AND pr_price < 0";
+				+ "WHERE order_date BETWEEN ? AND ? " + "AND sales < 0";
 
 		try {
 			PreparedStatement pstmt = con.prepareStatement(refundCountQuery);
@@ -214,7 +214,7 @@ public class SaleDAO {
 				"    SELECT odr_code, SUM(sales) AS sales\r\n" + 
 				"    FROM ordr_view\r\n" + 
 				"    WHERE order_date BETWEEN ? AND ?\r\n" + 
-				"      AND pr_price < 0\r\n" + 
+				"      AND sales < 0\r\n" + 
 				"    GROUP BY odr_code\r\n" + 
 				"	) AS subquery";
 

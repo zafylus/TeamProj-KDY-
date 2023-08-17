@@ -35,7 +35,7 @@
 			<div class="an_container">
 				<div class="an_box sale">
 					<div>
-						<p>실 매출</p>
+						<p>매출</p>
 						<div>
 							<span class="an_value ">0</span>원
 						</div>
@@ -96,12 +96,12 @@
 	  // 현재 페이지의 URL을 이전 페이지 변수에 저장
 	  previousPageUrl = window.location.href;
 	  // login.jsp로 이동
-	  window.location.href = "/erp/jsp/login.jsp";
+	  window.location.href = "/erp_ver1.2/loginMove";
 	});
 
 	// 로그인 성공 시 화면 변경
 	function showUserProfile(userId) {
-	  alert(userId);
+	 
 	  var userIdElement = document.querySelector(".user-id");
 	  var logout = document.querySelector(".logout");
 
@@ -150,6 +150,6 @@
 <script src="/erp_ver1.2/js/library/datepicker.js"></script>
 <script src="/erp_ver1.2/js/library/datepicker.ko-KR.js"></script>
  <script src="/erp_ver1.2/js/sale/saleAnalysis.js"></script>
-
+ <script src="/erp_ver1.2/js/bootstrap.bundle.js"></script>
 </body>
 </html>

@@ -31,7 +31,7 @@
 		<div class="row">
 			<div id="liveAlertPlaceholder" class="col-sm-2"></div>
 			<div class="col-sm-8">
-				<h1>ERP System  [ver 2.0]</h1>
+				<h1>ERP System  [ver 1.2]</h1>
 			</div>
 				<div class="col-sm-2">
 				 	<div id="user-profile" tabindex="0">
@@ -69,7 +69,7 @@
 	  // 현재 페이지의 URL을 이전 페이지 변수에 저장
 	  previousPageUrl = window.location.href;
 	  // login.jsp로 이동
-	  window.location.href = "/erp_ver2.0/jsp/login.jsp";
+	  window.location.href = "/erp_ver1.2/loginMove";
 	});
 
 	// 로그인 성공 시 화면 변경
@@ -88,7 +88,7 @@
 
 	  // 로그아웃 클릭 시 로그아웃 처리
 	 logout.addEventListener("click", function() {
-		  fetch("/erp_ver2.0/loginCheck?logout=true", { method: "POST" })
+		  fetch("/erp_ver1.2/loginCheck?logout=true", { method: "POST" })
 		    .then(function(response) {
 		      // 로그아웃 처리 완료 후 페이지 새로고침
 		      window.location.reload();

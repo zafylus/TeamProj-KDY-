@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>erp</title>
 
-<link rel="stylesheet" type="text/css" href="/erp_v1.1/css/saleCalendar.css">
+<link rel="stylesheet" type="text/css" href="/erp_ver1.2/css/saleCalendar.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 	
 <script>

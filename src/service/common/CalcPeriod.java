@@ -48,11 +48,12 @@ public class CalcPeriod {
 		
 		// 마지막 날자
 		LocalDate endDate = LocalDate.now();
+		LocalDate endDatePlusOne = endDate.plusDays(1);
 		// 시작 날짜
 		LocalDate beginDate = endDate.minus(periodValue);
 
 		date.setBeginDate(beginDate);
-		date.setEndDate(endDate);
+		date.setEndDate(endDatePlusOne);
 		
 	}
 	
@@ -86,12 +87,13 @@ public class CalcPeriod {
 
 		// 뒤의 값을 endDate 변수에 저장
 		LocalDate endDate = LocalDate.parse(dateArray[1], DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+		LocalDate endDatePlusOne = endDate.plusDays(1);
 
 		System.out.println("beginDate : " + beginDate);
-		System.out.println("endDate : " + endDate);
+		System.out.println("endDate : " + endDatePlusOne);
 		
 		date.setBeginDate(beginDate);
-		date.setEndDate(endDate);
+		date.setEndDate(endDatePlusOne);
 	}
 	
 }

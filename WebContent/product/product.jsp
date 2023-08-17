@@ -8,8 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <!-- CSS only -->
-<link href="css/bootstrap.css" rel="stylesheet" >
-<script src="js/jquery.js"></script>
+<link href="/erp_ver1.2/css/bootstrap.css" rel="stylesheet" >
+<link rel="stylesheet" type="text/css" href="/erp_ver1.2/css/erp.css">
+<script src="/erp_ver1.2/js/jquery.js"></script>
 <style>
 	* {
 		box-sizing: border-box;
@@ -63,6 +64,6 @@
 		<jsp:include page="${uri }" />
 	</section>
 </div>
-<script src="js/bootstrap.bundle.js"></script>
+<script src="/erp_ver1.2/js/bootstrap.bundle.js"></script>
 </body>
 </html>

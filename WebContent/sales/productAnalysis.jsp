@@ -66,12 +66,11 @@ String nowDate = now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy.M
 					// 현재 페이지의 URL을 이전 페이지 변수에 저장
 					previousPageUrl = window.location.href;
 					// login.jsp로 이동
-					window.location.href = "/erp/jsp/login.jsp";
+					window.location.href = "/erp_ver1.2/loginMove";
 				});
 
 		// 로그인 성공 시 화면 변경
 		function showUserProfile(userId) {
-			alert(userId);
 			var userIdElement = document.querySelector(".user-id");
 			var logout = document.querySelector(".logout");
 
@@ -116,12 +115,12 @@ String nowDate = now.format(java.time.format.DateTimeFormatter.ofPattern("yyyy.M
 		}
 	</script>
 	<script src="/erp_ver1.2/js/common/jquery-3.7.0.js"></script>
-	<script src="/erp_ver1.2/js/common/importPage.js"></script>
 	<script src="/erp_ver1.2/js/library/datepicker.js"></script>
 	<script src="/erp_ver1.2/js/library/datepicker.ko-KR.js"></script>
 	<script src="/erp_ver1.2/js/library/datepickerModal.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script src="/erp_ver1.2/js/sale/productAnalysis.js"></script>
+	<script src="/erp_ver1.2/js/bootstrap.bundle.js"></script>
 </body>
 
 

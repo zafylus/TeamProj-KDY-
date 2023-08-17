@@ -42,7 +42,7 @@ public class SalesDAO implements ISelectDAO{
 		try {
 			String sql = "SELECT pr_code, pr_name, sum(amount) AS amount, sum(sales) AS sales\r\n" + 
 					"FROM ordr_view\r\n" + 
-					"WHERE order_date BETWEEN '2023-07-25 00:00:00' and '2023-07-25 23:59:59'\r\n" + 
+					"WHERE order_date BETWEEN ? and ?\r\n" + 
 					"GROUP BY pr_code\r\n" + 
 					"ORDER BY sales DESC";
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -70,7 +70,7 @@ public class SalesDAO implements ISelectDAO{
 	public ArrayList<SalesByDateDTO> selectAll() {
 		ArrayList<SalesByDateDTO> slist = null;
 		try {
-			String sql = "SELECT * FROM sales_date";
+			String sql = "SELECT * FROM sales_date ORDER BY DATE desc;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			

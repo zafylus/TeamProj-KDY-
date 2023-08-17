@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/login.css" >
+<link rel="stylesheet" href="/erp_ver1.2/css/login.css" >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -15,9 +15,10 @@
 	if (error == 1)
 		alert("아이디 또는 비밀번호를 확인하세요.");
 </script>
+<div class="home"><a href="/erp_ver1.2/main">Home</a></div>
 <div class="login-container">
  <div class="erp-text">ERP</div>
-  <form action="/erp_ver1.1/loginCheck" method="post" class="login-form">
+  <form action="/erp_ver1.2/loginCheck" method="post" class="login-form">
     <div class="input-group radius-top">
       <i class="fas fa-user icon"></i>
       <input type="text" name="id" placeholder="ID">

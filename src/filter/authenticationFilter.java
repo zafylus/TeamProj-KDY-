@@ -32,9 +32,7 @@ public class authenticationFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 
-		//이전 페이지 url 획득
-		String previousPageUrl = httpRequest.getHeader("Referer");
-		previousPageUrl = previousPageUrl.replace("http://localhost:8089", "");
+		
 		
 		// userID 획득
 		String userId = (String) session.getAttribute("userId"); 
@@ -46,11 +44,11 @@ public class authenticationFilter implements Filter {
 			if ("admin".equals(userId)) {
 				chain.doFilter(request, response);
 			} else {
-				httpResponse.sendRedirect(previousPageUrl);
+				httpResponse.sendRedirect("/erp_ver1.2/main");
 				return;
 			}
 		} else {
-			httpResponse.sendRedirect("/erp/jsp/login.jsp");
+			httpResponse.sendRedirect("/erp_ver1.2/loginMove");
 			return;
 		}
 		

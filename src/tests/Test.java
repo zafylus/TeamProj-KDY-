@@ -2,16 +2,21 @@ package tests;
 
 
 import dao.ReceiptDAO;
+import services.ReceiptService;
+import vos.SelectQueryVO;
 
 public class Test {
 	public static void main(String[] args) {
+		ReceiptService rs = new ReceiptService();
+		SelectQueryVO sq = new SelectQueryVO("2023-06-01", "2026-08-16", "all", "0", "80000", "or001");
+		System.out.println(rs.createSelectQuery(sq));
 //		ProductService ps = new ProductService();
 //		System.out.println(ps.parseProductInfo());
-		
-		ReceiptDAO rd = new ReceiptDAO();
-		
-		System.out.println(rd.getMaxOdrNo());
-		
+//		
+//		ReceiptDAO rd = new ReceiptDAO();
+//		
+//		System.out.println(rd.getMaxOdrNo());
+//		
 //		ProductMDAO pDao = new ProductMDAO();
 //		ArrayList<RecipeOrderbyNameDTO> rlist = pDao.recipeListByName();
 //		for (RecipeOrderbyNameDTO recipeOrderbyNameDTO : rlist) {

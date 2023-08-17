@@ -29,30 +29,38 @@
 		   		<li><a class="dropdown-item" href="productAnalysis" >상품 분석</a></li>
 		    </ul>
 		  </li>
-		  <li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">지출</a>
-		    <ul class="dropdown-menu">
-		    	<li><a class="dropdown-item" href="InsertExpnese">지출 등록</a></li>
-		    	<li><a class="dropdown-item" href="expenseList"> 지출 리스트</a></li>
-		   		<li><a class="dropdown-item" href="#">??</a></li>
-		    </ul>
-		  </li>
-		  <li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">재고</a>
-		    <ul class="dropdown-menu">
-		      <li><a class="dropdown-item" href="totalstock">총 재고량</a></li>
-		      <li><a class="dropdown-item" href="stockList">재고 입/출 리스트</a></li>
-		      <li><a class="dropdown-item" href="insertStock">재고 등록</a></li>
-		      <li><a class="dropdown-item" href="stockCalc">생산 계산</a></li>
-		      <li><a class="dropdown-item" href="StockOption">옵션</a></li>
-		    </ul>
-		  </li>
-		  	<li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">상품</a>
-		    <ul class="dropdown-menu">
-		    	<li><a class="dropdown-item" href="#">준비중</a></li>
-		    </ul>
-		  </li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">지출</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="expense">지출 등록</a></li>
+						<li><a class="dropdown-item" href="expenses"> 지출 리스트</a></li>
+						<li><a class="dropdown-item" href="fixedcost"> 고정비</a></li>
+					</ul>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">재고</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="stock-t">총 재고량</a></li>
+						<li><a class="dropdown-item" href="stocks">재고 입/출 리스트</a></li>
+						<li><a class="dropdown-item" href="stock">재고 등록</a></li>
+						<li><a class="dropdown-item" href="stock-c">생산 계산</a></li>
+						<li><a class="dropdown-item" href="stock-o">옵션</a></li>
+					</ul>
+			</li>
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="totalstock" role="button" aria-expanded="false">상품</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="product">상품 조회</a></li>
+						<li><a class="dropdown-item" href="product-regist">상품 등록</a></li>
+						<li><a class="dropdown-item" href="product-recipe">레시피 조회</a></li>
+					</ul>
+			</li>
+			<li class="nav-item dropdown">
+		    	<a class="nav-link"  href="pos"  >Pos</a>
+			</li>
+			
 		</ul>
 	</nav>
 <script src="/erp_ver1.2/js/bootstrap.bundle.js"></script>

@@ -9,6 +9,15 @@
   height: 100vh;
 }
 
+.home{
+	position:absolute;
+	left:5px;
+	top:5px;
+}
+a{
+	color:#8a8a8a;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;

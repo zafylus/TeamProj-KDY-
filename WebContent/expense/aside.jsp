@@ -19,7 +19,6 @@
 			<li class="aside-li nav-item"><a class="nav-link" href="expense">지출 등록</a></li>
 			<li class="aside-li nav-item"><a class="nav-link" href="expenses">지출 리스트</a></li>
 			<li class="aside-li nav-item"><a class="nav-link" href="fixedcost">고정비</a></li>
-			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴4</a></li>
 		</ul>
 	</aside>
 <script src="js/bootstrap.bundle.js" ></script>

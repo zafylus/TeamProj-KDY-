@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <!-- CSS only -->
-<link href="/erp_ver1.1/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/erp_ver1.1/css/erp.css">
-	<script src="/erp_ver1.1/js/jquery.js"></script>
+<link href="/erp_ver1.2/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/erp_ver1.2/css/erp.css">
+	<script src="/erp_ver1.2/js/jquery.js"></script>
 <style>
 	* {
 		box-sizing: border-box;
@@ -62,7 +62,7 @@
 	  // 현재 페이지의 URL을 이전 페이지 변수에 저장
 	  previousPageUrl = window.location.href;
 	  // login.jsp로 이동
-	  window.location.href = "/erp_ver1.1/jsp/login.jsp";
+	  window.location.href = "/erp_ver1.2/loginMove";
 	});
 
 	// 로그인 성공 시 화면 변경
@@ -109,6 +109,6 @@
 	  showUserProfile(userId);
 	}
 </script>
-<script src="/erp_ver1.1/js/bootstrap.bundle.js"></script>
+<script src="/erp_ver1.2/js/bootstrap.bundle.js"></script>
 </body>
 </html>

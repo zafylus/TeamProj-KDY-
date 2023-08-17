@@ -19,9 +19,6 @@
 			<li class="aside-li nav-item"><a class="nav-link" href="product">상품 조회</a></li>
 			<li class="aside-li nav-item"><a class="nav-link" href="product-regist">상품 등록</a></li>
 			<li class="aside-li nav-item"><a class="nav-link" href="product-recipe">레시피 조회</a></li>
-			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴4</a></li>
-			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴5</a></li>
-			<li class="aside-li nav-item"><a class="nav-link" href="#">세부메뉴6</a></li>
 		</ul>
 	</aside>
 <script src="js/bootstrap.bundle.js"></script>

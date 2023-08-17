@@ -1,4 +1,7 @@
 // 사이드 바를 클릭하면 DB에서 데이터를 가져온다.	
+
+let sides = document.querySelectorAll(".side_btn");
+
 for (var index = 0; index < sides.length - 1; index++) {
 	console.log(sides[index]);
 	sides[index].addEventListener("click", transData);
